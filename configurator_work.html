@@ -175,8 +175,11 @@
                         </div>
                         <div>
                             <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Сторона выхода кабеля</label>
-                            <div class="grid grid-cols-4 gap-1.5">
-                                <button onclick="setCableOutlet('X')" id="cable-X" class="flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="cable outlet side/X.png" alt="X" class="w-10 h-10 object-contain transition"><span class="text-[10px] font-bold">X</span></button><button onclick="setCableOutlet('1')" id="cable-1" class="flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="cable outlet side/1.png" alt="1" class="w-10 h-10 object-contain transition"><span class="text-[10px] font-bold">1</span></button><button onclick="setCableOutlet('2')" id="cable-2" class="flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="cable outlet side/2.png" alt="2" class="w-10 h-10 object-contain transition"><span class="text-[10px] font-bold">2</span></button><button onclick="setCableOutlet('3')" id="cable-3" class="flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="cable outlet side/3.png" alt="3" class="w-10 h-10 object-contain transition"><span class="text-[10px] font-bold">3</span></button>
+                            <div class="grid grid-cols-4 gap-1.5 font-mono">
+                                <button onclick="setCableOutlet('X')" id="cable-X" class="bg-white text-slate-950 font-bold p-2 rounded border border-white text-center text-xs transition">X</button>
+                                <button onclick="setCableOutlet('1')" id="cable-1" class="bg-slate-900 hover:bg-slate-800 p-2 rounded border border-slate-800 text-slate-400 text-center font-medium text-xs transition">1</button>
+                                <button onclick="setCableOutlet('2')" id="cable-2" class="bg-slate-900 hover:bg-slate-800 p-2 rounded border border-slate-800 text-slate-400 text-center font-medium text-xs transition">2</button>
+                                <button onclick="setCableOutlet('3')" id="cable-3" class="bg-slate-900 hover:bg-slate-800 p-2 rounded border border-slate-800 text-slate-400 text-center font-medium text-xs transition">3</button>
                             </div>
                         </div>
                     </div>
@@ -189,8 +192,11 @@
                         </div>
                         <div>
                             <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Положение ввода кабеля коробки<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Направление ввода кабеля питания относительно двигателя. По умолчанию 0°.</span></span></label>
-                            <div class="grid grid-cols-4 gap-1 font-mono">
-                                <button onclick="setBoxAngle('0')" id="angle-0" class="flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="Box cable entry position/0.png" alt="0" class="w-8 h-8 object-contain transition"><span class="text-[10px] font-bold">0°</span></button><button onclick="setBoxAngle('90')" id="angle-90" class="flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="Box cable entry position/90.png" alt="90" class="w-8 h-8 object-contain transition"><span class="text-[10px] font-bold">90°</span></button><button onclick="setBoxAngle('180')" id="angle-180" class="flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="Box cable entry position/180.png" alt="180" class="w-8 h-8 object-contain transition"><span class="text-[10px] font-bold">180°</span></button><button onclick="setBoxAngle('270')" id="angle-270" class="flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="Box cable entry position/270.png" alt="270" class="w-8 h-8 object-contain transition"><span class="text-[10px] font-bold">270°</span></button>
+                            <div class="grid grid-cols-4 gap-1.5 font-mono">
+                                <button onclick="setBoxAngle('0')" id="angle-0" class="bg-slate-900 hover:bg-slate-800 p-2 rounded border border-slate-800 text-slate-400 text-center font-medium text-xs transition">0°</button>
+                                <button onclick="setBoxAngle('90')" id="angle-90" class="bg-slate-900 hover:bg-slate-800 p-2 rounded border border-slate-800 text-slate-400 text-center font-medium text-xs transition">90°</button>
+                                <button onclick="setBoxAngle('180')" id="angle-180" class="bg-slate-900 hover:bg-slate-800 p-2 rounded border border-slate-800 text-slate-400 text-center font-medium text-xs transition">180°</button>
+                                <button onclick="setBoxAngle('270')" id="angle-270" class="bg-white text-slate-950 font-bold p-2 rounded border border-white text-center text-xs transition">270°</button>
                             </div>
                         </div>
                     </div>
@@ -948,14 +954,23 @@
 
         function setCableOutlet(val) {
             state.cableOutlet = val;
-            ['X', '1', '2', '3'].forEach(item => { const btn = document.getElementById(`cable-${item}`); if (item === val) { btn.className = "flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-emerald-500 bg-emerald-500/10 text-white transition group [&>img]:opacity-100"; } else { btn.className = "flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"; } });
+            ['X', '1', '2', '3'].forEach(item => { 
+                const btn = document.getElementById(`cable-${item}`); 
+                if (btn) {
+                    if (item === val) { 
+                        btn.className = "bg-white text-slate-950 font-bold p-2 rounded border border-white text-center text-xs transition"; 
+                    } else { 
+                        btn.className = "bg-slate-900 hover:bg-slate-800 p-2 rounded border border-slate-800 text-slate-400 text-center font-medium text-xs transition"; 
+                    }
+                }
+            });
             const outletEl = document.getElementById('visualizer-outlet'); if (outletEl) outletEl.textContent = val; updateCalculations();
         }
 
         function syncUIConstraints() {
             const b5Btn = document.getElementById('base-flange_b5'), b14Btn = document.getElementById('base-flange_b14'), footBtn = document.getElementById('base-foot'), shaftBtn = document.getElementById('base-shaft'), container = document.getElementById('base-buttons-container'), powerSelect = document.getElementById('power-input');
             if (state.baseType === 'shaft' && (state.gearType !== 'GK' || state.shaftType === 'solid' || state.shaftType.endsWith('_t'))) { state.baseType = 'foot'; }
-            [footBtn, b5Btn, b14Btn, shaftBtn].forEach(btn => { if (btn) { btn.disabled = false; btn.style.opacity = "1"; btn.style.cursor = "pointer"; if (btn.id.replace('base-', '') === state.baseType) { btn.className = "text-xs p-2 rounded border border-emerald-500 bg-emerald-500/10 font-bold text-center text-white transition"; } else { btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 font-medium text-center hover:bg-slate-800 transition"; } } });
+            [footBtn, b5Btn, b14Btn, shaftBtn].forEach(btn => { if (btn) { btn.disabled = false; btn.style.opacity = "1"; btn.style.cursor = "pointer"; if (btn.id.replace('base-', '') === state.baseType) { btn.className = "text-xs p-2 rounded border border-white bg-white font-bold text-center text-slate-950 transition"; } else { btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 font-medium text-center hover:bg-slate-800 transition"; } } });
             if (footBtn) footBtn.style.display = ''; if (b5Btn) b5Btn.style.display = ''; if (b14Btn) b14Btn.style.display = ''; if (shaftBtn) shaftBtn.style.display = 'none';
             let visibleCount = 3; if (state.gearType === 'GR') { if (b14Btn) b14Btn.style.display = 'none'; visibleCount = 2; }
             if (state.gearType === 'GS') { if (state.shaftType === 'solid') { if (b14Btn) { b14Btn.disabled = true; b14Btn.style.opacity = "0.3"; b14Btn.style.cursor = "not-allowed"; b14Btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition"; if (state.baseType === 'flange_b14') state.baseType = 'foot'; } } else if (state.shaftType.endsWith('_t')) { [footBtn, b5Btn, b14Btn].forEach(btn => { if (btn) { btn.disabled = true; btn.style.opacity = "0.3"; btn.style.cursor = "not-allowed"; btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition"; } }); } }
@@ -986,43 +1001,39 @@
             if (powerSelect) { if (state.motorType === 'AD') { if (powerSelect.value !== '0') { powerSelect.dataset.prevValue = powerSelect.value; } let adOption = document.getElementById('ad-power-placeholder'); if (!adOption) { adOption = document.createElement('option'); adOption.id = 'ad-power-placeholder'; adOption.value = '0'; adOption.textContent = 'Без электродвигателя'; powerSelect.prepend(adOption); } powerSelect.value = '0'; powerSelect.disabled = true; powerSelect.style.opacity = "0.5"; powerSelect.style.cursor = "not-allowed"; } else { let adOption = document.getElementById('ad-power-placeholder'); if (adOption) adOption.remove(); powerSelect.disabled = false; powerSelect.style.opacity = "1"; powerSelect.style.cursor = "pointer"; if (powerSelect.dataset.prevValue && powerSelect.value === '0') { powerSelect.value = powerSelect.dataset.prevValue; state.power = parseFloat(powerSelect.value) || 0.12; } } }
             // УМНАЯ БЛОКИРОВКА КАБЕЛЯ И КОРОБКИ ДЛЯ ИСПОЛНЕНИЯ AD
             if (state.motorType === 'AD') {
-                // Блокируем и визуально тушим кнопки стороны выхода кабеля (X, 1, 2, 3)
                 ['X', '1', '2', '3'].forEach(item => {
                     const btn = document.getElementById(`cable-${item}`);
                     if (btn) { 
                         btn.disabled = true; 
                         btn.style.opacity = "0.3"; 
                         btn.style.cursor = "not-allowed"; 
-                        btn.className = "flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 transition group [&>img]:opacity-30"; 
+                        btn.className = "bg-slate-900 text-slate-600 p-2 rounded border border-slate-800 text-center text-xs transition"; 
                     }
                 });
-                // Блокируем и визуально тушим кнопки угла клеммной коробки (0, 90, 180, 270)
                 ['0', '90', '180', '270'].forEach(a => {
                     const btn = document.getElementById(`angle-${a}`);
                     if (btn) { 
                         btn.disabled = true; 
                         btn.style.opacity = "0.3"; 
                         btn.style.cursor = "not-allowed"; 
-                        btn.className = "flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-600 transition group [&>img]:opacity-30"; 
+                        btn.className = "bg-slate-900 text-slate-600 p-2 rounded border border-slate-800 text-center text-xs transition"; 
                     }
                 });
             } else {
-                // Если выбран обычный двигатель — возвращаем кнопкам кабеля активность и текущую подсветку
                 ['X', '1', '2', '3'].forEach(item => {
                     const btn = document.getElementById(`cable-${item}`);
                     if (btn) {
                         btn.disabled = false; btn.style.opacity = "1"; btn.style.cursor = "pointer";
-                        if (item === state.cableOutlet) { btn.className = "flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-emerald-500 bg-emerald-500/10 text-white transition group [&>img]:opacity-100"; }
-                        else { btn.className = "flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"; }
+                        if (item === state.cableOutlet) { btn.className = "bg-white text-slate-950 font-bold p-2 rounded border border-white text-center text-xs transition"; }
+                        else { btn.className = "bg-slate-900 hover:bg-slate-800 p-2 rounded border border-slate-800 text-slate-400 text-center font-medium text-xs transition"; }
                     }
                 });
-                // Возвращаем кнопкам коробки активность и текущую подсветку
                 ['0', '90', '180', '270'].forEach(a => {
                     const btn = document.getElementById(`angle-${a}`);
                     if (btn) {
                         btn.disabled = false; btn.style.opacity = "1"; btn.style.cursor = "pointer";
-                        if (a === state.boxAngle) { btn.className = "flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-emerald-500 bg-emerald-500/10 text-white transition group [&>img]:opacity-100"; }
-                        else { btn.className = "flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"; }
+                        if (a === state.boxAngle) { btn.className = "bg-white text-slate-950 font-bold p-2 rounded border border-white text-center text-xs transition"; }
+                        else { btn.className = "bg-slate-900 hover:bg-slate-800 p-2 rounded border border-slate-800 text-slate-400 text-center font-medium text-xs transition"; }
                     }
                 });
             }
@@ -1032,12 +1043,32 @@
         function setBaseType(type) { state.baseType = type; syncUIConstraints(); updateCalculations(); }
 
         function setMountingPosition(pos) {
-            state.mountingPosition = pos; ['M1', 'M2', 'M3', 'M4', 'M5', 'M6'].forEach(m => { const el = document.getElementById(`mount-${m}`); if (m === pos) { el.className = "bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black p-1 rounded border border-emerald-500 text-center text-[10px] transition"; } else { el.className = "bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold p-1 rounded border border-slate-800 text-center text-[10px] transition"; } });
+            state.mountingPosition = pos; 
+            ['M1', 'M2', 'M3', 'M4', 'M5', 'M6'].forEach(m => { 
+                const el = document.getElementById(`mount-${m}`); 
+                if (el) {
+                    if (m === pos) { 
+                        el.className = "bg-white text-slate-950 font-bold p-1 rounded border border-white text-center text-[10px] transition"; 
+                    } else { 
+                        el.className = "bg-slate-900 hover:bg-slate-800 text-slate-400 font-medium p-1 rounded border border-slate-800 text-center text-[10px] transition"; 
+                    }
+                }
+            });
             const svg = document.getElementById('visualizer-svg'); const rotations = { 'M1': 'rotate(0deg)', 'M2': 'rotate(180deg)', 'M3': 'rotate(90deg)', 'M4': 'rotate(-90deg)', 'M5': 'rotate(45deg)', 'M6': 'rotate(-445deg)' }; if (svg) svg.style.transform = rotations[pos]; const posEl = document.getElementById('visualizer-pos'); if (posEl) posEl.textContent = pos; updateCalculations();
         }
 
         function setBoxAngle(angle) {
-            state.boxAngle = angle; ['0', '90', '180', '270'].forEach(a => { const el = document.getElementById('angle-' + a); if (a === angle) { el.className = "flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-emerald-500 bg-emerald-500/10 text-white transition group [&>img]:opacity-100"; } else { el.className = "flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"; } });
+            state.boxAngle = angle; 
+            ['0', '90', '180', '270'].forEach(a => { 
+                const el = document.getElementById('angle-' + a); 
+                if (el) {
+                    if (a === angle) { 
+                        el.className = "bg-white text-slate-950 font-bold p-2 rounded border border-white text-center text-xs transition"; 
+                    } else { 
+                        el.className = "bg-slate-900 hover:bg-slate-800 p-2 rounded border border-slate-800 text-slate-400 text-center font-medium text-xs transition"; 
+                    }
+                }
+            });
             const angleEl = document.getElementById('visualizer-angle'); if (angleEl) angleEl.textContent = `${angle}°`; updateCalculations();
         }
         
