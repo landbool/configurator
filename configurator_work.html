@@ -52,7 +52,7 @@
     </style>
 </head>
 <body class="bg-transparent text-slate-100 min-h-0 p-0 m-0">
-    <div class="w-full md:w-[90%] lg:w-[80%] mx-auto bg-slate-900 rounded-xl overflow-hidden font-sans relative">
+    <div id="main-configurator-container" class="w-full md:w-[90%] lg:w-[80%] mx-auto bg-slate-900 rounded-xl overflow-hidden font-sans relative">
         <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
         <div class="grid grid-cols-1 lg:grid-cols-12 relative z-10">
             <div class="lg:col-span-7 p-4 md:p-6 space-y-6 border-r border-slate-800 font-sans">
@@ -1337,18 +1337,25 @@
             }
         }
 
-        // Оповещение родительского окна (Тильды) о реальной высоте контента для авторесайза
+        // Оповещение родительского окна (Тильды) о точной высоте контента
         if (window.parent && window.parent !== window) {
+            let lastSentHeight = 0;
             const reportHeight = () => {
-                const height = document.documentElement.scrollHeight || document.body.scrollHeight;
-                window.parent.postMessage({ type: 'grinstr_resize', height: height }, '*');
+                const container = document.getElementById('main-configurator-container');
+                if (!container) return;
+                const height = Math.ceil(container.getBoundingClientRect().height) + 16;
+                if (height > 300 && Math.abs(height - lastSentHeight) > 4) {
+                    lastSentHeight = height;
+                    window.parent.postMessage({ type: 'grinstr_resize', height: height }, '*');
+                }
             };
             window.addEventListener('load', reportHeight);
             window.addEventListener('resize', reportHeight);
             if (window.ResizeObserver) {
-                new ResizeObserver(reportHeight).observe(document.body);
+                const container = document.getElementById('main-configurator-container');
+                if (container) new ResizeObserver(reportHeight).observe(container);
             }
-            setInterval(reportHeight, 1000);
+            setInterval(reportHeight, 2000);
         }
     </script>
 </body>
