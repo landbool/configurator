@@ -1320,11 +1320,13 @@
                 console.error("Ошибка ответа Telegram API:", errData);
                 throw new Error(); 
             }
-            } catch (error) { 
+            } catch (error) {
                 // ВЫВОДИМ ОШИБКУ В КОНСОЛЬ (Нажмите F12 на проблемном ПК, чтобы прочитать её)
                 console.error("Критическая ошибка сети / блокировка запроса:", error); 
                 showToast("Ошибка отправки! Попробуйте еще раз.", true); 
             }
+        }
+
         // Оповещение родительского окна (Тильды) о реальной высоте контента для авторесайза
         if (window.parent && window.parent !== window) {
             const reportHeight = () => {
