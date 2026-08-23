@@ -674,7 +674,14 @@
             modal.classList.remove('pointer-events-none', 'opacity-0'); modal.classList.add('opacity-100'); lucide.createIcons();
         }
 
-        function closeModalDrawing() { const modal = document.getElementById('drawingModal'); modal.classList.add('pointer-events-none', 'opacity-0'); modal.classList.remove('opacity-100'); }
+        function closeModalDrawing() { 
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({ type: 'grinstr_hide_backdrop' }, '*');
+            }
+            const modal = document.getElementById('drawingModal'); 
+            modal.classList.add('pointer-events-none', 'opacity-0'); 
+            modal.classList.remove('opacity-100'); 
+        }
         function openRequestModal() { 
             if (window.parent && window.parent !== window) {
                 window.parent.postMessage({ type: 'grinstr_request_modal_pos' }, '*');
@@ -683,7 +690,14 @@
             modal.classList.remove('pointer-events-none', 'opacity-0'); 
             modal.classList.add('opacity-100'); 
         }
-        function closeRequestModal() { const modal = document.getElementById('requestModal'); modal.classList.add('pointer-events-none', 'opacity-0'); modal.classList.remove('opacity-100'); }
+        function closeRequestModal() { 
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({ type: 'grinstr_hide_backdrop' }, '*');
+            }
+            const modal = document.getElementById('requestModal'); 
+            modal.classList.add('pointer-events-none', 'opacity-0'); 
+            modal.classList.remove('opacity-100'); 
+        }
 
         // ФУНКЦИЯ КОНВЕРТАЦИИ И СКАЧИВАНИЯ ЧЕРТЕЖА В ФОРМАТЕ PDF
         function downloadDrawingAsPdf() {
@@ -1337,13 +1351,18 @@
             }
         }
 
-        // Слушатель позиционирования модального окна точно в видимую зону пользователя
+        // Слушатель позиционирования и закрытия модальных окон
         window.addEventListener('message', function(e) {
-            if (e.data && e.data.type === 'grinstr_set_modal_pos' && typeof e.data.targetY === 'number') {
+            if (!e.data) return;
+            if (e.data.type === 'grinstr_set_modal_pos' && typeof e.data.targetY === 'number') {
                 const drawingBox = document.querySelector('#drawingModal .modal-dialog-box');
                 if (drawingBox) drawingBox.style.top = e.data.targetY + 'px';
                 const reqBox = document.querySelector('#requestModal .modal-dialog-box');
                 if (reqBox) reqBox.style.top = e.data.targetY + 'px';
+            }
+            if (e.data.type === 'grinstr_close_modals') {
+                closeModalDrawing();
+                closeRequestModal();
             }
         });
 
