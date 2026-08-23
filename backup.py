@@ -42,11 +42,14 @@ def backup(description):
         for root, dirs, files in os.walk(cwd):
             dirs[:] = [d for d in dirs if d not in exclude_dirs and not d.startswith('.')]
             for file in files:
-                if file.endswith('.zip') and root == cwd:
+                if (file.endswith('.zip') and root == cwd) or file.startswith('~$') or file.endswith('.tmp'):
                     continue
                 file_path = os.path.join(root, file)
                 arcname = os.path.relpath(file_path, cwd)
-                zipf.write(file_path, arcname)
+                try:
+                    zipf.write(file_path, arcname)
+                except Exception as e:
+                    print(f"Skipping {file_path}: {e}")
                 
     print(f"ZIP Backup created: {zip_filepath}")
     
