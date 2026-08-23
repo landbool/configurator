@@ -1,0 +1,15 @@
+# Large models & archives
+*.pt
+*.zip
+*.tar.gz
+Версии кода/
+autoparts-store/
+node_modules/
+temporary files/
+tf/
+.gemini/
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,297 @@
+<div class="gr-drawing-wrapper">
+    <div class="controls-gr">
+        <label for="modelSelect">Выберите модель устройства:</label>
+        <select id="modelSelect" onchange="updateDrawing()" disabled>
+            <option value="template">Загрузка данных...</option>
+        </select>
+    </div>
+
+    <div class="drawing-container-gr" id="svgContainer">
+        <p class="status-message" id="grStatusLabel">Шаг 1: Подключение к серверам хранения...</p>
+    </div>
+</div>
+
+<style>
+    .gr-drawing-wrapper {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .controls-gr {
+        background-color: #ffffff;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .controls-gr label {
+        font-weight: bold;
+        color: #34495e;
+    }
+    .controls-gr select {
+        padding: 8px 12px;
+        font-size: 16px;
+        border: 2px solid #bdc3c7;
+        border-radius: 4px;
+        background-color: #fff;
+        cursor: pointer;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+    .controls-gr select:focus {
+        border-color: #3498db;
+    }
+    .drawing-container-gr {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        max-width: 100%;
+        overflow-x: auto;
+    }
+    text[data-param] {
+        transition: fill 0.2s, font-weight 0.2s;
+    }
+    text[data-param]:hover {
+        fill: #e74c3c;
+        font-weight: bold;
+        cursor: help;
+    }
+    .status-message {
+        font-weight: bold;
+        color: #7f8c8d;
+    }
+</style>
+
+<script>
+    let modelDatabase = {};
+    const statusLabel = document.getElementById('grStatusLabel');
+
+    const svgUrl = 'https://gist.githubusercontent.com/landbool/1ece0e8ea202b912df8d34e68953585d/raw/92240b387dc015f84a217a7a6f9b7e4ecf7d1f8e/gistfile1.txt';
+    const sheetsUrl = 'https://docs.google.com/spreadsheets/d/1xPdzHONrNDWofmP2_GU-unjHR6yg0DjL/export?format=csv';
+
+    // Информируем о начале скачивания файлов
+    if(statusLabel) statusLabel.innerText = "Шаг 1: Скачивание базы данных и файла чертежа...";
+
+    Promise.all([
+        fetch(svgUrl).then(res => { if(!res.ok) throw new Error('Не удалось скачать файл SVG с GitHub Gist'); return res.text(); }),
+        fetch(sheetsUrl).then(res => { if(!res.ok) throw new Error('Google Таблица заблокировала запрос данных (CORS/Rate Limit)'); return res.text(); })
+    ])
+    .then(([svgCode, csvText]) => {
+        if(statusLabel) statusLabel.innerText = "Шаг 2: Обработка структуры чертежа и калибровка шрифтов...";
+        
+        // Вставляем графику
+        document.getElementById('svgContainer').innerHTML = svgCode;
+        
+        const parseResult = parseGoogleSheetCsv(csvText);
+        modelDatabase = parseResult.database;
+        const headers = parseResult.headers;
+
+        // Автоматическая привязка букв на SVG к колонкам таблицы
+        const textElements = document.querySelectorAll('#svgContainer text');
+        textElements.forEach(el => {
+            const currentText = el.textContent.trim();
+            if (headers.includes(currentText) || currentText === '4-s') {
+                el.setAttribute('data-param', currentText);
+                
+                // ИСКЛЮЧЕНИЕ: Не применяем автоцентрирование для d (svg_139) и t (svg_250)
+                if (el.id !== 'svg_139' && el.id !== 'svg_250') {
+                    try {
+                        const transform = el.getAttribute('transform');
+                        el.removeAttribute('transform');
+                        
+                        const bbox = el.getBBox();
+                        if (bbox && bbox.width > 0) {
+                            const localCenterX = bbox.x + bbox.width / 2;
+                            el.setAttribute('x', localCenterX);
+                            el.style.textAnchor = 'middle';
+                        } else {
+                            el.style.textAnchor = 'middle';
+                        }
+                        
+                        if (transform) {
+                            el.setAttribute('transform', transform);
+                        }
+                    } catch (e) {
+                        el.style.textAnchor = 'middle';
+                    }
+                }
+            }
+        });
+        
+        // Всё успешно загружено
+        initSelector();
+    })
+    .catch(error => {
+        console.error('Критическая ошибка загрузки:', error);
+        document.getElementById('svgContainer').innerHTML = 
+            `<div style="color:#c0392b; font-weight:bold; padding: 10px; border: 2px dashed #e74c3c; border-radius: 5px;">
+                <p>⚠️ Ошибка синхронизации компонентов:</p>
+                <p style="font-family: monospace; font-size: 13px; color: #7f8c8d;">${error.message}</p>
+                <p style="font-size: 14px; font-weight: normal; color: #333;">
+                    Если ошибка связана с таблицей, подождите 1-2 минуты (Google временно ограничил частые запросы) или убедитесь, что доступ к таблице открыт.
+                </p>
+            </div>`;
+    });
+
+    // Продвинутый парсер CSV с защитой от запятых внутри кавычек
+    function parseGoogleSheetCsv(csvText) {
+        const lines = csvText.split(/\r?\n/);
+        if (lines.length < 2) return { database: {}, headers: [] };
+
+        const csvRegex = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
+
+        const headers = lines[0].split(csvRegex).map(h => h.trim().replace(/^"|"$/g, ''));
+        const database = {};
+
+        for (let i = 1; i < lines.length; i++) {
+            const row = lines[i].trim();
+            if (!row) continue;
+
+            const columns = row.split(csvRegex).map(col => col.trim().replace(/^"|"$/g, ''));
+            const modelName = columns[0]; 
+            if (!modelName) continue;
+
+            database[modelName] = {};
+
+            for (let j = 1; j < columns.length; j++) {
+                const paramName = headers[j];
+                if (!paramName) continue;
+
+                const value = columns[j];
+                database[modelName][paramName] = value !== undefined ? value : "";
+            }
+        }
+        return { database, headers };
+    }
+
+    function initSelector() {
+        const select = document.getElementById('modelSelect');
+        select.innerHTML = '<option value="template">Исходный шаблон (Буквы)</option>';
+        
+        for (const modelName in modelDatabase) {
+            if (modelDatabase.hasOwnProperty(modelName)) {
+                const option = document.createElement('option');
+                option.value = modelName;
+                option.textContent = modelName;
+                select.appendChild(option);
+            }
+        }
+        select.disabled = false;
+    }
+
+    // Обновление отображения параметров на схеме
+    function updateDrawing() {
+        const select = document.getElementById('modelSelect');
+        const selectedModel = select.value;
+        const textElements = document.querySelectorAll('text[data-param]');
+        
+        textElements.forEach(el => {
+            const param = el.getAttribute('data-param');
+            
+            if (selectedModel === 'template') {
+                el.textContent = param;
+                el.style.fontSize = ""; // Сброс шрифта к исходному
+                
+                if (el.id === 'svg_139') {
+                    el.setAttribute('transform', 'rotate(-90 108.029 429.608)');
+                }
+                if (el.id === 'svg_250') {
+                    el.style.textAnchor = 'start';
+                    el.setAttribute('x', '348.56862');
+                    el.setAttribute('transform', 'rotate(-90 352.067 428.287)');
+                }
+            } else {
+                const modelData = modelDatabase[selectedModel];
+                if (modelData) {
+                    // Всегда принудительно сбрасываем размер шрифта перед проверками подмоделей
+                    el.style.fontSize = "";
+
+                    if (param === '4-s') {
+                        const sValue = modelData['s'];
+                        el.textContent = (sValue !== undefined && sValue !== "") ? sValue : "";
+                        
+                        // --- УМНОЕ УМЕНЬШЕНИЕ ШРИФТА ДЛЯ "4-s" ---
+                        if (sValue && sValue.length > 2) {
+                            el.style.fontSize = "18px";
+                        }
+                    } else if (modelData[param] !== undefined) {
+                        const val = modelData[param];
+                        
+                        // --- УМНОЕ УМЕНЬШЕНИЕ ШРИФТА ДЛЯ ПАРАМЕТРА "d" ---
+                        if (param === 'd') {
+                            if (val.toLowerCase().includes('m6') || val.length > 5) {
+                                el.style.fontSize = "20px";
+                            }
+                        }
+                        
+                        // --- ФИКСИРОВАННОЕ УМЕНЬШЕНИЕ ШРИФТА ДЛЯ ПАРАМЕТРА "h" ---
+                        if (param === 'h') {
+                            el.style.fontSize = "20px";
+                        }
+                        // --- ФИКСИРОВАННОЕ УМЕНЬШЕНИЕ ШРИФТА ДЛЯ ПАРАМЕТРА "a" ---
+                        if (param === 'a') {
+                            if (val.length > 2) {
+                                el.style.fontSize = "22px";
+                            }
+                        }
+                        // --- ФИКСИРОВАННОЕ УМЕНЬШЕНИЕ ШРИФТА ДЛЯ ПАРАМЕТРА "e" ---
+                        if (param === 'e') {
+                            if (val.length > 2) {
+                                el.style.fontSize = "22px";
+                            }
+                        }
+                        
+                        // --- УМНЫЙ ВЫВОД ЗНАЧЕНИЯ И ДОПУСКА С ЗНАКОМ МИНУС ДЛЯ "h" ---
+                        if (param === 'h' && val.includes('-')) {
+                            const minusIdx = val.indexOf('-');
+                            const mainPart = val.substring(0, minusIdx).trim();
+                            const tolerancePart = val.substring(minusIdx).trim();
+                            
+                            // dy="-4px" смещает допуск влево (наружу от линии), предотвращая наложение на полоску чертежа
+                            el.innerHTML = mainPart + '<tspan font-size="12px" dx="3px" dy="-1px">' + tolerancePart + '</tspan>';
+                        } else {
+                            // Обычный вывод для всех остальных параметров
+                            el.textContent = val === "" ? "" : val;
+                        }
+                        // -------------------------------------------------------------
+                        
+                        // Умный сдвиг вниз для длинного значения "d" (id="svg_139")
+                        if (el.id === 'svg_139') {
+                            if (val !== "") {
+                                el.setAttribute('transform', 'rotate(-90 108.029 429.608) translate(-22, 0)');
+                            } else {
+                                el.setAttribute('transform', 'rotate(-90 108.029 429.608)');
+                            }
+                        }
+
+                        // --- УМНОЕ ДИНАМИЧЕСКОЕ ВЫРАВНИВАНИЕ ДЛЯ "t" (id="svg_250") ---
+                        if (el.id === 'svg_250') {
+                            if (val !== "") {
+                                if (val.length < 3) {
+                                    el.style.textAnchor = 'middle';
+                                    el.setAttribute('x', '352');
+                                    el.setAttribute('transform', 'rotate(-90 352.067 428.287) translate(0, 25)');
+                                } else {
+                                    el.style.textAnchor = 'start';
+                                    el.setAttribute('x', '348.56862');
+                                    el.setAttribute('transform', 'rotate(-90 352.067 428.287) translate(-17, 27)');
+                                }
+                            } else {
+                                el.setAttribute('transform', 'rotate(-90 352.067 428.287)');
+                            }
+                        }
+                        // -------------------------------------------------------------
+                    }
+                }
+            }
+        });
+    }
+</script>
