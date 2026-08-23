@@ -292,6 +292,7 @@
         const grfSheetsUrl = 'https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GRF';
         const gkSheetsUrl = 'https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GK';
         const gfSheetsUrl = 'https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GF';
+        const gfaSheetsUrl = 'https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GFA';
         const gsSheetsUrl = 'https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GS';
 
         // Google Таблицы: Каталог G и Валы (15FevWb9CoPTN3USA1ifZ1YmcpZe0oNAB)
@@ -418,7 +419,7 @@
             const statusLabel = document.getElementById('grStatusLabel');
             // shaftsSheetsUrl defined above
             try {
-                const [grSvg, grCsv, gkSvg, gkCsv, grfSvg, grfCsv, shaftsCsv, gfSvg, gfCsv, gsSvg, gsCsv, gs39Svg, gs109Svg, gsf109Svg, gfaSvg] = await Promise.all([
+                const [grSvg, grCsv, gkSvg, gkCsv, grfSvg, grfCsv, shaftsCsv, gfSvg, gfCsv, gfaCsv, gsSvg, gsCsv, gs39Svg, gs109Svg, gsf109Svg, gfaSvg] = await Promise.all([
                     fetchSafeText(grSvgUrl),
                     fetchSafeText(grSheetsUrl),
                     fetchSafeText(gkSvgUrl),
@@ -428,6 +429,7 @@
                     fetchSafeText(shaftsSheetsUrl),
                     fetchSafeText(gfSvgUrl),
                     fetchSafeText(gfSheetsUrl),
+                    fetchSafeText(gfaSheetsUrl),
                     fetchSafeText(gsSvgUrl),
                     fetchSafeText(gsSheetsUrl),
                     fetchSafeText(gs39SvgUrl),
@@ -457,6 +459,9 @@
 
                 const parsedGf = parseLocalSheetCsv(gfCsv).database;
                 if (Object.keys(parsedGf).length > 0) gfModelDatabase = parsedGf;
+
+                const parsedGfa = parseLocalSheetCsv(gfaCsv).database;
+                if (Object.keys(parsedGfa).length > 0) gfaModelDatabase = parsedGfa;
 
                 const parsedGs = parseLocalSheetCsv(gsCsv).database;
                 if (Object.keys(parsedGs).length > 0) gsModelDatabase = parsedGs;
