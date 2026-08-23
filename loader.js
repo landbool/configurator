@@ -16,11 +16,14 @@
     iframe.style.display = 'block';
     iframe.setAttribute('allowtransparency', 'true');
 
-    // Auto-resize from iframe
+    // Auto-resize & center scrolling on modal open
     window.addEventListener('message', function(e) {
         if (!e.data) return;
         if (e.data.type === 'grinstr_resize' && typeof e.data.height === 'number') {
             iframe.style.height = e.data.height + 'px';
+        }
+        if (e.data.type === 'grinstr_scroll_to_configurator') {
+            iframe.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     });
 

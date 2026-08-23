@@ -42,7 +42,7 @@
         text[data-param] { transition: fill 0.2s, font-weight 0.2s; }
         text[data-param]:hover { fill: var(--svg-dimensions-hover); font-weight: bold; cursor: help; }
         #svgContainer svg { width: 100% !important; height: 100% !important; max-width: 100% !important; max-height: 100% !important; display: block; }
-        #modalContentContainer svg { width: 100% !important; height: auto !important; max-width: 100% !important; max-height: 65vh !important; display: block; margin: auto; }
+        #modalContentContainer svg { width: 100% !important; height: auto !important; max-width: 100% !important; max-height: 440px !important; display: block; margin: auto; object-fit: contain; }
         .tooltip-container { position: relative; display: inline-flex; align-items: center; margin-left: 6px; cursor: help; vertical-align: middle; }
         .tooltip-container .tooltip-text { visibility: hidden; opacity: 0; width: 220px; background-color: #0f172a; color: #cbd5e1; text-transform: none; font-size: 10px; font-weight: normal; font-family: 'Inter', sans-serif; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 50; bottom: 125%; left: 50%; transform: translateX(-50%); transition: opacity 0.2s, visibility 0.2s; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); border: 1px solid #1e293b; pointer-events: none; }
         .tooltip-container .tooltip-text::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #1e293b transparent transparent transparent; }
@@ -238,13 +238,13 @@
         </div>
     </div>
 
-    <div id="drawingModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-slate-950/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 overflow-y-auto">
-        <div class="bg-white text-slate-900 rounded-xl p-4 md:p-6 w-full max-w-4xl max-h-[90vh] flex flex-col relative shadow-2xl border border-slate-200 my-auto">
-            <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
-                <div><h3 id="modal-title" class="text-xs font-bold text-slate-900 uppercase tracking-wider">Детальный чертёж оборудования</h3><p class="text-[10px] text-slate-1050 mt-0.5 font-sans">Для закрытия нажмите Крестик или кликните за пределами окна</p></div>
+    <div id="drawingModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 bg-slate-950/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 overflow-y-auto">
+        <div class="bg-white text-slate-900 rounded-xl p-4 md:p-5 w-full max-w-4xl max-h-[85vh] md:max-h-[560px] flex flex-col relative shadow-2xl border border-slate-200 my-auto">
+            <div class="flex justify-between items-center mb-3 border-b border-slate-100 pb-2.5">
+                <div><h3 id="modal-title" class="text-xs font-bold text-slate-900 uppercase tracking-wider">Детальный чертёж оборудования</h3><p class="text-[10px] text-slate-500 mt-0.5 font-sans">Для закрытия нажмите Крестик или кликните за пределами окна</p></div>
                 <button onclick="closeModalDrawing()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded bg-slate-100 hover:bg-slate-200 transition"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
-            <div id="modalContentContainer" class="flex-1 overflow-hidden flex items-center justify-center p-2 min-h-[50vh] max-h-[72vh]"></div>
+            <div id="modalContentContainer" class="flex-1 overflow-hidden flex items-center justify-center p-2 max-h-[460px]"></div>
         </div>
     </div>
 
