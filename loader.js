@@ -16,14 +16,35 @@
     iframe.style.display = 'block';
     iframe.setAttribute('allowtransparency', 'true');
 
-    // Auto-resize & center scrolling on modal open
+    // Auto-resize & exact viewport modal positioning (without any page scroll jump)
     window.addEventListener('message', function(e) {
         if (!e.data) return;
+        
+        // Dynamic iframe height
         if (e.data.type === 'grinstr_resize' && typeof e.data.height === 'number') {
             iframe.style.height = e.data.height + 'px';
         }
-        if (e.data.type === 'grinstr_scroll_to_configurator') {
-            iframe.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Exact user viewport center calculation
+        if (e.data.type === 'grinstr_request_modal_pos') {
+            const rect = iframe.getBoundingClientRect();
+            const viewportH = window.innerHeight || document.documentElement.clientHeight;
+            
+            // Calculate center of user's screen relative to iframe top
+            let centerY = -rect.top + (viewportH / 2);
+            
+            // Clamp within iframe boundaries
+            const modalHalfH = 260;
+            const minY = modalHalfH + 15;
+            const maxY = (iframe.offsetHeight || 980) - modalHalfH - 15;
+            centerY = Math.max(minY, Math.min(maxY, centerY));
+            
+            if (iframe.contentWindow) {
+                iframe.contentWindow.postMessage({ 
+                    type: 'grinstr_set_modal_pos', 
+                    targetY: Math.round(centerY) 
+                }, '*');
+            }
         }
     });
 

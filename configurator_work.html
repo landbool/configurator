@@ -238,8 +238,8 @@
         </div>
     </div>
 
-    <div id="drawingModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 bg-slate-950/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 overflow-y-auto">
-        <div class="bg-white text-slate-900 rounded-xl p-4 md:p-5 w-full max-w-4xl max-h-[85vh] md:max-h-[560px] flex flex-col relative shadow-2xl border border-slate-200 my-auto">
+    <div id="drawingModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200">
+        <div class="modal-dialog-box absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-slate-900 rounded-xl p-4 md:p-5 w-[94%] max-w-4xl max-h-[85vh] md:max-h-[560px] flex flex-col shadow-2xl border border-slate-200 transition-[top] duration-150 ease-out" style="top: 480px;">
             <div class="flex justify-between items-center mb-3 border-b border-slate-100 pb-2.5">
                 <div><h3 id="modal-title" class="text-xs font-bold text-slate-900 uppercase tracking-wider">Детальный чертёж оборудования</h3><p class="text-[10px] text-slate-500 mt-0.5 font-sans">Для закрытия нажмите Крестик или кликните за пределами окна</p></div>
                 <button onclick="closeModalDrawing()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded bg-slate-100 hover:bg-slate-200 transition"><i data-lucide="x" class="w-5 h-5"></i></button>
@@ -248,8 +248,8 @@
         </div>
     </div>
 
-    <div id="requestModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 bg-slate-950/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 overflow-y-auto">
-        <div class="bg-slate-900 text-slate-100 rounded-xl p-5 w-full max-w-lg flex flex-col relative shadow-2xl border border-slate-800/80 my-auto">
+    <div id="requestModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200">
+        <div class="modal-dialog-box absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 text-slate-100 rounded-xl p-5 w-[94%] max-w-lg flex flex-col shadow-2xl border border-slate-800/80 transition-[top] duration-150 ease-out" style="top: 480px;">
             <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-3">
                 <div><h3 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Отправить запрос</h3><p class="text-[10px] text-slate-400 mt-1 font-sans">Мы свяжемся с вами и сообщим цену на выбранную конфигурацию.</p></div>
                 <button onclick="closeRequestModal()" class="text-slate-400 hover:text-white p-1.5 rounded bg-slate-950 border border-slate-800 hover:border-slate-700 transition"><i data-lucide="x" class="w-4 h-4"></i></button>
@@ -632,7 +632,7 @@
 
         function openModalDrawing() {
             if (window.parent && window.parent !== window) {
-                window.parent.postMessage({ type: 'grinstr_scroll_to_configurator' }, '*');
+                window.parent.postMessage({ type: 'grinstr_request_modal_pos' }, '*');
             }
             const modal = document.getElementById('drawingModal'); const modalContent = document.getElementById('modalContentContainer'); const currentFrame = (state.options && state.options[0]) ? state.options[0].frame : 39; const currentSeries = state.gearType; const currentMarking = document.getElementById('result-marking').textContent.trim();
             document.getElementById('modal-title').textContent = `Детальный чертёж для: ${currentMarking}`; modalContent.innerHTML = "";
@@ -677,7 +677,7 @@
         function closeModalDrawing() { const modal = document.getElementById('drawingModal'); modal.classList.add('pointer-events-none', 'opacity-0'); modal.classList.remove('opacity-100'); }
         function openRequestModal() { 
             if (window.parent && window.parent !== window) {
-                window.parent.postMessage({ type: 'grinstr_scroll_to_configurator' }, '*');
+                window.parent.postMessage({ type: 'grinstr_request_modal_pos' }, '*');
             }
             const modal = document.getElementById('requestModal'); 
             modal.classList.remove('pointer-events-none', 'opacity-0'); 
@@ -1336,6 +1336,16 @@
                 showToast("Ошибка отправки! Попробуйте еще раз.", true); 
             }
         }
+
+        // Слушатель позиционирования модального окна точно в видимую зону пользователя
+        window.addEventListener('message', function(e) {
+            if (e.data && e.data.type === 'grinstr_set_modal_pos' && typeof e.data.targetY === 'number') {
+                const drawingBox = document.querySelector('#drawingModal .modal-dialog-box');
+                if (drawingBox) drawingBox.style.top = e.data.targetY + 'px';
+                const reqBox = document.querySelector('#requestModal .modal-dialog-box');
+                if (reqBox) reqBox.style.top = e.data.targetY + 'px';
+            }
+        });
 
         // Оповещение родительского окна (Тильды) о точной высоте контента
         if (window.parent && window.parent !== window) {
