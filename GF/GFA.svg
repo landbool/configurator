@@ -1,8 +1,6 @@
 <svg width="1028" height="693" viewBox="0 0 1028 693" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <rect width="1028" height="693" fill="url(#pattern0_0_1)"/>
 
-<rect x="760" y="425" width="80" height="25" fill="white"/>
-<rect x="735" y="455" width="55" height="25" fill="white"/>
 <rect x="37" y="18" width="44" height="27" fill="white"/>
 <text data-param="AD" x="59.0" y="39.2" font-family="Noto Sans JP" font-size="22" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">AD</text>
 <rect x="34" y="60" width="38" height="27" fill="white"/>
@@ -63,12 +61,12 @@
 <text data-param="M" x="393.0" y="600.0" font-family="Noto Sans JP" font-size="17" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">M</text>
 <rect x="260" y="626" width="44" height="27" fill="white"/>
 <text data-param="c2" x="282.0" y="646.5" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">c2</text>
-<rect x="625" y="460" width="36" height="24" fill="white"/>
-<text data-param="k" x="643.0" y="478.3" font-family="Noto Sans JP" font-size="18" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">k</text>
-<rect x="675" y="448" width="38" height="24" fill="white"/>
-<text data-param="w2" x="694.0" y="466.3" font-family="Noto Sans JP" font-size="18" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w2</text>
-<rect x="881" y="460" width="38" height="27" fill="white"/>
-<text data-param="a7" x="900.0" y="479.8" font-family="Noto Sans JP" font-size="18" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a7</text>
+<rect x="590" y="460" width="34" height="24" fill="white"/>
+<text data-param="k" x="607.0" y="478.3" font-family="Noto Sans JP" font-size="18" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">k</text>
+<rect x="675" y="455" width="38" height="24" fill="white"/>
+<text data-param="w2" x="694.0" y="473.3" font-family="Noto Sans JP" font-size="18" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w2</text>
+<rect x="750" y="464" width="38" height="24" fill="white"/>
+<text data-param="a7" x="769.0" y="482.3" font-family="Noto Sans JP" font-size="18" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a7</text>
 <rect x="614" y="560" width="46" height="27" fill="white" transform="rotate(-90 614 560)"/>
 <text data-param="s1" x="637.0" y="579.8" font-family="Noto Sans JP" font-size="18" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 614 560)">s1</text>
 <rect x="648" y="560" width="68" height="24" fill="white" transform="rotate(-90 648 560)"/>
