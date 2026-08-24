@@ -1287,7 +1287,30 @@
         }
 
         function handleParamChange() { state.power = parseFloat(document.getElementById('power-input').value) || 0.12; state.speed = parseFloat(document.getElementById('speed-input').value) || 35; state.minFs = parseFloat(document.getElementById('fs-min-input').value) || 1.0; state.shaftType = document.getElementById('shaft-type').value; state.motorType = document.getElementById('motor-type').value; state.desiredShaft = parseFloat(document.getElementById('shaft-diam-input')?.value) || 0; syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations(); }
-        function setBaseType(type) { state.baseType = type; syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations(); }
+        function setBaseType(type) { 
+            state.baseType = type; 
+            syncUIConstraints(); 
+            syncAllSegmentedIndicators(); 
+            updateCalculations(); 
+        }
+
+        function setCableOutlet(outlet) {
+            state.cableOutlet = outlet;
+            ['X', '1', '2', '3'].forEach(item => {
+                const btn = document.getElementById(`cable-${item}`);
+                if (btn) {
+                    if (item === outlet) {
+                        btn.className = "relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-emerald-400 font-bold transition-all duration-200 group [&>img]:opacity-100 cursor-pointer";
+                    } else {
+                        btn.className = "relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer";
+                    }
+                }
+            });
+            updateSegmentedIndicator('cable-buttons-container', 'cable-indicator', 'cable-' + outlet);
+            const outletEl = document.getElementById('visualizer-outlet'); 
+            if (outletEl) outletEl.textContent = outlet;
+            updateCalculations();
+        }
 
         function setMountingPosition(pos) {
             state.mountingPosition = pos; 
@@ -1302,7 +1325,12 @@
                 }
             });
             updateSegmentedIndicator('mount-buttons-container', 'mount-indicator', 'mount-' + pos);
-            const svg = document.getElementById('visualizer-svg'); const rotations = { 'M1': 'rotate(0deg)', 'M2': 'rotate(180deg)', 'M3': 'rotate(90deg)', 'M4': 'rotate(-90deg)', 'M5': 'rotate(45deg)', 'M6': 'rotate(-445deg)' }; if (svg) svg.style.transform = rotations[pos]; const posEl = document.getElementById('visualizer-pos'); if (posEl) posEl.textContent = pos; updateCalculations();
+            const svg = document.getElementById('visualizer-svg'); 
+            const rotations = { 'M1': 'rotate(0deg)', 'M2': 'rotate(180deg)', 'M3': 'rotate(90deg)', 'M4': 'rotate(-90deg)', 'M5': 'rotate(45deg)', 'M6': 'rotate(-445deg)' }; 
+            if (svg) svg.style.transform = rotations[pos]; 
+            const posEl = document.getElementById('visualizer-pos'); 
+            if (posEl) posEl.textContent = pos; 
+            updateCalculations();
         }
 
         function setBoxAngle(angle) {
@@ -1318,7 +1346,26 @@
                 }
             });
             updateSegmentedIndicator('angle-buttons-container', 'angle-indicator', 'angle-' + angle);
-            const angleEl = document.getElementById('visualizer-angle'); if (angleEl) angleEl.textContent = `${angle}°`; updateCalculations();
+            const angleEl = document.getElementById('visualizer-angle'); 
+            if (angleEl) angleEl.textContent = `${angle}°`; 
+            updateCalculations();
+        }
+
+        function setMinFs(val) { 
+            document.getElementById('fs-min-input').value = val; 
+            state.minFs = val;
+            ['1.0', '1.2', '1.5', '1.8'].forEach(v => {
+                const btn = document.getElementById('fs-' + v);
+                if (btn) {
+                    if (parseFloat(v) === val) {
+                        btn.className = "relative z-10 py-1.5 rounded-lg text-slate-950 font-black text-center transition-colors duration-200 cursor-pointer";
+                    } else {
+                        btn.className = "relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer";
+                    }
+                }
+            });
+            updateSegmentedIndicator('fs-buttons-container', 'fs-indicator', 'fs-' + val.toFixed(1));
+            handleParamChange(); 
         }
         
         function getExactShaftDiameter(modelName, shaftType) {
