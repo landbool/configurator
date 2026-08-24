@@ -517,7 +517,21 @@
                             text.style.paintOrder = 'stroke fill';
                         });
                     }
-                    else if (seriesPrefix === 'GFA') { svgEl.setAttribute('viewBox', '0 0 1028 693'); container.querySelectorAll('text').forEach(text => { text.removeAttribute('font-weight'); text.style.fontWeight = '600'; text.setAttribute('font-family', 'Inter, sans-serif'); text.style.fontFamily = 'Inter, sans-serif'; if (!text.style.fontSize) { text.style.fontSize = '14px'; } }); }
+                    else if (seriesPrefix === 'GFA') {
+                        svgEl.setAttribute('viewBox', '0 0 1028 693');
+                        container.querySelectorAll('text').forEach(text => {
+                            text.setAttribute('font-family', "'Noto Sans JP', sans-serif");
+                            text.style.fontFamily = "'Noto Sans JP', sans-serif";
+                            text.setAttribute('font-weight', 'bold');
+                            text.style.fontWeight = 'bold';
+                            text.style.fontSize = '16px';
+                            text.style.fill = '#000000';
+                            text.style.stroke = '#ffffff';
+                            text.style.strokeWidth = '3.5px';
+                            text.style.strokeLinejoin = 'round';
+                            text.style.paintOrder = 'stroke fill';
+                        });
+                    }
                     else if (['GS', 'GS39', 'GS109', 'GSF109'].includes(seriesPrefix)) {
                         if (seriesPrefix === 'GS39') svgEl.setAttribute('viewBox', '-250 0 972 768'); else if (seriesPrefix === 'GS109') svgEl.setAttribute('viewBox', '-60 0 1081 610'); else if (seriesPrefix === 'GSF109') svgEl.setAttribute('viewBox', '-100 0 939 611'); else svgEl.setAttribute('viewBox', '-110 0 812 521');
                         container.querySelectorAll('text').forEach(text => { text.removeAttribute('font-weight'); text.style.fontWeight = 'normal'; text.setAttribute('font-family', 'Noto Sans JP'); text.style.fontFamily = 'Noto Sans JP'; if (!text.style.fontSize) { text.style.fontSize = '22px'; } });
@@ -619,13 +633,23 @@
                     
                     // КАЛИБРОВКА ДЛЯ GFA:
                     if (seriesPrefix === 'GFA') {
-                        if (param === 'd') { el.style.fontSize = '12px'; }
-                        if (param === 'M') { el.style.fontSize = '12px'; }
+                        el.style.fontFamily = "'Noto Sans JP', sans-serif";
+                        el.style.fontWeight = "bold";
+                        el.style.fontSize = "16px";
+                        el.style.fill = "#000000";
+                        el.style.stroke = "#ffffff";
+                        el.style.strokeWidth = "3.5px";
+                        el.style.strokeLinejoin = "round";
+                        el.style.paintOrder = "stroke fill";
+
+                        if (param === 'd' && val.length > 4) { el.style.fontSize = '13px'; }
+                        else if (param === 'd') { el.style.fontSize = '14px'; }
+                        if (param === 'M') { el.style.fontSize = '13px'; }
                         if (param === 'h1' && val.length > 3) { el.style.fontSize = '13px'; }
-                        if (param === 'w1' && val.length > 3) { el.style.fontSize = '13px'; }
-                        if (param === 'k' && val.length > 3) { el.style.fontSize = '12px'; }
-                        if (param === 's' && val.length > 2) { el.style.fontSize = '13px'; }
-                        if (param === 'G' && val.length > 3) { el.style.fontSize = '12px'; }
+                        if (param === 'w1' && val.length > 3) { el.style.fontSize = '14px'; }
+                        if (param === 'k' && val.length > 3) { el.style.fontSize = '13px'; }
+                        if (param === 's' && val.length > 2) { el.style.fontSize = '14px'; }
+                        if (param === 'G' && val.length > 3) { el.style.fontSize = '13px'; }
                     }
 
                     // НОВЫЙ БЛОК ДЛЯ GS:
