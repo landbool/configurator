@@ -500,7 +500,7 @@
                 const svgEl = container.querySelector('svg');
                 if (svgEl) {
                     let viewBox = svgEl.getAttribute('viewBox'); if (!viewBox) { let w = svgEl.getAttribute('width') || '751'; let h = svgEl.getAttribute('height') || '495'; w = w.replace('px', '').trim(); h = h.replace('px', '').trim(); svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`); }
-                    if (seriesPrefix === 'GK') { svgEl.setAttribute('viewBox', '-65 -20 960 560'); container.querySelectorAll('text').forEach(text => { text.removeAttribute('font-weight'); text.style.fontWeight = 'normal'; text.setAttribute('font-family', 'Noto Sans JP'); text.style.fontFamily = 'Noto Sans JP'; }); }
+                    if (seriesPrefix === 'GK') { svgEl.setAttribute('viewBox', '-45 -25 1160 780'); container.querySelectorAll('text').forEach(text => { text.removeAttribute('font-weight'); text.style.fontWeight = 'normal'; text.setAttribute('font-family', 'Noto Sans JP'); text.style.fontFamily = 'Noto Sans JP'; }); }
                     else if (seriesPrefix === 'GRF') {
                         svgEl.setAttribute('viewBox', '-25 -20 1245 745');
                         container.querySelectorAll('text').forEach(text => {
@@ -754,7 +754,7 @@
                 if (mainSvg) { 
                     const clonedSvg = mainSvg.cloneNode(true); 
                     clonedSvg.removeAttribute('style'); 
-                    if (currentSeries === 'GK') clonedSvg.setAttribute('viewBox', '0 0 800 600'); 
+                    if (currentSeries === 'GK') clonedSvg.setAttribute('viewBox', '-45 -25 1160 780'); 
                     if (currentSeries === 'GF') { if (currentMarking.startsWith('GFA')) clonedSvg.setAttribute('viewBox', '0 0 1028 693'); else clonedSvg.setAttribute('viewBox', '0 0 778 431'); } 
                     if (currentSeries === 'GS') {
                         if (currentFrame === 39) {
@@ -828,7 +828,7 @@
                 const clonedSvg = mainSvg.cloneNode(true); 
                 clonedSvg.removeAttribute('style'); 
                 
-                if (currentSeries === 'GK') clonedSvg.setAttribute('viewBox', '0 0 800 600');
+                if (currentSeries === 'GK') clonedSvg.setAttribute('viewBox', '-45 -25 1160 780');
                 if (currentSeries === 'GF') { if (currentMarking.startsWith('GFA')) clonedSvg.setAttribute('viewBox', '0 0 1028 693'); else clonedSvg.setAttribute('viewBox', '0 0 778 431'); }
                 if (currentSeries === 'GS') {
                     if (currentFrame === 39) {
