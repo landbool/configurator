@@ -81,6 +81,15 @@
             justify-content: center;
             width: 100%;
         }
+    
+        /* 21st.dev Spring Transition for Segmented Controls */
+        .segmented-spring {
+            transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        top 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        height 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        opacity 0.2s ease-out;
+        }
     </style>
 </head>
 <body class="bg-transparent text-slate-100 min-h-0 p-0 m-0">
@@ -174,8 +183,12 @@
                                     <input id="fs-min-input" type="number" step="0.1" min="0.5" max="4.0" value="1.0" oninput="handleParamChange()" class="bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white font-semibold w-20 focus:outline-none focus:border-emerald-500">
                                     <span class="text-[11px] text-slate-500 whitespace-nowrap">минимум</span>
                                 </div>
-                                <div class="grid grid-cols-4 gap-1 mt-2 font-sans text-[10px]">
-                                    <button onclick="setMinFs(1.0)" class="bg-slate-900 hover:bg-slate-800 py-1 rounded border border-slate-800 text-slate-400 text-center font-semibold transition">1.0</button><button onclick="setMinFs(1.2)" class="bg-slate-900 hover:bg-slate-800 py-1 rounded border border-emerald-500/20 text-emerald-400 text-center font-semibold transition">1.2</button><button onclick="setMinFs(1.5)" class="bg-slate-900 hover:bg-slate-800 py-1 rounded border border-slate-800 text-slate-400 text-center font-semibold transition">1.5</button><button onclick="setMinFs(1.8)" class="bg-slate-900 hover:bg-slate-800 py-1 rounded border border-slate-800 text-slate-400 text-center font-semibold transition">1.8</button>
+                                <div id="fs-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 mt-2 font-sans text-[10px] overflow-hidden">
+                                    <div id="fs-indicator" class="absolute bg-emerald-500 rounded-lg shadow-md shadow-emerald-500/25 segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                    <button type="button" onclick="setMinFs(1.0)" id="fs-1.0" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.0</button>
+                                    <button type="button" onclick="setMinFs(1.2)" id="fs-1.2" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.2</button>
+                                    <button type="button" onclick="setMinFs(1.5)" id="fs-1.5" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.5</button>
+                                    <button type="button" onclick="setMinFs(1.8)" id="fs-1.8" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.8</button>
                                 </div>
                             </div>
                         </div>
@@ -193,8 +206,12 @@
                         </div>
                         <div>
                             <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Способ крепления корпуса</label>
-                            <div id="base-buttons-container" class="grid grid-cols-3 gap-1.5">
-                                <button onclick="setBaseType('foot')" id="base-foot" class="text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 font-medium text-center hover:bg-slate-800 transition">На лапах</button><button onclick="setBaseType('flange_b5')" id="base-flange_b5" class="text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 font-medium text-center hover:bg-slate-800 transition">Фланец B5</button><button onclick="setBaseType('flange_b14')" id="base-flange_b14" class="text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 font-medium text-center hover:bg-slate-800 transition">Фланец B14</button><button onclick="setBaseType('shaft')" id="base-shaft" class="text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 font-medium text-center hover:bg-slate-800 transition" style="display: none;">На валу</button>
+                            <div id="base-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-3 gap-1 overflow-hidden font-sans">
+                                <div id="base-indicator" class="absolute bg-emerald-500 rounded-lg shadow-md shadow-emerald-500/25 segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                <button type="button" onclick="setBaseType('foot')" id="base-foot" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer">На лапах</button>
+                                <button type="button" onclick="setBaseType('flange_b5')" id="base-flange_b5" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer">Фланец B5</button>
+                                <button type="button" onclick="setBaseType('flange_b14')" id="base-flange_b14" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer">Фланец B14</button>
+                                <button type="button" onclick="setBaseType('shaft')" id="base-shaft" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer" style="display: none;">На валу</button>
                             </div>
                         </div>
                     </div>
@@ -207,22 +224,36 @@
                         </div>
                         <div>
                             <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Сторона выхода кабеля</label>
-                            <div class="grid grid-cols-4 gap-1.5">
-                                <button onclick="setCableOutlet('X')" id="cable-X" class="flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/X.png" alt="X" class="w-10 h-10 object-contain transition"><span class="text-[10px] font-bold">X</span></button><button onclick="setCableOutlet('1')" id="cable-1" class="flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/1.png" alt="1" class="w-10 h-10 object-contain transition"><span class="text-[10px] font-bold">1</span></button><button onclick="setCableOutlet('2')" id="cable-2" class="flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/2.png" alt="2" class="w-10 h-10 object-contain transition"><span class="text-[10px] font-bold">2</span></button><button onclick="setCableOutlet('3')" id="cable-3" class="flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/3.png" alt="3" class="w-10 h-10 object-contain transition"><span class="text-[10px] font-bold">3</span></button>
+                            <div id="cable-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 overflow-hidden font-sans">
+                                <div id="cable-indicator" class="absolute bg-emerald-500/20 border border-emerald-500/70 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                <button type="button" onclick="setCableOutlet('X')" id="cable-X" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/X.png" alt="X" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">X</span></button>
+                                <button type="button" onclick="setCableOutlet('1')" id="cable-1" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/1.png" alt="1" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">1</span></button>
+                                <button type="button" onclick="setCableOutlet('2')" id="cable-2" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/2.png" alt="2" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">2</span></button>
+                                <button type="button" onclick="setCableOutlet('3')" id="cable-3" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/3.png" alt="3" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">3</span></button>
                             </div>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-slate-900">
                         <div>
                             <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Монтажное положение<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Ориентация редуктора в пространстве. Влияет на уровень масла и расположение сапуна. М1 - стандартное горизонтальное.</span></span></label>
-                            <div class="grid grid-cols-6 gap-1 font-mono">
-                                <button onclick="setMountingPosition('M1')" id="mount-M1" class="text-[10px] font-bold p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 text-center transition">M1</button><button onclick="setMountingPosition('M2')" id="mount-M2" class="text-[10px] font-bold p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 text-center transition">M2</button><button onclick="setMountingPosition('M3')" id="mount-M3" class="text-[10px] font-bold p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 text-center transition">M3</button><button onclick="setMountingPosition('M4')" id="mount-M4" class="text-[10px] font-bold p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 text-center transition">M4</button><button onclick="setMountingPosition('M5')" id="mount-M5" class="text-[10px] font-bold p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 text-center transition">M5</button><button onclick="setMountingPosition('M6')" id="mount-M6" class="text-[10px] font-bold p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 text-center transition">M6</button>
+                            <div id="mount-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-6 gap-1 overflow-hidden font-mono">
+                                <div id="mount-indicator" class="absolute bg-emerald-500 rounded-lg shadow-md shadow-emerald-500/25 segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                <button type="button" onclick="setMountingPosition('M1')" id="mount-M1" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M1</button>
+                                <button type="button" onclick="setMountingPosition('M2')" id="mount-M2" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M2</button>
+                                <button type="button" onclick="setMountingPosition('M3')" id="mount-M3" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M3</button>
+                                <button type="button" onclick="setMountingPosition('M4')" id="mount-M4" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M4</button>
+                                <button type="button" onclick="setMountingPosition('M5')" id="mount-M5" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M5</button>
+                                <button type="button" onclick="setMountingPosition('M6')" id="mount-M6" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M6</button>
                             </div>
                         </div>
                         <div>
                             <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Положение ввода кабеля коробки<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Направление ввода кабеля питания относительно двигателя. По умолчанию 0°.</span></span></label>
-                            <div class="grid grid-cols-4 gap-1 font-mono">
-                                <button onclick="setBoxAngle('0')" id="angle-0" class="flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/0.png" alt="0" class="w-8 h-8 object-contain transition"><span class="text-[10px] font-bold">0°</span></button><button onclick="setBoxAngle('90')" id="angle-90" class="flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/90.png" alt="90" class="w-8 h-8 object-contain transition"><span class="text-[10px] font-bold">90°</span></button><button onclick="setBoxAngle('180')" id="angle-180" class="flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/180.png" alt="180" class="w-8 h-8 object-contain transition"><span class="text-[10px] font-bold">180°</span></button><button onclick="setBoxAngle('270')" id="angle-270" class="flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/270.png" alt="270" class="w-8 h-8 object-contain transition"><span class="text-[10px] font-bold">270°</span></button>
+                            <div id="angle-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 overflow-hidden font-mono">
+                                <div id="angle-indicator" class="absolute bg-emerald-500/20 border border-emerald-500/70 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                <button type="button" onclick="setBoxAngle('0')" id="angle-0" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/0.png" alt="0" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">0°</span></button>
+                                <button type="button" onclick="setBoxAngle('90')" id="angle-90" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/90.png" alt="90" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">90°</span></button>
+                                <button type="button" onclick="setBoxAngle('180')" id="angle-180" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/180.png" alt="180" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">180°</span></button>
+                                <button type="button" onclick="setBoxAngle('270')" id="angle-270" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/270.png" alt="270" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">270°</span></button>
                             </div>
                         </div>
                     </div>
@@ -1022,7 +1053,7 @@
                     shaftSelect.value = state.shaftType;
                 }
             }
-            initImageSources(); lucide.createIcons(); selectGearType(state.gearType); setMountingPosition(state.mountingPosition); setBoxAngle(state.boxAngle); setBaseType(state.baseType); setCableOutlet(state.cableOutlet); syncUIConstraints(); fetchExternalCatalog(DEFAULT_CATALOG_URL); initInteractiveDrawingsCore();
+            initImageSources(); lucide.createIcons(); selectGearType(state.gearType); setMountingPosition(state.mountingPosition); setBoxAngle(state.boxAngle); setBaseType(state.baseType); setCableOutlet(state.cableOutlet); syncUIConstraints(); fetchExternalCatalog(DEFAULT_CATALOG_URL); initInteractiveDrawingsCore(); setTimeout(syncAllSegmentedIndicators, 50); setTimeout(syncAllSegmentedIndicators, 300);
         };
 
         function parseMarkingToState(marking) {
@@ -1123,7 +1154,7 @@
                 shaftSelect.innerHTML = optionsHtml; if (!Array.from(shaftSelect.options).map(opt => opt.value).includes(state.shaftType)) { state.shaftType = 'solid'; } shaftSelect.value = state.shaftType;
             }
             ['GR', 'GF', 'GK', 'GS'].forEach(item => { const card = document.getElementById(`card-card-${item}`); if (card) { if (item === type) { card.classList.remove('border-slate-800', 'bg-slate-950'); card.classList.add('border-white', 'bg-black/85'); } else { card.classList.remove('border-white', 'bg-black/85'); card.classList.add('border-slate-800', 'bg-slate-950'); } } });
-            syncUIConstraints(); updateCalculations();
+            syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations();
         }
 
         function setPower(val) { stateFsFix(val, 'power-input'); state.power = parseFloat(val); updateCalculations(); }
@@ -1136,13 +1167,57 @@
             const outletEl = document.getElementById('visualizer-outlet'); if (outletEl) outletEl.textContent = val; updateCalculations();
         }
 
+        
+        function updateSegmentedIndicator(containerId, indicatorId, activeBtnId) {
+            const container = document.getElementById(containerId);
+            const indicator = document.getElementById(indicatorId);
+            const activeBtn = document.getElementById(activeBtnId);
+            if (!container || !indicator) return;
+            
+            if (!activeBtn || activeBtn.style.display === 'none' || activeBtn.disabled) {
+                indicator.style.opacity = '0';
+                return;
+            }
+            
+            const left = activeBtn.offsetLeft;
+            const top = activeBtn.offsetTop;
+            const width = activeBtn.offsetWidth;
+            const height = activeBtn.offsetHeight;
+            
+            indicator.style.left = left + 'px';
+            indicator.style.top = top + 'px';
+            indicator.style.width = width + 'px';
+            indicator.style.height = height + 'px';
+            indicator.style.opacity = '1';
+        }
+
+        function syncAllSegmentedIndicators() {
+            updateSegmentedIndicator('base-buttons-container', 'base-indicator', 'base-' + state.baseType);
+            updateSegmentedIndicator('mount-buttons-container', 'mount-indicator', 'mount-' + state.mountingPosition);
+            updateSegmentedIndicator('cable-buttons-container', 'cable-indicator', 'cable-' + state.cableOutlet);
+            updateSegmentedIndicator('angle-buttons-container', 'angle-indicator', 'angle-' + state.boxAngle);
+            if (typeof state.minFs === 'number') {
+                updateSegmentedIndicator('fs-buttons-container', 'fs-indicator', 'fs-' + state.minFs.toFixed(1));
+            }
+        }
+        window.addEventListener('resize', syncAllSegmentedIndicators);
+
         function syncUIConstraints() {
             const b5Btn = document.getElementById('base-flange_b5'), b14Btn = document.getElementById('base-flange_b14'), footBtn = document.getElementById('base-foot'), shaftBtn = document.getElementById('base-shaft'), container = document.getElementById('base-buttons-container'), powerSelect = document.getElementById('power-input');
             if (state.baseType === 'shaft' && (state.gearType !== 'GK' || state.shaftType === 'solid' || state.shaftType.endsWith('_t'))) { state.baseType = 'foot'; }
-            [footBtn, b5Btn, b14Btn, shaftBtn].forEach(btn => { if (btn) { btn.disabled = false; btn.style.opacity = "1"; btn.style.cursor = "pointer"; if (btn.id.replace('base-', '') === state.baseType) { btn.className = "text-xs p-2 rounded border border-emerald-500 bg-emerald-500/10 font-bold text-center text-white transition"; } else { btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 font-medium text-center hover:bg-slate-800 transition"; } } });
+            [footBtn, b5Btn, b14Btn, shaftBtn].forEach(btn => { 
+                if (btn) { 
+                    btn.disabled = false; btn.style.opacity = "1"; btn.style.cursor = "pointer"; 
+                    if (btn.id.replace('base-', '') === state.baseType) { 
+                        btn.className = "relative z-10 text-xs py-2 px-2 rounded-lg text-slate-950 font-black text-center transition-colors duration-200 cursor-pointer"; 
+                    } else { 
+                        btn.className = "relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer"; 
+                    } 
+                } 
+            });
             if (footBtn) footBtn.style.display = ''; if (b5Btn) b5Btn.style.display = ''; if (b14Btn) b14Btn.style.display = ''; if (shaftBtn) shaftBtn.style.display = 'none';
             let visibleCount = 3; if (state.gearType === 'GR') { if (b14Btn) b14Btn.style.display = 'none'; visibleCount = 2; }
-            if (state.gearType === 'GS') { if (state.shaftType === 'solid') { if (b14Btn) { b14Btn.disabled = true; b14Btn.style.opacity = "0.3"; b14Btn.style.cursor = "not-allowed"; b14Btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition"; if (state.baseType === 'flange_b14') state.baseType = 'foot'; } } else if (state.shaftType.endsWith('_t')) { [footBtn, b5Btn, b14Btn].forEach(btn => { if (btn) { btn.disabled = true; btn.style.opacity = "0.3"; btn.style.cursor = "not-allowed"; btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition"; } }); } }
+            if (state.gearType === 'GS') { if (state.shaftType === 'solid') { if (b14Btn) { b14Btn.disabled = true; b14Btn.style.opacity = "0.3"; b14Btn.style.cursor = "not-allowed"; b14Btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition"; if (state.baseType === 'flange_b14') state.baseType = 'foot'; } } else if (state.shaftType.endsWith('_t')) { [footBtn, b5Btn, b14Btn].forEach(btn => { if (btn) { btn.disabled = true; btn.style.opacity = "0.3"; btn.style.cursor = "not-allowed"; btn.className = "relative z-10 text-xs py-2 px-2 rounded-lg text-slate-600 font-medium text-center transition-colors duration-200"; } }); } }
             if (state.gearType === 'GF') {
                 if (state.shaftType === 'solid') {
                     if (b14Btn) {
@@ -1159,14 +1234,14 @@
                             btn.disabled = true;
                             btn.style.opacity = "0.3";
                             btn.style.cursor = "not-allowed";
-                            btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition";
+                            btn.className = "relative z-10 text-xs py-2 px-2 rounded-lg text-slate-600 font-medium text-center transition-colors duration-200";
                         }
                     });
                 }
             }
-            if (state.gearType === 'GK') { if (state.shaftType === 'solid') { if (b14Btn) { b14Btn.disabled = true; b14Btn.style.opacity = "0.3"; b14Btn.style.cursor = "not-allowed"; b14Btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition"; if (state.baseType === 'flange_b14') state.baseType = 'foot'; } } else if (state.shaftType === 'hollow' || state.shaftType === 'hollow_disc') { if (shaftBtn) shaftBtn.style.display = ''; visibleCount = 4; } else if (state.shaftType.endsWith('_t')) { [footBtn, b5Btn, b14Btn, shaftBtn].forEach(btn => { if (btn) { btn.disabled = true; btn.style.opacity = "0.3"; btn.style.cursor = "not-allowed"; btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition"; } }); } }
+            if (state.gearType === 'GK') { if (state.shaftType === 'solid') { if (b14Btn) { b14Btn.disabled = true; b14Btn.style.opacity = "0.3"; b14Btn.style.cursor = "not-allowed"; b14Btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition"; if (state.baseType === 'flange_b14') state.baseType = 'foot'; } } else if (state.shaftType === 'hollow' || state.shaftType === 'hollow_disc') { if (shaftBtn) shaftBtn.style.display = ''; visibleCount = 4; } else if (state.shaftType.endsWith('_t')) { [footBtn, b5Btn, b14Btn, shaftBtn].forEach(btn => { if (btn) { btn.disabled = true; btn.style.opacity = "0.3"; btn.style.cursor = "not-allowed"; btn.className = "relative z-10 text-xs py-2 px-2 rounded-lg text-slate-600 font-medium text-center transition-colors duration-200"; } }); } }
             if (container) { container.className = `grid grid-cols-${visibleCount} gap-1.5`; }
-            [footBtn, b5Btn, b14Btn, shaftBtn].forEach(btn => { if (btn && !btn.disabled && btn.id.replace('base-', '') === state.baseType) btn.className = "text-xs p-2 rounded border border-emerald-500 bg-emerald-500/10 font-bold text-center text-white"; });
+            [footBtn, b5Btn, b14Btn, shaftBtn].forEach(btn => { if (btn && !btn.disabled && btn.id.replace('base-', '') === state.baseType) btn.className = "relative z-10 text-xs py-2 px-2 rounded-lg text-slate-950 font-black text-center transition-colors duration-200 cursor-pointer"; });
             if (powerSelect) { if (state.motorType === 'AD') { if (powerSelect.value !== '0') { powerSelect.dataset.prevValue = powerSelect.value; } let adOption = document.getElementById('ad-power-placeholder'); if (!adOption) { adOption = document.createElement('option'); adOption.id = 'ad-power-placeholder'; adOption.value = '0'; adOption.textContent = 'Без электродвигателя'; powerSelect.prepend(adOption); } powerSelect.value = '0'; powerSelect.disabled = true; powerSelect.style.opacity = "0.5"; powerSelect.style.cursor = "not-allowed"; } else { let adOption = document.getElementById('ad-power-placeholder'); if (adOption) adOption.remove(); powerSelect.disabled = false; powerSelect.style.opacity = "1"; powerSelect.style.cursor = "pointer"; if (powerSelect.dataset.prevValue && powerSelect.value === '0') { powerSelect.value = powerSelect.dataset.prevValue; state.power = parseFloat(powerSelect.value) || 0.12; } } }
             // УМНАЯ БЛОКИРОВКА КАБЕЛЯ И КОРОБКИ ДЛЯ ИСПОЛНЕНИЯ AD
             if (state.motorType === 'AD') {
@@ -1212,16 +1287,38 @@
             }
         }
 
-        function handleParamChange() { state.power = parseFloat(document.getElementById('power-input').value) || 0.12; state.speed = parseFloat(document.getElementById('speed-input').value) || 35; state.minFs = parseFloat(document.getElementById('fs-min-input').value) || 1.0; state.shaftType = document.getElementById('shaft-type').value; state.motorType = document.getElementById('motor-type').value; state.desiredShaft = parseFloat(document.getElementById('shaft-diam-input')?.value) || 0; syncUIConstraints(); updateCalculations(); }
-        function setBaseType(type) { state.baseType = type; syncUIConstraints(); updateCalculations(); }
+        function handleParamChange() { state.power = parseFloat(document.getElementById('power-input').value) || 0.12; state.speed = parseFloat(document.getElementById('speed-input').value) || 35; state.minFs = parseFloat(document.getElementById('fs-min-input').value) || 1.0; state.shaftType = document.getElementById('shaft-type').value; state.motorType = document.getElementById('motor-type').value; state.desiredShaft = parseFloat(document.getElementById('shaft-diam-input')?.value) || 0; syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations(); }
+        function setBaseType(type) { state.baseType = type; syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations(); }
 
         function setMountingPosition(pos) {
-            state.mountingPosition = pos; ['M1', 'M2', 'M3', 'M4', 'M5', 'M6'].forEach(m => { const el = document.getElementById(`mount-${m}`); if (m === pos) { el.className = "bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black p-1 rounded border border-emerald-500 text-center text-[10px] transition"; } else { el.className = "bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold p-1 rounded border border-slate-800 text-center text-[10px] transition"; } });
+            state.mountingPosition = pos; 
+            ['M1', 'M2', 'M3', 'M4', 'M5', 'M6'].forEach(m => { 
+                const el = document.getElementById(`mount-${m}`); 
+                if (el) {
+                    if (m === pos) { 
+                        el.className = "relative z-10 text-[10px] font-black py-1.5 rounded-lg text-slate-950 text-center transition-colors duration-200 cursor-pointer"; 
+                    } else { 
+                        el.className = "relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer"; 
+                    } 
+                }
+            });
+            updateSegmentedIndicator('mount-buttons-container', 'mount-indicator', 'mount-' + pos);
             const svg = document.getElementById('visualizer-svg'); const rotations = { 'M1': 'rotate(0deg)', 'M2': 'rotate(180deg)', 'M3': 'rotate(90deg)', 'M4': 'rotate(-90deg)', 'M5': 'rotate(45deg)', 'M6': 'rotate(-445deg)' }; if (svg) svg.style.transform = rotations[pos]; const posEl = document.getElementById('visualizer-pos'); if (posEl) posEl.textContent = pos; updateCalculations();
         }
 
         function setBoxAngle(angle) {
-            state.boxAngle = angle; ['0', '90', '180', '270'].forEach(a => { const el = document.getElementById('angle-' + a); if (a === angle) { el.className = "flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-emerald-500 bg-emerald-500/10 text-white transition group [&>img]:opacity-100"; } else { el.className = "flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"; } });
+            state.boxAngle = angle; 
+            ['0', '90', '180', '270'].forEach(a => { 
+                const el = document.getElementById('angle-' + a); 
+                if (el) {
+                    if (a === angle) { 
+                        el.className = "relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-emerald-400 font-bold transition-all duration-200 group [&>img]:opacity-100 cursor-pointer"; 
+                    } else { 
+                        el.className = "relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"; 
+                    } 
+                }
+            });
+            updateSegmentedIndicator('angle-buttons-container', 'angle-indicator', 'angle-' + angle);
             const angleEl = document.getElementById('visualizer-angle'); if (angleEl) angleEl.textContent = `${angle}°`; updateCalculations();
         }
         
