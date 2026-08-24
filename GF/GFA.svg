@@ -42,38 +42,38 @@
 <text data-param="A" x="402.5" y="87.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">A</text>
 <text data-param="a" x="371.5" y="86.4" font-family="Noto Sans JP" font-size="13" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a</text>
 <text data-param="q" x="376.5" y="54.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">q</text>
-<text data-param="q1" x="417.0" y="20.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">q1</text>
+<text data-param="q1" x="417.0" y="20.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">q1</text>
 <text data-param="AD" x="54.0" y="37.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">AD</text>
 <text data-param="a2" x="51.0" y="79.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a2</text>
 <text data-param="L1" x="547.0" y="20.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">L1</text>
 <text data-param="AD" x="983.0" y="37.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">AD</text>
-<text data-param="a3" x="905.0" y="78.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a3</text>
-<text data-param="a1" x="420.5" y="376.8" font-family="Noto Sans JP" font-size="19" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a1</text>
+<text data-param="a3" x="905.0" y="78.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a3</text>
+<text data-param="a1" x="420.5" y="376.8" font-family="Noto Sans JP" font-size="27" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a1</text>
 <text data-param="a" x="329.0" y="351.4" font-family="Noto Sans JP" font-size="13" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a</text>
-<text data-param="w" x="245.0" y="495.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w</text>
-<text data-param="w" x="319.0" y="495.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w</text>
-<text data-param="K0" x="947.0" y="377.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">KD</text>
-<text data-param="c1" x="295.0" y="611.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">c1</text>
-<text data-param="k" x="726.0" y="482.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">k</text>
-<text data-param="a7" x="898.0" y="479.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a7</text>
-<text data-param="w2" x="791.0" y="452.6" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w2</text>
+<text data-param="w" x="245.0" y="495.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w</text>
+<text data-param="w" x="319.0" y="495.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w</text>
+<text data-param="K0" x="947.0" y="377.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">KD</text>
+<text data-param="c1" x="295.0" y="611.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">c1</text>
+<text data-param="k" x="726.0" y="482.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">k</text>
+<text data-param="a7" x="898.0" y="479.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a7</text>
+<text data-param="w2" x="791.0" y="452.6" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w2</text>
 <text data-param="M" x="395.5" y="597.2" font-family="Noto Sans JP" font-size="14" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">M-8.8</text>
-<text data-param="c2" x="277.0" y="645.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">c2</text>
-<text data-param="u" x="433.0" y="491.8" font-family="Noto Sans JP" font-size="19" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">u</text>
-<text data-param="G" x="712.0" y="213.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 695 194)">G</text>
-<text data-param="d1" x="125.5" y="584.8" font-family="Noto Sans JP" font-size="19" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 114 566)">d1</text>
+<text data-param="c2" x="277.0" y="645.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">c2</text>
+<text data-param="u" x="433.0" y="491.8" font-family="Noto Sans JP" font-size="27" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">u</text>
+<text data-param="G" x="712.0" y="213.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 695 194)">G</text>
+<text data-param="d1" x="125.5" y="584.8" font-family="Noto Sans JP" font-size="27" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 114 566)">d1</text>
 <text data-param="d" x="161.0" y="578.8" font-family="Noto Sans JP" font-size="14" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 155 560)">d</text>
 <text data-param="t" x="467.5" y="579.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 461 560)">t</text>
-<text data-param="s1" x="631.0" y="579.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 614 560)">s1</text>
+<text data-param="s1" x="631.0" y="579.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 614 560)">s1</text>
 <text data-param="s2" x="656.0" y="569.9" font-family="Noto Sans JP" font-size="14" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 648 551)">s2</text>
 <text data-param="h1" x="442.5" y="261.6" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 425 247)">h1</text>
-<text data-param="h6" x="316.0" y="135.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 299 116)">h6</text>
-<text data-param="s" x="281.0" y="135.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 264 116)">s</text>
-<text data-param="h7" x="236.0" y="242.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 219 223)">h7</text>
-<text data-param="w1" x="519.0" y="351.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 502 332)">w1</text>
-<text data-param="p3" x="807.0" y="267.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 790 248)">p3</text>
+<text data-param="h6" x="316.0" y="135.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 299 116)">h6</text>
+<text data-param="s" x="281.0" y="135.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 264 116)">s</text>
+<text data-param="h7" x="236.0" y="242.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 219 223)">h7</text>
+<text data-param="w1" x="519.0" y="351.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 502 332)">w1</text>
+<text data-param="p3" x="807.0" y="267.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 790 248)">p3</text>
 <text data-param="AC" x="666.0" y="205.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 649 186)">AC</text>
-<text data-param="w1" x="419.0" y="420.1" font-family="Noto Sans JP" font-size="20" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w1</text>
+<text data-param="w1" x="419.0" y="420.1" font-family="Noto Sans JP" font-size="28" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w1</text>
 </g>
 <defs>
 <pattern id="pattern0_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
