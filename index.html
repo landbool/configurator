@@ -641,27 +641,32 @@
 
                         // 1. Шрифт параметра 'a' - 13px
                         if (param === 'a') { el.style.fontSize = '13px'; }
-                        // 2. Шрифт параметра 'd' - 14px
-                        if (param === 'd') { el.style.fontSize = '14px'; }
-                        if (param === 'd1' && val.length > 5) { el.style.fontSize = '15px'; }
-                        else if (param === 'd1') { el.style.fontSize = '16px'; }
-                        // 3. Параметр 'M': берем из таблицы и дописываем '-8.8'
+
+                        // 2. Параметр 'd': если 4 символа в тексте, то 14px, если больше чем 4, то на 2px меньше (12px)
+                        if (param === 'd') {
+                            el.style.fontSize = (val.length > 4) ? '12px' : '14px';
+                        }
+
+                        // 3. Параметр 'M': берем из таблицы + '-8.8', сдвиг на 5px вправо
                         if (param === 'M') {
                             const mFormatted = val ? (val.includes('-8.8') ? val : val + '-8.8') : 'M-8.8';
                             el.textContent = mFormatted;
                             el.style.fontSize = '14px';
                         }
-                        // 4. Параметр 's2': гарантируем наличие знака '+' и шрифт 14px
+
+                        // 4. Параметр 's2': если <= 7 символов -> на 2 меньше (12px), если > 7 символов -> на 4 меньше (10px)
                         if (param === 's2') {
                             const formatted = val.replace(/(\d+(?:[.,]\d+)?)\s+(\d+(?:[.,]\d+)?)/g, '$1+$2');
                             el.textContent = formatted;
-                            el.style.fontSize = '14px';
+                            el.style.fontSize = (formatted.length > 7) ? '10px' : '12px';
                         }
-                        if (param === 'h1' && val.length > 3) { el.style.fontSize = '15px'; }
-                        if (param === 'w1' && val.length > 3) { el.style.fontSize = '16px'; }
-                        if (param === 'k' && val.length > 3) { el.style.fontSize = '15px'; }
-                        if (param === 's' && val.length > 2) { el.style.fontSize = '15px'; }
-                        if (param === 'G' && val.length > 3) { el.style.fontSize = '16px'; }
+
+                        // 5. Увеличение на +4px для: h7, h6, s, q1, G, h, e, w1, a1, w, d1, c1, c2, u, p3, a3, K0, w2, s1, k, a7
+                        const plus4List = ['h7', 'h6', 's', 'q1', 'G', 'h', 'e', 'w1', 'a1', 'w', 'd1', 'c1', 'c2', 'u', 'p3', 'a3', 'K0', 'w2', 's1', 'k', 'a7'];
+                        if (plus4List.map(x => x.toLowerCase()).includes(param.toLowerCase())) {
+                            el.style.fontSize = '20px';
+                            if (['d1', 'u', 'a1'].includes(param) && val.length > 4) { el.style.fontSize = '19px'; }
+                        }
                     }
 
                     // НОВЫЙ БЛОК ДЛЯ GS:
