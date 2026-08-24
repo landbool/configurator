@@ -505,16 +505,16 @@
                     else if (seriesPrefix === 'GF') {
                         svgEl.setAttribute('viewBox', '-50 -10 778 431');
                         container.querySelectorAll('text').forEach(text => {
-                            text.setAttribute('font-family', "'Noto Sans JP', sans-serif");
-                            text.style.fontFamily = "'Noto Sans JP', sans-serif";
-                            text.setAttribute('font-weight', 'bold');
-                            text.style.fontWeight = 'bold';
-                            text.style.fontSize = '16px';
+                            text.removeAttribute('font-weight');
+                            text.removeAttribute('stroke');
+                            text.removeAttribute('stroke-width');
+                            text.setAttribute('font-family', 'Noto Sans JP');
+                            text.style.fontFamily = 'Noto Sans JP';
+                            text.style.fontWeight = 'normal';
                             text.style.fill = '#000000';
-                            text.style.stroke = '#ffffff';
-                            text.style.strokeWidth = '3.5px';
-                            text.style.strokeLinejoin = 'round';
-                            text.style.paintOrder = 'stroke fill';
+                            text.style.stroke = 'none';
+                            text.style.strokeWidth = '0';
+                            text.style.paintOrder = 'normal';
                         });
                     }
                     else if (seriesPrefix === 'GFA') {
@@ -611,12 +611,16 @@
                     }
 
                     if (seriesPrefix === 'GF') {
+                        el.removeAttribute('font-weight');
+                        el.removeAttribute('stroke');
+                        el.removeAttribute('stroke-width');
                         el.setAttribute('font-family', 'Noto Sans JP');
                         el.style.fontFamily = 'Noto Sans JP';
                         el.style.fontWeight = 'normal';
                         el.style.fill = '#000000';
                         el.style.stroke = 'none';
                         el.style.strokeWidth = '0';
+                        el.style.paintOrder = 'normal';
                         el.style.fontSize = '16px';
 
                         if (param === 't') { const currentTransform = el.getAttribute('transform') || ''; el.setAttribute('transform', `translate(30, 0) ${currentTransform}`); }
@@ -630,41 +634,54 @@
                     
                     // КАЛИБРОВКА ДЛЯ GFA (ТОЧНО КАК В СЕРИИ GR):
                     if (seriesPrefix === 'GFA') {
+                        el.removeAttribute('font-weight');
+                        el.removeAttribute('stroke');
+                        el.removeAttribute('stroke-width');
                         el.setAttribute('font-family', 'Noto Sans JP');
                         el.style.fontFamily = 'Noto Sans JP';
                         el.style.fontWeight = 'normal';
                         el.style.fill = '#000000';
                         el.style.stroke = 'none';
                         el.style.strokeWidth = '0';
-                        el.style.fontSize = '16px';
+                        el.style.paintOrder = 'normal';
 
                         // 1. Шрифт параметра 'a' - 13px
-                        if (param === 'a') { el.style.fontSize = '13px'; }
-
-                        // 2. Параметр 'd': если 4 символа в тексте, то 14px, если больше чем 4, то на 2px меньше (12px)
-                        if (param === 'd') {
-                            el.style.fontSize = (val.length > 4) ? '12px' : '14px';
+                        if (param === 'a') {
+                            el.setAttribute('font-size', '13');
+                            el.style.fontSize = '13px';
                         }
-
-                        // 3. Параметр 'M': берем из таблицы + '-8.8', сдвиг на 5px вправо
-                        if (param === 'M') {
+                        // 2. Параметр 'd': если 4 символа в тексте -> 14px, если больше чем 4 -> 12px
+                        else if (param === 'd') {
+                            const dSz = (val.length > 4) ? '12' : '14';
+                            el.setAttribute('font-size', dSz);
+                            el.style.fontSize = dSz + 'px';
+                        }
+                        // 3. Параметр 'M': берем из таблицы + '-8.8', 14px
+                        else if (param === 'M') {
                             const mFormatted = val ? (val.includes('-8.8') ? val : val + '-8.8') : 'M-8.8';
                             el.textContent = mFormatted;
+                            el.setAttribute('font-size', '14');
                             el.style.fontSize = '14px';
                         }
-
-                        // 4. Параметр 's2': если <= 7 символов -> на 2 меньше (12px), если > 7 символов -> на 4 меньше (10px)
-                        if (param === 's2') {
+                        // 4. Параметр 's2': если <= 7 символов -> 12px, если > 7 символов -> 10px
+                        else if (param === 's2') {
                             const formatted = val.replace(/(\d+(?:[.,]\d+)?)\s+(\d+(?:[.,]\d+)?)/g, '$1+$2');
                             el.textContent = formatted;
-                            el.style.fontSize = (formatted.length > 7) ? '10px' : '12px';
+                            const s2Sz = (formatted.length > 7) ? '10' : '12';
+                            el.setAttribute('font-size', s2Sz);
+                            el.style.fontSize = s2Sz + 'px';
                         }
-
-                        // 5. Увеличение на +4px для: h7, h6, s, q1, G, h, e, w1, a1, w, d1, c1, c2, u, p3, a3, K0, w2, s1, k, a7
-                        const plus4List = ['h7', 'h6', 's', 'q1', 'G', 'h', 'e', 'w1', 'a1', 'w', 'd1', 'c1', 'c2', 'u', 'p3', 'a3', 'K0', 'w2', 's1', 'k', 'a7'];
-                        if (plus4List.map(x => x.toLowerCase()).includes(param.toLowerCase())) {
-                            el.style.fontSize = '20px';
-                            if (['d1', 'u', 'a1'].includes(param) && val.length > 4) { el.style.fontSize = '19px'; }
+                        // 5. Увеличение на +4px (до 20px) для указанных 21 параметров
+                        else {
+                            const plus4List = ['h7', 'h6', 's', 'q1', 'G', 'h', 'e', 'w1', 'a1', 'w', 'd1', 'c1', 'c2', 'u', 'p3', 'a3', 'K0', 'w2', 's1', 'k', 'a7'];
+                            if (plus4List.map(x => x.toLowerCase()).includes(param.toLowerCase())) {
+                                const finalSz = (['d1', 'u', 'a1'].includes(param) && val.length > 4) ? '19' : '20';
+                                el.setAttribute('font-size', finalSz);
+                                el.style.fontSize = finalSz + 'px';
+                            } else {
+                                el.setAttribute('font-size', '16');
+                                el.style.fontSize = '16px';
+                            }
                         }
                     }
 
