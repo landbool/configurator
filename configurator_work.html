@@ -239,12 +239,12 @@
     </div>
 
     <div id="drawingModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200">
-        <div class="modal-dialog-box absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-slate-900 rounded-xl p-4 md:p-5 w-[94%] max-w-4xl max-h-[85vh] md:max-h-[560px] flex flex-col shadow-2xl border border-slate-200 transition-[top] duration-150 ease-out" style="top: 480px;">
+        <div class="modal-dialog-box absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-slate-900 rounded-xl p-4 md:p-6 w-[96%] max-w-6xl xl:max-w-[1280px] max-h-[94vh] md:max-h-[820px] flex flex-col shadow-2xl border border-slate-200 transition-[top] duration-150 ease-out" style="top: 480px;">
             <div class="flex justify-between items-center mb-3 border-b border-slate-100 pb-2.5">
-                <div><h3 id="modal-title" class="text-xs font-bold text-slate-900 uppercase tracking-wider">Детальный чертёж оборудования</h3><p class="text-[10px] text-slate-500 mt-0.5 font-sans">Для закрытия нажмите Крестик или кликните за пределами окна</p></div>
-                <button onclick="closeModalDrawing()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded bg-slate-100 hover:bg-slate-200 transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+                <div><h3 id="modal-title" class="text-sm font-bold text-slate-900 uppercase tracking-wider">Детальный чертёж оборудования</h3><p class="text-xs text-slate-500 mt-0.5 font-sans">Для закрытия нажмите Крестик или кликните за пределами окна</p></div>
+                <button onclick="closeModalDrawing()" class="text-slate-400 hover:text-slate-600 p-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
-            <div id="modalContentContainer" class="flex-1 overflow-hidden flex items-center justify-center p-2 max-h-[460px]"></div>
+            <div id="modalContentContainer" class="flex-1 overflow-hidden flex items-center justify-center p-2 md:p-3 w-full h-[76vh] max-h-[730px]"></div>
         </div>
     </div>
 
@@ -705,7 +705,11 @@
                 const mainSvg = document.getElementById('svgContainer').querySelector('svg');
                 if (mainSvg) { 
                     const clonedSvg = mainSvg.cloneNode(true); 
-                    clonedSvg.removeAttribute('style'); 
+                    clonedSvg.removeAttribute('style');
+                    clonedSvg.style.width = '100%';
+                    clonedSvg.style.height = '100%';
+                    clonedSvg.style.maxHeight = '720px';
+                    clonedSvg.style.objectFit = 'contain'; 
                     if (currentSeries === 'GK') clonedSvg.setAttribute('viewBox', '0 0 800 600'); 
                     if (currentSeries === 'GF') { if (currentMarking.startsWith('GFA')) clonedSvg.setAttribute('viewBox', '0 0 1028 693'); else clonedSvg.setAttribute('viewBox', '0 0 778 431'); } 
                     if (currentSeries === 'GS') {
