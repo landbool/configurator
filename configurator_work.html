@@ -1161,11 +1161,7 @@
         function setMinFs(val) { stateFsFix(val, 'fs-min-input'); state.minFs = parseFloat(val); updateCalculations(); }
         function syncSliderToInput(val) { document.getElementById('speed-input').value = val; state.speed = parseFloat(val); updateCalculations(); }
 
-        function setCableOutlet(val) {
-            state.cableOutlet = val;
-            ['X', '1', '2', '3'].forEach(item => { const btn = document.getElementById(`cable-${item}`); if (item === val) { btn.className = "flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-emerald-500 bg-emerald-500/10 text-white transition group [&>img]:opacity-100"; } else { btn.className = "flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"; } });
-            const outletEl = document.getElementById('visualizer-outlet'); if (outletEl) outletEl.textContent = val; updateCalculations();
-        }
+
 
         
         function updateSegmentedIndicator(containerId, indicatorId, activeBtnId) {
@@ -1245,46 +1241,49 @@
             if (powerSelect) { if (state.motorType === 'AD') { if (powerSelect.value !== '0') { powerSelect.dataset.prevValue = powerSelect.value; } let adOption = document.getElementById('ad-power-placeholder'); if (!adOption) { adOption = document.createElement('option'); adOption.id = 'ad-power-placeholder'; adOption.value = '0'; adOption.textContent = 'Без электродвигателя'; powerSelect.prepend(adOption); } powerSelect.value = '0'; powerSelect.disabled = true; powerSelect.style.opacity = "0.5"; powerSelect.style.cursor = "not-allowed"; } else { let adOption = document.getElementById('ad-power-placeholder'); if (adOption) adOption.remove(); powerSelect.disabled = false; powerSelect.style.opacity = "1"; powerSelect.style.cursor = "pointer"; if (powerSelect.dataset.prevValue && powerSelect.value === '0') { powerSelect.value = powerSelect.dataset.prevValue; state.power = parseFloat(powerSelect.value) || 0.12; } } }
             // УМНАЯ БЛОКИРОВКА КАБЕЛЯ И КОРОБКИ ДЛЯ ИСПОЛНЕНИЯ AD
             if (state.motorType === 'AD') {
-                // Блокируем и визуально тушим кнопки стороны выхода кабеля (X, 1, 2, 3)
                 ['X', '1', '2', '3'].forEach(item => {
                     const btn = document.getElementById(`cable-${item}`);
                     if (btn) { 
                         btn.disabled = true; 
                         btn.style.opacity = "0.3"; 
                         btn.style.cursor = "not-allowed"; 
-                        btn.className = "flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 transition group [&>img]:opacity-30"; 
+                        btn.className = "relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-600 transition-all group [&>img]:opacity-30"; 
                     }
                 });
-                // Блокируем и визуально тушим кнопки угла клеммной коробки (0, 90, 180, 270)
                 ['0', '90', '180', '270'].forEach(a => {
                     const btn = document.getElementById(`angle-${a}`);
                     if (btn) { 
                         btn.disabled = true; 
                         btn.style.opacity = "0.3"; 
                         btn.style.cursor = "not-allowed"; 
-                        btn.className = "flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-600 transition group [&>img]:opacity-30"; 
+                        btn.className = "relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-600 transition-all group [&>img]:opacity-30"; 
                     }
                 });
             } else {
-                // Если выбран обычный двигатель — возвращаем кнопкам кабеля активность и текущую подсветку
                 ['X', '1', '2', '3'].forEach(item => {
                     const btn = document.getElementById(`cable-${item}`);
                     if (btn) {
                         btn.disabled = false; btn.style.opacity = "1"; btn.style.cursor = "pointer";
-                        if (item === state.cableOutlet) { btn.className = "flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-emerald-500 bg-emerald-500/10 text-white transition group [&>img]:opacity-100"; }
-                        else { btn.className = "flex flex-col items-center justify-center gap-1.5 p-2 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"; }
+                        if (item === state.cableOutlet) { 
+                            btn.className = "relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-emerald-400 font-bold transition-all duration-200 group [&>img]:opacity-100 cursor-pointer"; 
+                        } else { 
+                            btn.className = "relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"; 
+                        }
                     }
                 });
-                // Возвращаем кнопкам коробки активность и текущую подсветку
                 ['0', '90', '180', '270'].forEach(a => {
                     const btn = document.getElementById(`angle-${a}`);
                     if (btn) {
                         btn.disabled = false; btn.style.opacity = "1"; btn.style.cursor = "pointer";
-                        if (a === state.boxAngle) { btn.className = "flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-emerald-500 bg-emerald-500/10 text-white transition group [&>img]:opacity-100"; }
-                        else { btn.className = "flex flex-col items-center justify-center gap-1.5 p-1 rounded border border-slate-800 bg-slate-900 text-slate-400 transition hover:bg-slate-800 group [&>img]:opacity-70 hover:[&>img]:opacity-100"; }
+                        if (a === state.boxAngle) { 
+                            btn.className = "relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-emerald-400 font-bold transition-all duration-200 group [&>img]:opacity-100 cursor-pointer"; 
+                        } else { 
+                            btn.className = "relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"; 
+                        }
                     }
                 });
             }
+            syncAllSegmentedIndicators();
         }
 
         function handleParamChange() { state.power = parseFloat(document.getElementById('power-input').value) || 0.12; state.speed = parseFloat(document.getElementById('speed-input').value) || 35; state.minFs = parseFloat(document.getElementById('fs-min-input').value) || 1.0; state.shaftType = document.getElementById('shaft-type').value; state.motorType = document.getElementById('motor-type').value; state.desiredShaft = parseFloat(document.getElementById('shaft-diam-input')?.value) || 0; syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations(); }
