@@ -637,16 +637,24 @@
                         el.style.fill = '#000000';
                         el.style.stroke = 'none';
                         el.style.strokeWidth = '0';
-                        el.style.fontSize = '22px';
+                        el.style.fontSize = '16px';
 
-                        if (param === 'd' && val.length > 5) { el.style.fontSize = '17px'; }
-                        else if (param === 'd' && val.length > 3) { el.style.fontSize = '19px'; }
-                        if (param === 'M' && val.length > 4) { el.style.fontSize = '17px'; }
-                        if (param === 'h1' && val.length > 3) { el.style.fontSize = '17px'; }
-                        if (param === 'w1' && val.length > 3) { el.style.fontSize = '19px'; }
-                        if (param === 'k' && val.length > 3) { el.style.fontSize = '18px'; }
-                        if (param === 's' && val.length > 2) { el.style.fontSize = '18px'; }
-                        if (param === 'G' && val.length > 3) { el.style.fontSize = '18px'; }
+                        // 1. Уменьшаем шрифт параметра 'a' до 14px
+                        if (param === 'a') { el.style.fontSize = '14px'; }
+                        // 2. Параметр 's2': гарантируем наличие знака '+' и уменьшаем шрифт на 2px (до 14px)
+                        if (param === 's2') {
+                            const formatted = val.replace(/(\d+(?:[.,]\d+)?)\s+(\d+(?:[.,]\d+)?)/g, '$1+$2');
+                            el.textContent = formatted;
+                            el.style.fontSize = '14px';
+                        }
+                        if (['d', 'd1'].includes(param) && val.length > 5) { el.style.fontSize = '15px'; }
+                        else if (['d', 'd1'].includes(param)) { el.style.fontSize = '16px'; }
+                        if (param === 'M' && val.length > 4) { el.style.fontSize = '15px'; }
+                        if (param === 'h1' && val.length > 3) { el.style.fontSize = '15px'; }
+                        if (param === 'w1' && val.length > 3) { el.style.fontSize = '16px'; }
+                        if (param === 'k' && val.length > 3) { el.style.fontSize = '15px'; }
+                        if (param === 's' && val.length > 2) { el.style.fontSize = '15px'; }
+                        if (param === 'G' && val.length > 3) { el.style.fontSize = '16px'; }
                     }
 
                     // НОВЫЙ БЛОК ДЛЯ GS:

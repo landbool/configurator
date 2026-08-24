@@ -2,76 +2,76 @@
 <rect width="1028" height="693" fill="url(#pattern0_0_1)"/>
 
 <rect x="392" y="68" width="21" height="27" fill="white"/>
-<text data-param="A" x="402.5" y="87.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">A</text>
+<text data-param="A" x="402.5" y="87.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">A</text>
 <rect x="367" y="68" width="9" height="27" fill="white"/>
-<text data-param="a" x="371.5" y="87.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a</text>
+<text data-param="a" x="371.5" y="86.4" font-family="Noto Sans JP" font-size="14" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a</text>
 <rect x="366" y="35" width="21" height="27" fill="white"/>
-<text data-param="q" x="376.5" y="54.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">q</text>
+<text data-param="q" x="376.5" y="54.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">q</text>
 <rect x="400" y="1" width="34" height="27" fill="white"/>
-<text data-param="q1" x="417.0" y="20.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">q1</text>
+<text data-param="q1" x="417.0" y="20.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">q1</text>
 <rect x="37" y="18" width="34" height="27" fill="white"/>
-<text data-param="AD" x="54.0" y="37.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">AD</text>
+<text data-param="AD" x="54.0" y="37.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">AD</text>
 <rect x="34" y="60" width="34" height="27" fill="white"/>
-<text data-param="a2" x="51.0" y="79.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a2</text>
+<text data-param="a2" x="51.0" y="79.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a2</text>
 <rect x="530" y="1" width="34" height="27" fill="white"/>
-<text data-param="L1" x="547.0" y="20.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">L1</text>
+<text data-param="L1" x="547.0" y="20.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">L1</text>
 <rect x="966" y="18" width="34" height="27" fill="white"/>
-<text data-param="AD" x="983.0" y="37.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">AD</text>
+<text data-param="AD" x="983.0" y="37.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">AD</text>
 <rect x="888" y="59" width="34" height="27" fill="white"/>
-<text data-param="a3" x="905.0" y="78.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a3</text>
+<text data-param="a3" x="905.0" y="78.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a3</text>
 <rect x="407" y="358" width="27" height="27" fill="white"/>
-<text data-param="a1" x="420.5" y="377.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a1</text>
+<text data-param="a1" x="420.5" y="376.8" font-family="Noto Sans JP" font-size="15" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a1</text>
 <rect x="312" y="333" width="34" height="27" fill="white"/>
-<text data-param="a" x="329.0" y="352.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a</text>
+<text data-param="a" x="329.0" y="351.4" font-family="Noto Sans JP" font-size="14" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a</text>
 <rect x="228" y="476" width="34" height="27" fill="white"/>
-<text data-param="w" x="245.0" y="495.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w</text>
+<text data-param="w" x="245.0" y="495.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w</text>
 <rect x="302" y="476" width="34" height="27" fill="white"/>
-<text data-param="w" x="319.0" y="495.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w</text>
+<text data-param="w" x="319.0" y="495.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w</text>
 <rect x="930" y="358" width="34" height="27" fill="white"/>
-<text data-param="K0" x="947.0" y="377.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">KD</text>
+<text data-param="K0" x="947.0" y="377.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">KD</text>
 <rect x="278" y="592" width="34" height="27" fill="white"/>
-<text data-param="c1" x="295.0" y="611.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">c1</text>
+<text data-param="c1" x="295.0" y="611.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">c1</text>
 <rect x="701" y="466" width="50" height="21" fill="white"/>
-<text data-param="k" x="726.0" y="482.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">k</text>
+<text data-param="k" x="726.0" y="482.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">k</text>
 <rect x="881" y="460" width="34" height="27" fill="white"/>
-<text data-param="a7" x="898.0" y="479.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a7</text>
+<text data-param="a7" x="898.0" y="479.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a7</text>
 <rect x="777" y="434" width="28" height="26" fill="white"/>
-<text data-param="w2" x="791.0" y="452.5" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w2</text>
+<text data-param="w2" x="791.0" y="452.6" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w2</text>
 <rect x="363" y="582" width="55" height="20" fill="white"/>
-<text data-param="M" x="390.5" y="597.5" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">M</text>
+<text data-param="M" x="390.5" y="597.2" font-family="Noto Sans JP" font-size="15" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">M</text>
 <rect x="260" y="626" width="34" height="27" fill="white"/>
-<text data-param="c2" x="277.0" y="645.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">c2</text>
+<text data-param="c2" x="277.0" y="645.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">c2</text>
 <rect x="423" y="473" width="20" height="27" fill="white"/>
-<text data-param="u" x="433.0" y="492.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">u</text>
+<text data-param="u" x="433.0" y="491.8" font-family="Noto Sans JP" font-size="15" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">u</text>
 <rect x="695" y="194" width="34" height="27" transform="rotate(-90 695 194)" fill="white"/>
-<text data-param="AC" x="712.0" y="213.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 695 194)">AC</text>
+<text data-param="AC" x="712.0" y="213.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 695 194)">AC</text>
 <rect x="114" y="566" width="23" height="27" transform="rotate(-90 114 566)" fill="white"/>
-<text data-param="d" x="125.5" y="585.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 114 566)">d</text>
+<text data-param="d1" x="125.5" y="584.8" font-family="Noto Sans JP" font-size="15" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 114 566)">d1</text>
 <rect x="155" y="560" width="12" height="27" transform="rotate(-90 155 560)" fill="white"/>
-<text data-param="d1" x="161.0" y="579.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 155 560)">d1</text>
+<text data-param="d" x="161.0" y="578.8" font-family="Noto Sans JP" font-size="15" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 155 560)">d</text>
 <rect x="461" y="560" width="13" height="27" transform="rotate(-90 461 560)" fill="white"/>
-<text data-param="t" x="467.5" y="579.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 461 560)">t</text>
+<text data-param="t" x="467.5" y="579.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 461 560)">t</text>
 <rect x="614" y="560" width="34" height="27" transform="rotate(-90 614 560)" fill="white"/>
-<text data-param="s1" x="631.0" y="579.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 614 560)">s1</text>
+<text data-param="s1" x="631.0" y="579.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 614 560)">s1</text>
 <rect x="648" y="551" width="16" height="28" transform="rotate(-90 648 551)" fill="white"/>
-<text data-param="s2" x="656.0" y="570.5" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 648 551)">s2</text>
+<text data-param="s2" x="656.0" y="569.9" font-family="Noto Sans JP" font-size="14" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 648 551)">s2</text>
 <rect x="652" y="546" width="16" height="20" transform="rotate(-90 652 546)" fill="white"/>
 <rect x="425" y="247" width="35" height="18" transform="rotate(-90 425 247)" fill="white"/>
-<text data-param="h1" x="442.5" y="261.5" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 425 247)">h1</text>
+<text data-param="h1" x="442.5" y="261.6" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 425 247)">h1</text>
 <rect x="299" y="116" width="34" height="27" transform="rotate(-90 299 116)" fill="white"/>
-<text data-param="h6" x="316.0" y="135.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 299 116)">h6</text>
+<text data-param="h6" x="316.0" y="135.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 299 116)">h6</text>
 <rect x="264" y="116" width="34" height="27" transform="rotate(-90 264 116)" fill="white"/>
-<text data-param="s" x="281.0" y="135.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 264 116)">s</text>
+<text data-param="s" x="281.0" y="135.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 264 116)">s</text>
 <rect x="219" y="223" width="34" height="27" transform="rotate(-90 219 223)" fill="white"/>
-<text data-param="h7" x="236.0" y="242.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 219 223)">h7</text>
+<text data-param="h7" x="236.0" y="242.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 219 223)">h7</text>
 <rect x="502" y="332" width="34" height="27" transform="rotate(-90 502 332)" fill="white"/>
-<text data-param="w1" x="519.0" y="351.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 502 332)">w1</text>
+<text data-param="w1" x="519.0" y="351.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 502 332)">w1</text>
 <rect x="790" y="248" width="34" height="27" transform="rotate(-90 790 248)" fill="white"/>
-<text data-param="p3" x="807.0" y="267.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 790 248)">p3</text>
+<text data-param="p3" x="807.0" y="267.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 790 248)">p3</text>
 <rect x="649" y="186" width="34" height="27" transform="rotate(-90 649 186)" fill="white"/>
-<text data-param="G" x="666.0" y="205.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 649 186)">G</text>
+<text data-param="G" x="666.0" y="205.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" transform="rotate(-90 649 186)">G</text>
 <rect x="402" y="401" width="34" height="27" fill="white"/>
-<text data-param="w1" x="419.0" y="420.0" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w1</text>
+<text data-param="w1" x="419.0" y="420.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w1</text>
 <defs>
 <pattern id="pattern0_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_0_1" transform="matrix(0.000972763 0 0 0.001443 -0.061284 -0.168831)"/>
