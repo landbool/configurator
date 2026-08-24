@@ -611,14 +611,13 @@
                     }
 
                     if (seriesPrefix === 'GF') {
-                        el.style.fontFamily = "'Noto Sans JP', sans-serif";
-                        el.style.fontWeight = "bold";
-                        el.style.fontSize = "16px";
-                        el.style.fill = "#000000";
-                        el.style.stroke = "#ffffff";
-                        el.style.strokeWidth = "3.5px";
-                        el.style.strokeLinejoin = "round";
-                        el.style.paintOrder = "stroke fill";
+                        el.setAttribute('font-family', 'Noto Sans JP');
+                        el.style.fontFamily = 'Noto Sans JP';
+                        el.style.fontWeight = 'normal';
+                        el.style.fill = '#000000';
+                        el.style.stroke = 'none';
+                        el.style.strokeWidth = '0';
+                        el.style.fontSize = '16px';
 
                         if (param === 't') { const currentTransform = el.getAttribute('transform') || ''; el.setAttribute('transform', `translate(30, 0) ${currentTransform}`); }
                         if ((param === 't2' || param === 'd') && val.length > 4) { el.style.fontSize = '13px'; }
