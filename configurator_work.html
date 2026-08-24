@@ -520,16 +520,14 @@
                     else if (seriesPrefix === 'GFA') {
                         svgEl.setAttribute('viewBox', '0 0 1028 693');
                         container.querySelectorAll('text').forEach(text => {
-                            text.setAttribute('font-family', "'Noto Sans JP', sans-serif");
-                            text.style.fontFamily = "'Noto Sans JP', sans-serif";
-                            text.setAttribute('font-weight', 'bold');
-                            text.style.fontWeight = 'bold';
-                            text.style.fontSize = '16px';
+                            text.removeAttribute('font-weight');
+                            text.style.fontWeight = 'normal';
+                            text.setAttribute('font-family', 'Noto Sans JP');
+                            text.style.fontFamily = 'Noto Sans JP';
                             text.style.fill = '#000000';
-                            text.style.stroke = '#ffffff';
-                            text.style.strokeWidth = '3.5px';
-                            text.style.strokeLinejoin = 'round';
-                            text.style.paintOrder = 'stroke fill';
+                            text.style.stroke = 'none';
+                            text.style.strokeWidth = '0';
+                            if (!text.style.fontSize) { text.style.fontSize = '22px'; }
                         });
                     }
                     else if (['GS', 'GS39', 'GS109', 'GSF109'].includes(seriesPrefix)) {
@@ -631,25 +629,24 @@
                         if (param === 'a') { const currentTransform = el.getAttribute('transform') || ''; el.setAttribute('transform', `translate(0, -5) ${currentTransform}`); }
                     }
                     
-                    // КАЛИБРОВКА ДЛЯ GFA:
+                    // КАЛИБРОВКА ДЛЯ GFA (ТОЧНО КАК В СЕРИИ GR):
                     if (seriesPrefix === 'GFA') {
-                        el.style.fontFamily = "'Noto Sans JP', sans-serif";
-                        el.style.fontWeight = "bold";
-                        el.style.fontSize = "16px";
-                        el.style.fill = "#000000";
-                        el.style.stroke = "#ffffff";
-                        el.style.strokeWidth = "3.5px";
-                        el.style.strokeLinejoin = "round";
-                        el.style.paintOrder = "stroke fill";
+                        el.setAttribute('font-family', 'Noto Sans JP');
+                        el.style.fontFamily = 'Noto Sans JP';
+                        el.style.fontWeight = 'normal';
+                        el.style.fill = '#000000';
+                        el.style.stroke = 'none';
+                        el.style.strokeWidth = '0';
+                        el.style.fontSize = '22px';
 
-                        if (param === 'd' && val.length > 4) { el.style.fontSize = '13px'; }
-                        else if (param === 'd') { el.style.fontSize = '14px'; }
-                        if (param === 'M') { el.style.fontSize = '13px'; }
-                        if (param === 'h1' && val.length > 3) { el.style.fontSize = '13px'; }
-                        if (param === 'w1' && val.length > 3) { el.style.fontSize = '14px'; }
-                        if (param === 'k' && val.length > 3) { el.style.fontSize = '13px'; }
-                        if (param === 's' && val.length > 2) { el.style.fontSize = '14px'; }
-                        if (param === 'G' && val.length > 3) { el.style.fontSize = '13px'; }
+                        if (param === 'd' && val.length > 5) { el.style.fontSize = '17px'; }
+                        else if (param === 'd' && val.length > 3) { el.style.fontSize = '19px'; }
+                        if (param === 'M' && val.length > 4) { el.style.fontSize = '17px'; }
+                        if (param === 'h1' && val.length > 3) { el.style.fontSize = '17px'; }
+                        if (param === 'w1' && val.length > 3) { el.style.fontSize = '19px'; }
+                        if (param === 'k' && val.length > 3) { el.style.fontSize = '18px'; }
+                        if (param === 's' && val.length > 2) { el.style.fontSize = '18px'; }
+                        if (param === 'G' && val.length > 3) { el.style.fontSize = '18px'; }
                     }
 
                     // НОВЫЙ БЛОК ДЛЯ GS:
