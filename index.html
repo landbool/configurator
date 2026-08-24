@@ -501,7 +501,22 @@
                 if (svgEl) {
                     let viewBox = svgEl.getAttribute('viewBox'); if (!viewBox) { let w = svgEl.getAttribute('width') || '751'; let h = svgEl.getAttribute('height') || '495'; w = w.replace('px', '').trim(); h = h.replace('px', '').trim(); svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`); }
                     if (seriesPrefix === 'GK') { svgEl.setAttribute('viewBox', '-65 -20 960 560'); container.querySelectorAll('text').forEach(text => { text.removeAttribute('font-weight'); text.style.fontWeight = 'normal'; text.setAttribute('font-family', 'Noto Sans JP'); text.style.fontFamily = 'Noto Sans JP'; }); }
-                    else if (seriesPrefix === 'GRF') { svgEl.setAttribute('viewBox', '-25 -20 1245 745'); container.querySelectorAll('text').forEach(text => { text.removeAttribute('font-weight'); text.style.fontWeight = 'normal'; text.setAttribute('font-family', 'Noto Sans JP'); text.style.fontFamily = 'Noto Sans JP'; text.style.fontSize = '24px'; }); }
+                    else if (seriesPrefix === 'GRF') {
+                        svgEl.setAttribute('viewBox', '-25 -20 1245 745');
+                        container.querySelectorAll('text').forEach(text => {
+                            text.removeAttribute('font-weight');
+                            text.removeAttribute('stroke');
+                            text.removeAttribute('stroke-width');
+                            text.setAttribute('font-family', 'Noto Sans JP');
+                            text.style.fontFamily = 'Noto Sans JP';
+                            text.style.fontWeight = 'normal';
+                            text.style.fill = '#000000';
+                            text.style.stroke = 'none';
+                            text.style.strokeWidth = '0';
+                            text.style.paintOrder = 'normal';
+                            text.style.fontSize = '24px';
+                        });
+                    }
                     else if (seriesPrefix === 'GF') {
                         svgEl.setAttribute('viewBox', '-50 -10 778 431');
                         container.querySelectorAll('text').forEach(text => {
@@ -593,6 +608,18 @@
                     if (seriesPrefix === 'GR') {
                         if (el.id === 'svg_139') { if (val !== "") el.setAttribute('transform', 'rotate(-90 108.029 429.608) translate(-22, 0)'); else el.setAttribute('transform', 'rotate(-90 108.029 429.608)'); }
                         if (el.id === 'svg_250') { if (val !== "") { if (val.length < 3) { el.style.textAnchor = 'middle'; el.setAttribute('x', '352'); el.setAttribute('transform', 'rotate(-90 352.067 428.287) translate(0, 25)'); } else { el.style.textAnchor = 'start'; el.setAttribute('x', '348.56862'); el.setAttribute('transform', 'rotate(-90 352.067 428.287) translate(-17, 27)'); } } else { el.setAttribute('transform', 'rotate(-90 352.067 428.287)'); } }
+                    }
+                    if (seriesPrefix === 'GRF') {
+                        el.removeAttribute('font-weight');
+                        el.removeAttribute('stroke');
+                        el.removeAttribute('stroke-width');
+                        el.setAttribute('font-family', 'Noto Sans JP');
+                        el.style.fontFamily = 'Noto Sans JP';
+                        el.style.fontWeight = 'normal';
+                        el.style.fill = '#000000';
+                        el.style.stroke = 'none';
+                        el.style.strokeWidth = '0';
+                        el.style.paintOrder = 'normal';
                     }
                     if (seriesPrefix === 'GK') {
                         // 1. Сдвигаем d и t вправо на 30px
