@@ -639,17 +639,24 @@
                         el.style.strokeWidth = '0';
                         el.style.fontSize = '16px';
 
-                        // 1. Уменьшаем шрифт параметра 'a' до 14px
+                        // 1. Шрифт параметра 'a' - 13px
                         if (param === 'a') { el.style.fontSize = '13px'; }
-                        // 2. Параметр 's2': гарантируем наличие знака '+' и уменьшаем шрифт на 2px (до 14px)
+                        // 2. Шрифт параметра 'd' - 14px
+                        if (param === 'd') { el.style.fontSize = '14px'; }
+                        if (param === 'd1' && val.length > 5) { el.style.fontSize = '15px'; }
+                        else if (param === 'd1') { el.style.fontSize = '16px'; }
+                        // 3. Параметр 'M': берем из таблицы и дописываем '-8.8'
+                        if (param === 'M') {
+                            const mFormatted = val ? (val.includes('-8.8') ? val : val + '-8.8') : 'M-8.8';
+                            el.textContent = mFormatted;
+                            el.style.fontSize = '14px';
+                        }
+                        // 4. Параметр 's2': гарантируем наличие знака '+' и шрифт 14px
                         if (param === 's2') {
                             const formatted = val.replace(/(\d+(?:[.,]\d+)?)\s+(\d+(?:[.,]\d+)?)/g, '$1+$2');
                             el.textContent = formatted;
                             el.style.fontSize = '14px';
                         }
-                        if (['d', 'd1'].includes(param) && val.length > 5) { el.style.fontSize = '15px'; }
-                        else if (['d', 'd1'].includes(param)) { el.style.fontSize = '16px'; }
-                        if (param === 'M' && val.length > 4) { el.style.fontSize = '15px'; }
                         if (param === 'h1' && val.length > 3) { el.style.fontSize = '15px'; }
                         if (param === 'w1' && val.length > 3) { el.style.fontSize = '16px'; }
                         if (param === 'k' && val.length > 3) { el.style.fontSize = '15px'; }
