@@ -40,7 +40,7 @@
 </g>
 <g id="dimension-text-labels">
 <text data-param="A" x="402.5" y="87.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">A</text>
-<text data-param="a" x="371.5" y="86.4" font-family="Noto Sans JP" font-size="14" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a</text>
+<text data-param="a" x="371.5" y="86.4" font-family="Noto Sans JP" font-size="13" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a</text>
 <text data-param="q" x="376.5" y="54.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">q</text>
 <text data-param="q1" x="417.0" y="20.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">q1</text>
 <text data-param="AD" x="54.0" y="37.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">AD</text>
@@ -49,7 +49,7 @@
 <text data-param="AD" x="983.0" y="37.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">AD</text>
 <text data-param="a3" x="905.0" y="78.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a3</text>
 <text data-param="a1" x="420.5" y="376.8" font-family="Noto Sans JP" font-size="15" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a1</text>
-<text data-param="a" x="329.0" y="351.4" font-family="Noto Sans JP" font-size="14" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a</text>
+<text data-param="a" x="329.0" y="351.4" font-family="Noto Sans JP" font-size="13" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">a</text>
 <text data-param="w" x="245.0" y="495.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w</text>
 <text data-param="w" x="319.0" y="495.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">w</text>
 <text data-param="K0" x="947.0" y="377.1" font-family="Noto Sans JP" font-size="16" font-weight="normal" fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle">KD</text>
