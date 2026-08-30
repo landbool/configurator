@@ -46,7 +46,7 @@
 <text data-param="d1" x="970.5" y="118.0" transform="rotate(-90 970.5 118.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">d1</text>
 <text data-param="c1" x="828.5" y="171.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">c1</text>
 <text data-param="c2" x="830.5" y="219.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">c2</text>
-<text data-param="M" x="663.5" y="197.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">M</text>
+<text data-param="M-8.8" x="663.5" y="197.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">M-8.8</text>
 <text data-param="q1" x="222.5" y="327.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">q1</text>
 <text data-param="L1" x="421.0" y="330.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">L1</text>
 <text data-param="q" x="255.0" y="377.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">q</text>
