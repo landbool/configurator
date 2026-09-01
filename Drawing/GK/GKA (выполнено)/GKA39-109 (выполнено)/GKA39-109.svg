@@ -34,37 +34,37 @@
 <rect x="611" y="105" width="25" height="24" fill="white"/>
 <rect x="55" y="103" width="25" height="24" fill="white"/>
 <rect x="56" y="105" width="19" height="28" fill="white"/>
-<text data-param="e" x="26.5" y="114.0" transform="rotate(-90 26.5 114.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">e</text>
-<text data-param="a4" x="67.5" y="115.0" transform="rotate(-90 67.5 115.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">a4</text>
-<text data-param="a5" x="96.5" y="205.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">a5</text>
-<text data-param="a6" x="227.5" y="205.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">a6</text>
-<text data-param="u" x="689.0" y="41.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">u</text>
-<text data-param="w" x="784.5" y="44.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">w</text>
-<text data-param="w" x="862.5" y="44.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">w</text>
-<text data-param="t" x="623.5" y="117.0" transform="rotate(-90 623.5 117.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">t</text>
-<text data-param="d" x="927.5" y="117.0" transform="rotate(-90 927.5 117.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">d</text>
-<text data-param="d1" x="970.5" y="118.0" transform="rotate(-90 970.5 118.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">d1</text>
-<text data-param="c1" x="828.5" y="171.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">c1</text>
-<text data-param="c2" x="830.5" y="219.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">c2</text>
-<text data-param="M-8.8" x="663.5" y="197.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">M-8.8</text>
-<text data-param="q1" x="222.5" y="327.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">q1</text>
-<text data-param="L1" x="421.0" y="330.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">L1</text>
-<text data-param="q" x="255.0" y="377.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">q</text>
-<text data-param="p3" x="25.0" y="529.0" transform="rotate(-90 25.0 529.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">p3</text>
-<text data-param="h" x="70.0" y="560.0" transform="rotate(-90 70.0 560.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">h</text>
-<text data-param="h1" x="293.5" y="553.0" transform="rotate(-90 293.5 553.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">h1</text>
-<text data-param="AC" x="557.5" y="515.5" transform="rotate(-90 557.5 515.5)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">AC</text>
-<text data-param="G" x="596.5" y="517.0" transform="rotate(-90 596.5 517.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">G</text>
-<text data-param="a7" x="236.0" y="645.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">a7</text>
-<text data-param="f" x="212.5" y="685.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">f</text>
-<text data-param="w1" x="732.0" y="343.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">w1</text>
-<text data-param="w" x="794.5" y="343.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">w</text>
-<text data-param="f1" x="789.5" y="393.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">f1</text>
-<text data-param="H" x="928.5" y="314.5" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">H</text>
-<text data-param="M1" x="985.5" y="311.0" transform="rotate(-90 985.5 311.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">M1</text>
-<text data-param="AD" x="811.5" y="633.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">AD</text>
-<text data-param="4-s" x="867.0" y="681.0" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">4-s</text>
-<text data-param="l3" x="987.5" y="570.0" transform="rotate(-90 987.5 570.0)" font-family="Noto Sans JP" font-size="14px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">l3</text>
+<text data-param="e" x="26.5" y="114.0" transform="rotate(-90 26.5 114.0)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">e</text>
+<text data-param="a4" x="67.5" y="115.0" transform="rotate(-90 67.5 115.0)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">a4</text>
+<text data-param="a5" x="96.5" y="205.5" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">a5</text>
+<text data-param="a6" x="227.5" y="205.5" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">a6</text>
+<text data-param="u" x="689.0" y="41.0" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">u</text>
+<text data-param="w" x="784.5" y="44.0" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">w</text>
+<text data-param="w" x="862.5" y="44.0" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">w</text>
+<text data-param="t" x="623.5" y="117.0" transform="rotate(-90 623.5 117.0)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">t</text>
+<text data-param="d" x="927.5" y="117.0" transform="rotate(-90 927.5 117.0)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">d</text>
+<text data-param="d1" x="970.5" y="118.0" transform="rotate(-90 970.5 118.0)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">d1</text>
+<text data-param="c1" x="828.5" y="171.0" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">c1</text>
+<text data-param="c2" x="830.5" y="219.0" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">c2</text>
+<text data-param="M-8.8" x="663.5" y="197.0" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">M-8.8</text>
+<text data-param="q1" x="222.5" y="327.5" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">q1</text>
+<text data-param="L1" x="421.0" y="330.5" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">L1</text>
+<text data-param="q" x="255.0" y="377.5" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">q</text>
+<text data-param="p3" x="25.0" y="529.0" transform="rotate(-90 25.0 529.0)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">p3</text>
+<text data-param="h" x="70.0" y="560.0" transform="rotate(-90 70.0 560.0)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">h</text>
+<text data-param="h1" x="293.5" y="553.0" transform="rotate(-90 293.5 553.0)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">h1</text>
+<text data-param="AC" x="557.5" y="515.5" transform="rotate(-90 557.5 515.5)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">AC</text>
+<text data-param="G" x="596.5" y="517.0" transform="rotate(-90 596.5 517.0)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">G</text>
+<text data-param="a7" x="236.0" y="645.0" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">a7</text>
+<text data-param="f" x="212.5" y="685.0" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">f</text>
+<text data-param="w1" x="732.0" y="343.5" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">w1</text>
+<text data-param="w" x="794.5" y="343.5" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">w</text>
+<text data-param="f1" x="789.5" y="393.5" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">f1</text>
+<text data-param="H" x="928.5" y="314.5" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">H</text>
+<text data-param="M1" x="985.5" y="311.0" transform="rotate(-90 985.5 311.0)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">M1</text>
+<text data-param="AD" x="811.5" y="633.0" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">AD</text>
+<text data-param="4-s" x="867.0" y="681.0" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">4-s</text>
+<text data-param="l3" x="987.5" y="570.0" transform="rotate(-90 987.5 570.0)" font-family="Noto Sans JP" font-size="22px" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">l3</text>
 <defs>
 <pattern id="pattern0_26_6" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_26_6" transform="matrix(0.000972763 0 0 0.00136054 -0.077821 -0.0517007)"/>
