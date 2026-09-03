@@ -1695,3 +1695,52 @@ ull/undefined.
 3. Проверь синтаксис JS через Node.js и проведи сквозное тестирование через Chrome DevTools MCP.
 4. Создай бэкап python backup.py, обнови PROJECT_LOG.md, закоммить и запушь в origin main.
 ```
+
+---
+### 🕒 [04-09-2026 01:00]
+
+> **👤 Запрос пользователя:**
+> "GKAZ39 чертёж: https://gist.githubusercontent.com/landbool/6f91e8617cb6724b179afa522bfc6fc8/raw/5133793c3b01c749805becf58859c88dc919b8ff/GKAZ39
+> GKAZ49 чертёж: https://gist.githubusercontent.com/landbool/04d5ea706c68ad541164d3c8bf755bea/raw/7bab4ffe1f1d4e6e14aa9e61d4d76e146ab00d19/GKAZ49
+> GKAZ59-69 чертёж: https://gist.githubusercontent.com/landbool/8515597333abeb9a56c7460ec29ca662/raw/4e58f4df7426e829c8bc95324c6f5421d97c9485/GKAZ59-69
+> GKAZ79 чертёж: https://gist.githubusercontent.com/landbool/e9cced58e5bbd3c8a60dc6baee906f43/raw/0afd0e028d7cc0b74be36eca2267dedb72b66202/GKAZ79
+> GKAZ89 чертёж: https://gist.githubusercontent.com/landbool/e6fca0519644eff59c5f14ef4369feb3/raw/06e0ac8d41a4da921473e5fc3ff8c893b905a4f4/GKAZ89
+> GKAZ99 чертёж: https://gist.githubusercontent.com/landbool/0835162de7d7effb8839e8801983fb3a/raw/4c721af312b02a50629a8b1ff10e8e1d95c2cfd0/GKAZ99
+> GKAZ109 чертёж: https://gist.githubusercontent.com/landbool/e3717b4b830d121fc50bc9b2b9c66acc/raw/78d5d625a06acc1bf031ce051fd2220ba80c344b/GKAZ109
+> GKAZ129 чертёж: https://gist.githubusercontent.com/landbool/f5954015215df9a3a79360a9658dff28/raw/a7c9d9809ef34ff6d5b284d661d29ca9259a09d5/GKAZ129
+> GKAZ159 чертёж: https://gist.githubusercontent.com/landbool/a9fd64283227506f8d8c0857dd1c6fe4/raw/9c4976f0f674d853dedcf167094d9da760101802/GKAZ159
+> габариты лежат на листе GKAZ39-159: https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/edit?usp=sharing"
+
+**🤖 Ответ и отчет субагентов:**
+- Архитектура и структурирование (@architect, @developer):
+  - Выгружены все 9 SVG-чертежей из Gist (`GKAZ39`, `GKAZ49`, `GKAZ59-69`, `GKAZ79`, `GKAZ89`, `GKAZ99`, `GKAZ109`, `GKAZ129`, `GKAZ159`) и таблица параметров с листа `GKAZ39-159`.
+  - Проведен анализ каждого чертежа: все 37 белых маскирующих прямоугольников сохранены без изменений.
+  - Удалены статические векторные контуры букв, взамен добавлены динамические элементы `<text data-param="...">` с выравниванием по центру и базовым размером шрифта `22px` (для `M-8.8` — `21px`).
+  - Создана иерархическая структура каталога `Drawing/GK/GKAZ (выполнено)/` со всеми подпапками:
+    * `GKAZ39 (выполнено)`
+    * `GKAZ49 (выполнено)`
+    * `GKAZ59-69 (выполнено)`
+    * `GKAZ79 (выполнено)`
+    * `GKAZ89 (выполнено)`
+    * `GKAZ99 (выполнено)`
+    * `GKAZ109 (выполнено)`
+    * `GKAZ129 (выполнено)`
+    * `GKAZ159 (выполнено)`
+  - Сгенерирована единая база данных `gkaz_db.json` для 10 типоразмеров (`GKAZ39`–`GKAZ159`).
+- Тестирование и верификация (@qa-engineer):
+  - Создан тестовый стенд `temporary files/preview_gkaz_all.html`.
+  - Подстановка всех 34 параметров для всех 10 типоразмеров проверена программно (100% совпадение).
+  - Создан бэкап: `v1.0.86 (Шаг 1: Подготовка 9 чертежей и базы данных GKAZ39-159).zip`.
+  - Изменения закоммичены и отправлены в GitHub `origin main`.
+
+**📊 Результат и статус:**
+Шаг 1 выполнен: 9 чертежей GKAZ и база данных подготовлены и верифицированы. Текущий статус: [ВЫПОЛНЕНО].
+
+**⏩ Промт для следующего шага:**
+```text
+Выполни Шаг 2:
+1. Интегрируй 9 fallback SVG-констант GKAZ и gkazModelDatabase в index.html и configurator_work.html.
+2. Настрой маршрутизацию серии GK для исполнения GKAZ (габариты 39, 49, 59-69, 79, 89, 99, 109, 129, 159) в основном окне, модальном окне (#drawingModal) и экспорте PDF.
+3. Проверь синтаксис JS через Node.js и проведи сквозное тестирование через Chrome DevTools MCP.
+4. Создай бэкап python backup.py, обнови PROJECT_LOG.md, закоммить и запушь в origin main.
+```
