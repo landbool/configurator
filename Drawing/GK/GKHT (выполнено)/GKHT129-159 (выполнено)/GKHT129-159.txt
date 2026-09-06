@@ -1,0 +1,13 @@
+GKHT129-159
+viewBox: 0 0 716 267
+Parameters:
+h: vertical (rotate -90)
+a4: horizontal
+R: rotated (-45°)
+β: rotated (-24°)
+c8: vertical (rotate -90)
+P: vertical (rotate -90)
+i: horizontal (2 locations: under C and D)
+L2: horizontal
+L1: horizontal
+d1: vertical (rotate -90)
