@@ -1,0 +1,13 @@
+GKAT129-159
+viewBox: 0 0 692 294
+Parameters:
+a4: horizontal
+R: rotated (-46°)
+β: rotated (-31.67°)
+h: vertical (rotate -90)
+c8: vertical (rotate -90)
+P: vertical (rotate -90)
+i: horizontal (2 locations)
+L2: horizontal
+L1: horizontal
+d1: vertical (rotate -90)
