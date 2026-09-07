@@ -3018,3 +3018,116 @@ https://grinstr.ru/configurator?m=GKH79-Y1,5-4P-39,21-M1-270%C2%B0-X
 3. Нажмите иконку лупы (масштабирование): чертежи открываются в полноэкранном модальном окне без сдвигов и обрезки линий.
 4. Нажмите «Скачать PDF чертеж»: PDF формируется в высоком разрешении 993x699 в альбомном формате.
 ```
+
+---
+### 🕒 [07-09-2026 21:48]
+
+> **👤 Запрос пользователя:**
+> GSA59 чертёж: https://gist.githubusercontent.com/landbool/3960c9f5b38c3522f9a4baa90b86c90c/raw/5c944ff40c54c7657b660f4718ea6201e0bb6f51/GSA59
+> GSA49, 69 чертёж: https://gist.githubusercontent.com/landbool/16fb32cd86b9a951896b1f17169863a6/raw/725dcf1d0c57834107654cf11a6c0a677a8580dd/GSA49,69
+> GSA79,89,99 чертёж: https://gist.githubusercontent.com/landbool/61c720626a8d8981e5fbb9d38300931e/raw/9e425453ad9669c8d9e8db83922f4a1d71facd8c/GSA79,89,99
+> габариты лежат на листе GSA49-99 : https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/edit?usp=sharing
+
+**🤖 Ответ и отчет субагентов:**
+- **Архитектурный и параметрический анализ (@architect):**
+  - Загружены и детально исследованы 3 эталонных SVG-чертежа Gist и таблица габаритов листа `GSA49-99` (типоразмеры GSA49, GSA59, GSA69, GSA79, GSA89, GSA99).
+  - Установлены геометрические параметры чертежей: единый `viewBox="0 0 921 689"`, 43 белые плашки `<rect fill="white">`, закрывающие фоновые надписи.
+  - Разработана архитектура параметризации: векторные пути букв из Gist заменяются на динамические элементы `<text data-param="...">`, строго сцентрированные по белым прямоугольникам без их перемещения.
+- **UI/UX дизайн и верификация графики (@designer):**
+  - Создана контактная таблица визуальной сверки (`gsa59_contact_sheet.png`), где подтверждены все 43 размерные метки:
+    - Полый вал исполнения I: `u I`, `w`, `w`, `t I`, `M1-8.8`, `c1`, `c2`, `d3`, `d I H7`.
+    - Корпус и лапы: `f`, `a7`, `h1`, `h`, `p3`, `q1`, `L1`, `a6`, `a5`, `e`, `a4`, `q`.
+    - Передний торец и крепеж: `w1`, `w`, `f1`, `D1`, `l4`, `s1`, `AD`, `l3`, `s`.
+    - Полый вал исполнения II: `u II`, `t II`, `M2-8.8`, `c3`, `c4`, `w`, `w`, `d3`, `d II H7`.
+    - Двигатель и фланец: `AC`, `G`, `p3`, `D`.
+  - Учтена ориентация выносок: для вертикальных размеров применен поворот `transform="rotate(-90 cx cy)"` с выравниванием `dominant-baseline="central"`.
+- **Подготовка ассетов и кодогенерация (@developer):**
+  - Сгенерированы чистовые параметризованные SVG-файлы:
+    - `Drawing/GS/GSA39-99/GSA59.svg` (для типоразмера 59)
+    - `Drawing/GS/GSA39-99/GSA49, 69.svg` (для типоразмеров 49 и 69)
+    - `Drawing/GS/GSA39-99/GSA79, 89, 99.svg` (для типоразмеров 79, 89 и 99)
+  - Сформированы чистовая база габаритов `Drawing/GS/GSA39-99/GSA49-99.csv` и структурированный JSON `GSA49-99_db.json`.
+  - Все черновые скрипты и промежуточные кропы изолированы в `temporary files/`.
+- **Контроль качества (@qa-engineer):**
+  - Проведена тестовая подстановка габаритов для всех 6 моделей (GSA49, GSA59, GSA69, GSA79, GSA89, GSA99) на сгенерированной странице `test_gsa_populated.html`.
+  - Проверено позиционирование 43 текстовых меток в браузере через Chrome DevTools MCP: текст центрируется строго внутри белых плашек, наложений нет.
+  - Создан автоматический бэкап `v1.0.115 (Шаг 1 Подготовка ассетов и параметризация чертежей GSA49-99)`.
+
+**📊 Результат и статус:**
+[ВЫПОЛНЕНО] Шаг 1 завершен: исходные материалы загружены, исследованы, параметризованы и сохранены в чистовую структуру `Drawing/GS/GSA39-99`. Создан бэкап `v1.0.115`.
+
+**⏩ Промт для следующего шага:**
+```text
+Выполни Шаг 2:
+1. Интегрируй новые fallback константы FALLBACK_GSA59_SVG, FALLBACK_GSA49_69_SVG, FALLBACK_GSA79_99_SVG и базу данных gsaModelDatabase в index.html и configurator_work.html.
+2. Добавь загрузку листа таблицы GSA49-99 (https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GSA49-99) и URL чертежей GSA в initInteractiveDrawingsCore() с отказоустойчивым Promise.allSettled.
+3. Настрой маршрутизацию серии GS для исполнений GSA (targetModelCode начинающиеся с GSA):
+   - В блоке updateCalculations: для currentFrame === 39 использовать gsa39SvgCode, для currentFrame === 59 — gsa59SvgCode, для currentFrame === 49 или 69 — gsa49_69SvgCode, для currentFrame === 79, 89, 99 — gsa79_99SvgCode с базой gsaModelDatabase и серией 'GSA'.
+   - В блоке updateInteractiveSvgDrawing: для seriesPrefix === 'GSA' установить viewBox="0 0 921 689", preserveAspectRatio="xMidYMid meet" и калибровку шрифта 13px.
+   - В модальном окне (#drawingModal / openModalDrawing) и экспорте PDF (downloadDrawingAsPdf): настроить viewBox="0 0 921 689" для GSA.
+4. Выполни синтаксическую валидацию JavaScript через Node.js.
+5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP для различных габаритов GSA (GSA49, GSA59, GSA69, GSA79, GSA89, GSA99).
+6. Создай бэкап python backup.py, обнови PROJECT_LOG.md, сделай git commit и git push origin main, подтверди деплой на GitHub Pages и https://grinstr.ru/configurator.
+```
+
+---
+### 🕒 [07-09-2026 21:54]
+
+> **👤 Запрос пользователя:**
+> Выполни Шаг 2:
+> 1. Интегрируй новые fallback константы FALLBACK_GSA59_SVG, FALLBACK_GSA49_69_SVG, FALLBACK_GSA79_99_SVG и базу данных gsaModelDatabase в index.html и configurator_work.html.
+> 2. Добавь загрузку листа таблицы GSA49-99 (https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GSA49-99) и URL чертежей GSA в initInteractiveDrawingsCore() с отказоустойчивым Promise.allSettled.
+> 3. Настрой маршрутизацию серии GS для исполнений GSA (targetModelCode начинающиеся с GSA):
+>    - В блоке updateCalculations: для currentFrame === 39 использовать gsa39SvgCode, для currentFrame === 59 — gsa59SvgCode, для currentFrame === 49 или 69 — gsa49_69SvgCode, для currentFrame === 79, 89, 99 — gsa79_99SvgCode с базой gsaModelDatabase и серией 'GSA'.
+>    - В блоке updateInteractiveSvgDrawing: для seriesPrefix === 'GSA' установить viewBox="0 0 921 689", preserveAspectRatio="xMidYMid meet" и калибровку шрифта 13px.
+>    - В модальном окне (#drawingModal / openModalDrawing) и экспорте PDF (downloadDrawingAsPdf): настроить viewBox="0 0 921 689" для GSA.
+> 4. Выполни синтаксическую валидацию JavaScript через Node.js.
+> 5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP для различных габаритов GSA (GSA49, GSA59, GSA69, GSA79, GSA89, GSA99).
+> 6. Создай бэкап python backup.py, обнови PROJECT_LOG.md, сделай git commit и git push origin main, подтверди деплой на GitHub Pages и https://grinstr.ru/configurator.
+
+**🤖 Ответ и отчет субагентов:**
+- **Архитектурные решения (@architect):**
+  - Реализована динамическая маршрутизация серии GS для всех исполнений с полым валом на лапах (GSA):
+    - GSA39 -> чертеж `gsa39SvgCode` (viewBox `0 0 946 645`).
+    - GSA49, GSA69 -> параметрический чертеж `gsa49_69SvgCode` (viewBox `0 0 921 689`).
+    - GSA59 -> параметрический чертеж `gsa59SvgCode` (viewBox `0 0 921 689`).
+    - GSA79, GSA89, GSA99 -> параметрический чертеж `gsa79_99SvgCode` (viewBox `0 0 921 689`).
+  - Интегрирована загрузка таблицы габаритов `GSA49-99` через Google Sheets API в `Promise.allSettled` с мгновенным локальным фолбэком на встроенную базу `gsaModelDatabase`.
+  - Обеспечена 100% идентичность версий между `configurator_work.html` и релизным `index.html`.
+- **UI/UX дизайн и отображение чертежей (@designer):**
+  - Все 43 параметра каждого типоразмера GSA позиционируются по центрам белых плашек.
+  - Вертикальные выноски (диаметры, межосевые расстояния, высоты лап) откалиброваны с поворотом `-90°` и выравниванием `dominant-baseline="central"`.
+  - Модальное окно `#drawingModal` и экспорт PDF масштабируют чертежи с точным сохранением пропорций (`viewBox="0 0 921 689"`, ориентация landscape).
+- **Инженерная реализация (@developer):**
+  - В `configurator_work.html` и `index.html`:
+    - Добавлены константы `FALLBACK_GSA59_SVG`, `FALLBACK_GSA49_69_SVG`, `FALLBACK_GSA79_99_SVG` и переменные `gsa59SvgCode`, `gsa49_69SvgCode`, `gsa79_99SvgCode`.
+    - Добавлена база `gsaModelDatabase` (все 6 типоразмеров от 49 до 99 со всеми 34 параметрами).
+    - Добавлены URL чертежей Gist и таблицы `GSA_SHEET_URL` в сетевой блок загрузки.
+    - В `updateCalculations()` настроен роутинг для GSA в зависимости от `currentFrame`.
+    - В `updateInteractiveSvgDrawing` добавлена ветка для серии `'GSA'` с калибровкой viewBox и шрифта 13px.
+    - В `openModalDrawing` и `downloadDrawingAsPdf` добавлена калибровка viewBox `0 0 921 689` для моделей GSA.
+- **Тестирование и валидация (@qa-engineer):**
+  - Выполнена синтаксическая проверка Node.js — 0 ошибок.
+  - Проведено E2E тестирование в браузере через Chrome DevTools MCP:
+    - Конфигурация GSA59: viewBox `0 0 921 689`, параметры `u I: 10`, `w: 75`, `d I: Φ35`, `M1: M12×30`, `f: 146` подставлены корректно.
+    - Конфигурация GSA49: параметры `u I: 8`, `w: 60`, `d I: Φ30`, `M1: M10×25`, `f: 127` подставлены корректно.
+    - Конфигурация GSA79: параметры `u I: 18`, `w: 105`, `d I: Φ60`, `M1: M20×50`, `f: 204`, `h: 180-0.5` подставлены корректно.
+    - Модальное окно: открывается с точным viewBox `0 0 921 689`.
+    - Экспорт PDF: параметры 921x689, ориентация landscape.
+    - Ошибок в консоли: 0.
+  - Создан бэкап проекта `v1.0.116 (Шаг 2 Интеграция чертежей GSA49-99 в конфигуратор)`.
+  - Изменения зафиксированы в git, отправлены в `origin main` и подтверждено развертывание на GitHub Pages и `https://grinstr.ru/configurator`.
+
+**📊 Результат и статус:**
+[ВЫПОЛНЕНО] Шаг 2 завершен: параметрические чертежи GSA49-99 интегрированы, протестированы и опубликованы. Создан бэкап `v1.0.116`.
+
+**🏁 [ЗАДАЧА ЗАВЕРШЕНА: Финальный результат]**
+```text
+Интеграция параметрических чертежей серии GS в исполнении GSA (полый вал на лапах) полностью завершена:
+1. Выберите серию «Червячно-цилиндрические GS», тип вала «Полый вал», исполнение «На лапах (GSA)».
+2. Переключайте габариты (49, 59, 69, 79, 89, 99):
+   - Для каждого габарита загружается соответствующий чертеж (GSA49,69 / GSA59 / GSA79,89,99).
+   - Все 43 размерные метки динамически обновляются из таблицы подбора.
+3. Проверьте модальное окно: чертежи открываются во весь экран с точным viewBox="0 0 921 689".
+4. Проверьте скачивание PDF: чертеж экспортируется с точными размерами 921x689 в альбомной ориентации.
+```
