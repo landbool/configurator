@@ -3131,3 +3131,119 @@ https://grinstr.ru/configurator?m=GKH79-Y1,5-4P-39,21-M1-270%C2%B0-X
 3. Проверьте модальное окно: чертежи открываются во весь экран с точным viewBox="0 0 921 689".
 4. Проверьте скачивание PDF: чертеж экспортируется с точными размерами 921x689 в альбомной ориентации.
 ```
+
+---
+### 🕒 [07-09-2026 22:15]
+
+> **👤 Запрос пользователя:**
+> Подключить чертежи мотор-редукторов Guomao серии GS для исполнений GSAF109 и GSA109:
+> 1. GSAF109: https://gist.githubusercontent.com/landbool/8b8464b9d82e1df2dc7e813a245dc3b7/raw/345ffc0115289ea5c3f5c891e117a1f823914d5f/GSAF109
+> 2. GSA109: https://gist.githubusercontent.com/landbool/66831e49c1087884288147c188cb3a2b/raw/c0af5e8f7d4cbeb85123ff92d783a0ce72b3c295/GSA109
+> Примечание: габариты к этому чертежу привязывать не нужно, они сразу прописаны на чертеже. Требуется настроить подгрузку чертежей к GSAF109 и GSA109.
+
+**🤖 Ответ и отчет субагентов:**
+- **Архитектурный анализ (@architect):**
+  - Декомпозиция задачи выполнена на 2 изолированных шага:
+    - Шаг 1: Загрузка, структурный аудит векторных макетов, генерация эталонных растров, организация чистовых папок `Drawing/GS/GSAF109 (выполнено)` и `Drawing/GS/GSA109 (выполнено)`, подготовка строковых fallback-констант и формирование плана интеграции.
+    - Шаг 2: Внедрение fallback-констант, переменных `gsaf109SvgCode` / `gsa109SvgCode`, асинхронная отказоустойчивая загрузка с GitHub Gist, логика маршрутизации исполнений в `updateCalculations()`, калибровка viewBox `0 0 1500 1039`, E2E тестирование в браузере через Chrome DevTools MCP, бэкап, git push и верификация деплоя на боевом сервере.
+  - Установлено, что векторные файлы GSAF109 и GSA109 содержат все размерные цепочки и надписи непосредственно в исходном чертеже (0 тегов `<text>`). Привязка к внешним базам Google Sheets не требуется.
+- **Дизайн и графический аудит (@designer):**
+  - Проверена геометрия обоих чертежей: точные пропорции 1500x1039, viewBox `0 0 1500 1039`.
+  - Извлечены эталонные PNG высокого разрешения (1500x1039) с четкой детализацией выходных фланцев B5, полых шлицевых валов, лап и крепежных отверстий.
+  - Зафиксированы параметры рендеринга для модального окна (#drawingModal) и Canvas PDF (1500x1039, альбомная ориентация landscape).
+- **Разработка и файловая структура (@developer):**
+  - Созданы эталонные директории в строгом соответствии с регламентом проекта:
+    - `Drawing/GS/GSAF109 (выполнено)` -> `GSAF109.svg`, `GSAF109.png`, `GSAF109.txt`.
+    - `Drawing/GS/GSA109 (выполнено)` -> `GSA109.svg`, `GSA109.png`, `GSA109.txt`.
+  - Все черновые и промежуточные файлы сохранены в изолированной директории `temporary files/`.
+  - Подготовлены чистые константы `FALLBACK_GSAF109_SVG` и `FALLBACK_GSA109_SVG`, проверены на отсутствие конфликтующих спецсимволов.
+- **Тестирование и валидация (@qa-engineer):**
+  - Проверена корректность XML-структуры и растровых слоев через PIL и xml.etree.
+  - Проверена целостность кодовой базы `configurator_work.html` и `index.html`.
+  - Создан бэкап проекта `v1.0.117 (Шаг 1 Подготовка ассетов и fallback-констант GSAF109 и GSA109)`.
+
+**📊 Результат и статус:**
+[ВЫПОЛНЕНО] Шаг 1 завершен. Все ассеты и fallback-шаблоны подготовлены и структурированы. Создан бэкап `v1.0.117`.
+
+**⏩ Промт для следующего шага:**
+```text
+Выполни Шаг 2:
+1. Интегрируй fallback SVG-константы FALLBACK_GSAF109_SVG и FALLBACK_GSA109_SVG, а также переменные gsaf109SvgCode и gsa109SvgCode в index.html и configurator_work.html.
+2. Добавь загрузку чертежей GSAF109 и GSA109 из GitHub Gist в функцию initInteractiveDrawingsCore() с отказоустойчивой обработкой через fetchSafeText:
+   - gsaf109SvgUrl: 'https://gist.githubusercontent.com/landbool/8b8464b9d82e1df2dc7e813a245dc3b7/raw/345ffc0115289ea5c3f5c891e117a1f823914d5f/GSAF109'
+   - gsa109SvgUrl: 'https://gist.githubusercontent.com/landbool/66831e49c1087884288147c188cb3a2b/raw/c0af5e8f7d4cbeb85123ff92d783a0ce72b3c295/GSA109'
+3. Настрой маршрутизацию серии GS при выборе исполнений GSAF109 и GSA109:
+   - В блоке updateCalculations:
+     * Если targetModelCode.startsWith('GSAF') && currentFrame === 109 && gsaf109SvgCode: вызывать updateInteractiveSvgDrawing(targetModelCode, gsaf109SvgCode, {}, 'GSAF109').
+     * Если targetModelCode.startsWith('GSA') && currentFrame === 109 && gsa109SvgCode: вызывать updateInteractiveSvgDrawing(targetModelCode, gsa109SvgCode, {}, 'GSA109').
+   - В функции updateInteractiveSvgDrawing:
+     * Для seriesPrefix === 'GSAF109' и 'GSA109' установить viewBox="0 0 1500 1039" и preserveAspectRatio="xMidYMid meet".
+   - В модальном окне (#drawingModal / openModalDrawing) и функции экспорта в PDF (downloadDrawingAsPdf):
+     * Добавить ветки для GSAF109 и GSA109 с установкой viewBox="0 0 1500 1039".
+4. Выполни синтаксическую валидацию JavaScript через Node.js.
+5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP (отображение GSAF109 и GSA109 в интерфейсе, корректность чертежей, работа модального окна и экспорта PDF).
+6. Запусти бэкап python backup.py, зафиксируй результаты в PROJECT_LOG.md, сделай git commit и git push origin main, проверь деплой на GitHub Pages и доступность на https://grinstr.ru/configurator.
+```
+
+---
+### 🕒 [07-09-2026 22:20]
+
+> **👤 Запрос пользователя:**
+> Выполни Шаг 2:
+> 1. Интегрируй fallback SVG-константы FALLBACK_GSAF109_SVG и FALLBACK_GSA109_SVG, а также переменные gsaf109SvgCode и gsa109SvgCode в index.html и configurator_work.html.
+> 2. Добавь загрузку чертежей GSAF109 и GSA109 из GitHub Gist в функцию initInteractiveDrawingsCore() с отказоустойчивой обработкой через fetchSafeText:
+>    - gsaf109SvgUrl: 'https://gist.githubusercontent.com/landbool/8b8464b9d82e1df2dc7e813a245dc3b7/raw/345ffc0115289ea5c3f5c891e117a1f823914d5f/GSAF109'
+>    - gsa109SvgUrl: 'https://gist.githubusercontent.com/landbool/66831e49c1087884288147c188cb3a2b/raw/c0af5e8f7d4cbeb85123ff92d783a0ce72b3c295/GSA109'
+> 3. Настрой маршрутизацию серии GS при выборе исполнений GSAF109 и GSA109:
+>    - В блоке updateCalculations:
+>      * Если targetModelCode.startsWith('GSAF') && currentFrame === 109 && gsaf109SvgCode: вызывать updateInteractiveSvgDrawing(targetModelCode, gsaf109SvgCode, {}, 'GSAF109').
+>      * Если targetModelCode.startsWith('GSA') && currentFrame === 109 && gsa109SvgCode: вызывать updateInteractiveSvgDrawing(targetModelCode, gsa109SvgCode, {}, 'GSA109').
+>    - В функции updateInteractiveSvgDrawing:
+>      * Для seriesPrefix === 'GSAF109' и 'GSA109' установить viewBox="0 0 1500 1039" и preserveAspectRatio="xMidYMid meet".
+>    - В модальном окне (#drawingModal / openModalDrawing) и функции экспорта в PDF (downloadDrawingAsPdf):
+>      * Добавить ветки для GSAF109 и GSA109 с установкой viewBox="0 0 1500 1039".
+> 4. Выполни синтаксическую валидацию JavaScript через Node.js.
+> 5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP (отображение GSAF109 и GSA109 в интерфейсе, корректность чертежей, работа модального окна и экспорта PDF).
+> 6. Запусти бэкап python backup.py, зафиксируй результаты в PROJECT_LOG.md, сделай git commit и git push origin main, проверь деплой на GitHub Pages и доступность на https://grinstr.ru/configurator.
+
+**🤖 Ответ и отчет субагентов:**
+- **Архитектурный анализ (@architect):**
+  - Реализована отказоустойчивая архитектура загрузки чертежей исполнений GSAF109 и GSA109 серии GS.
+  - В `updateCalculations()` маршрутизация `GSAF` изолирована перед `GSA`, исключая ложные срабатывания общего префикса.
+  - Обеспечена полная автономность: при отсутствии сетевого соединения или исчерпании лимитов GitHub Gist конфигуратор автоматически задействует локальные векторные шаблоны `FALLBACK_GSAF109_SVG` и `FALLBACK_GSA109_SVG`.
+- **UI/UX аудит и верстка (@designer):**
+  - Для обоих исполнений GSAF109 и GSA109 установлен калиброванный `viewBox="0 0 1500 1039"` с `preserveAspectRatio="xMidYMid meet"`.
+  - Модальное окно детального чертежа `#drawingModal` корректно клонирует и масштабирует чертежи без обрезки краев.
+  - Экспорт в PDF формирует альбомный лист (orientation: landscape) высокого разрешения с сохранением четкости всех линий, посадочных размеров и обозначений валов $\\Phi 100H7$ / $\\Phi 90H7$ и фланца $\\Phi 450$.
+- **Разработка и кодовая база (@developer):**
+  - В `configurator_work.html` и `index.html`:
+    - Внедрены fallback-константы `FALLBACK_GSAF109_SVG` и `FALLBACK_GSA109_SVG`, а также переменные `gsaf109SvgCode` и `gsa109SvgCode`.
+    - Добавлены URL-ссылки `gsaf109SvgUrl` и `gsa109SvgUrl`, а также асинхронные блоки загрузки через `fetchSafeText` в `initInteractiveDrawingsCore()`.
+    - Обновлена маршрутизация в `updateCalculations()` для `targetModelCode.startsWith('GSAF')` и `targetModelCode.startsWith('GSA')` с передачей серии `'GSAF109'` и `'GSA109'`.
+    - В `updateInteractiveSvgDrawing` добавлены `'GSAF109'` и `'GSA109'` в список серий GS с установкой `viewBox="0 0 1500 1039"`.
+    - В `openModalDrawing` и `downloadDrawingAsPdf` настроена калибровка `viewBox="0 0 1500 1039"` для маркировок, начинающихся с `GSAF109` и `GSA109`.
+- **Тестирование и валидация (@qa-engineer):**
+  - Синтаксическая валидация JavaScript через `node -c` завершилась с 0 ошибок.
+  - Проведено сквозное E2E тестирование в браузере через Chrome DevTools MCP:
+    - Конфигурация `GSAF109-Y30-4P-26,48-M1-0°-X`: viewBox `0 0 1500 1039`, SVG отображается, rawLen 905067 байт.
+    - Конфигурация `GSA109-Y30-4P-26,48-M1-0°-X`: viewBox `0 0 1500 1039`, SVG отображается, rawLen 959236 байт.
+    - Модальное окно `#drawingModal`: заголовок и чертеж открываются корректно с viewBox `0 0 1500 1039`.
+    - Экспорт в PDF: параметры 1500x1039, landscape подтверждены.
+    - Регрессионное тестирование GSA39, GSA59, GS109, GSF109 прошло без сбоев. Ошибок в консоли: 0.
+  - Создан бэкап проекта `v1.0.118 (Шаг 2 Интеграция чертежей GSAF109 и GSA109)`.
+  - Изменения закоммичены в git и отправлены в ветку `main`.
+  - Проверено развертывание на GitHub Pages и доступность обновления на боевом сайте `https://grinstr.ru/configurator`.
+
+**📊 Результат и статус:**
+[ВЫПОЛНЕНО] Задача по интеграции чертежей GSAF109 и GSA109 успешно завершена. Создан бэкап `v1.0.118`. Код опубликован в репозитории и развернут на сайте.
+
+**🏁 [ЗАДАЧА ЗАВЕРШЕНА: Финальный результат]**
+```text
+Для проверки работоспособности на сайте https://grinstr.ru/configurator:
+1. Перейдите в конфигуратор и выберите серию GS.
+2. В параметрах редуктора выберите мощность 30 кВт (или введите маркировку GSAF109 / GSA109 в URL ?m=GSAF109-Y30-4P-26,48-M1-0°-X).
+3. При выборе фланца B5 и полого вала загружается чертеж GSAF109 (с фланцем Ф450 и полым валом).
+4. При выборе исполнения на лапах и полого вала загружается чертеж GSA109 (корпус на лапах с полым валом).
+5. Нажмите «Чертеж» для проверки модального окна — чертеж отображается в высоком разрешении 1500x1039 без искажений.
+6. Нажмите «Скачать (PDF)» — генерируется PDF в альбомной ориентации с точным сохранением всех размеров.
+```
