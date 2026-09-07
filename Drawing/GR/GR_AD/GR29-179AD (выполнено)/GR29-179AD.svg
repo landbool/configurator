@@ -1,53 +1,52 @@
 <svg width="888" height="484" viewBox="0 0 888 484" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<rect width="888" height="484" fill="url(#pattern0_64_32)"/>
-<rect x="321" y="6" width="30" height="26" fill="white"/>
-<rect x="352" y="40" width="24" height="26" fill="white"/>
-<rect x="298" y="118" width="30" height="28" fill="white"/>
-<rect x="390" y="116" width="28" height="36" fill="white"/>
-<rect x="728" y="7" width="31" height="24" fill="white"/>
-<rect x="756" y="40" width="24" height="26" fill="white"/>
-<rect x="705" y="118" width="30" height="28" fill="white"/>
-<rect x="796" y="116" width="28" height="36" fill="white"/>
+<rect y="2" width="888" height="482" fill="url(#pattern0_64_32)"/>
 <rect x="387" y="248" width="44" height="29" fill="white"/>
-<rect x="425" y="280" width="24" height="26" fill="white"/>
-<rect x="375" y="376" width="28" height="28" fill="white"/>
-<rect x="464" y="372" width="28" height="36" fill="white"/>
-<rect x="608" y="277" width="27" height="28" fill="white"/>
-<rect x="608" y="312" width="27" height="26" fill="white"/>
-<rect x="675" y="311" width="25" height="26" fill="white"/>
-<rect x="664" y="372" width="28" height="36" fill="white"/>
-<rect x="698" y="445" width="28" height="24" fill="white"/>
-<rect x="731" y="304" width="26" height="22" fill="white"/>
-<rect x="726" y="372" width="28" height="36" fill="white"/>
-    <g id="parameters" font-family="Noto Sans JP, Arial" font-size="14px" fill="#000000" text-anchor="middle">
+<rect x="301" y="122" width="24" height="21" fill="white"/>
+<rect x="359" y="40" width="9" height="26" fill="white"/>
+<rect x="321" y="6" width="29" height="26" fill="white"/>
+<rect x="391" y="125" width="26" height="18" fill="white"/>
+<rect x="728" y="7" width="31" height="24" fill="white"/>
+<rect x="764" y="40" width="8" height="26" fill="white"/>
+<rect x="710" y="121" width="20" height="26" fill="white"/>
+<rect x="797" y="125" width="26" height="18" fill="white"/>
+<rect x="610" y="277" width="23" height="28" fill="white"/>
+<rect x="613" y="312" width="17" height="26" fill="white"/>
+<rect x="679" y="311" width="17" height="26" fill="white"/>
+<rect x="665" y="379" width="26" height="21" fill="white"/>
+<rect x="731" y="304" width="26" height="21" fill="white"/>
+<rect x="727" y="379" width="26" height="21" fill="white"/>
+<rect x="699" y="445" width="26" height="23" fill="white"/>
+<rect x="465" y="383" width="27" height="15" fill="white"/>
+<rect x="378" y="380" width="22" height="20" fill="white"/>
+    <g id="parameters" font-family="Noto Sans JP, Arial" font-size="13px" fill="#000000" text-anchor="middle">
         <!-- Top-Left view (GR-AD) -->
         <text data-param="k2" x="335.5" y="24.0">k2</text>
-        <text data-param="l" x="364.0" y="58.0">l</text>
-        <text data-param="G" x="313.0" y="137.5" transform="rotate(-90 313.0 137.5)">G</text>
-        <text data-param="d" x="404.0" y="139.0" transform="rotate(-90 404.0 139.0)">d</text>
+        <text data-param="l" x="363.5" y="58.0">l</text>
+        <text data-param="G" x="313.0" y="137.0" transform="rotate(-90 313.0 132.5)">G</text>
+        <text data-param="d" x="404.0" y="138.5" transform="rotate(-90 404.0 134.0)">d</text>
 
         <!-- Top-Right view (GRF-AD) -->
         <text data-param="k2" x="743.5" y="24.0">k2</text>
         <text data-param="l" x="768.0" y="58.0">l</text>
-        <text data-param="G" x="720.0" y="137.5" transform="rotate(-90 720.0 137.5)">G</text>
-        <text data-param="d" x="810.0" y="139.0" transform="rotate(-90 810.0 139.0)">d</text>
+        <text data-param="G" x="720.0" y="138.5" transform="rotate(-90 720.0 134.0)">G</text>
+        <text data-param="d" x="810.0" y="138.5" transform="rotate(-90 810.0 134.0)">d</text>
 
         <!-- Bottom-Left view (GRX/GRXF-AD) -->
         <text data-param="k2" x="409.0" y="267.5">k2</text>
-        <text data-param="l" x="437.0" y="298.0">l</text>
-        <text data-param="G" x="389.0" y="395.0" transform="rotate(-90 389.0 395.0)">G</text>
-        <text data-param="d" x="478.5" y="395.5" transform="rotate(-90 478.5 395.5)">d</text>
+        <text data-param="l" x="436.0" y="295.0" paint-order="stroke fill" stroke="white" stroke-width="4px" stroke-linejoin="round">l</text>
+        <text data-param="G" x="389.0" y="394.5" transform="rotate(-90 389.0 390.0)">G</text>
+        <text data-param="d" x="478.5" y="395.0" transform="rotate(-90 478.5 390.5)">d</text>
 
         <!-- Shaft detail side view -->
         <text data-param="l" x="621.5" y="296.0">l</text>
         <text data-param="l2" x="621.5" y="330.0">l2</text>
         <text data-param="l1" x="687.5" y="329.0">l1</text>
-        <text data-param="d" x="678.0" y="395.5" transform="rotate(-90 678.0 395.5)">d</text>
-        <text data-param="M" x="712.0" y="462.0">M</text>
+        <text data-param="d" x="678.0" y="394.0" transform="rotate(-90 678.0 389.5)">d</text>
+        <text data-param="M" x="712.0" y="461.5">M</text>
 
         <!-- Shaft cross-section view -->
         <text data-param="u" x="744.0" y="320.0">u</text>
-        <text data-param="t" x="740.0" y="395.5" transform="rotate(-90 740.0 395.5)">t</text>
+        <text data-param="t" x="740.0" y="394.0" transform="rotate(-90 740.0 389.5)">t</text>
     </g>
 <defs>
 <pattern id="pattern0_64_32" patternContentUnits="objectBoundingBox" width="1" height="1">
