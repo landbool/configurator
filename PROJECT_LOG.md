@@ -3364,3 +3364,121 @@ https://grinstr.ru/configurator?m=GKH79-Y1,5-4P-39,21-M1-270%C2%B0-X
 5. Нажмите «СКАЧАТЬ ЧЕРТЁЖ (PDF)» для загрузки PDF в масштабе 1500x1207.
 ```
 
+---
+### 🕒 [08-09-2026 01:05]
+
+> **👤 Запрос пользователя:**
+> Подключить параметрические чертежи и таблицу габаритов для исполнений GSAZ49-99 серии GS:
+> 1. GSAZ49,69 чертеж: https://gist.githubusercontent.com/landbool/7d18b3e4b616adb06bb9a51e36b026ea/raw/8221c17aa56d3a90aed10ab8b5094f2d2768acf1/GSAZ49,69
+> 2. GSAZ59 чертеж: https://gist.githubusercontent.com/landbool/39ec8eb5925c585297ad7071394a5295/raw/1b01fa7c713e9c660940951026322bcf72583e23/GSAZ59
+> 3. GSAZ79,89,99 чертеж: https://gist.githubusercontent.com/landbool/7d64c9168f2614330d292efe0c75ba80/raw/de63fc0d3a8aea94534c27dfd45fa5bb29bba3f4/GSAZ79,89,99
+> 4. Таблица габаритов (лист GSAZ49-99): https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/edit?usp=sharing
+
+**🤖 Ответ и отчет субагентов:**
+- **Архитектурный анализ и декомпозиция (@architect):**
+  - Выполнен детальный анализ трех векторных чертежей и таблицы габаритов Google Sheets листа `GSAZ49-99`.
+  - Задача декомпозирована на 2 последовательных этапа:
+    * Шаг 1: Выгрузка исходных чертежей и CSV-таблицы, аудит геометрии и белых масок, контактный анализ и попиксельная привязка всех 46 прямоугольников к параметрам базы данных, создание чистовых параметризованных SVG (`GSAZ49,69.svg`, `GSAZ59.svg`, `GSAZ79,89,99.svg`), структурирование папки `Drawing/GS/GSAZ49-99 (выполнено)`, генерация базы `gsaz_db.json`, создание бэкапа и подготовка плана интеграции.
+    * Шаг 2: Внедрение констант `FALLBACK_GSAZ49_69_SVG`, `FALLBACK_GSAZ59_SVG`, `FALLBACK_GSAZ79_99_SVG` и `gsazModelDatabase` в `index.html` и `configurator_work.html`, сетевая синхронизация листа `GSAZ49-99`, маршрутизация типоразмеров серии GS при выборе исполнения полого вала с малым фланцем B14 (префикс `GSAZ`), калибровка `viewBox="0 0 2071 1666"`, E2E-тесты в Chrome DevTools MCP, бэкап, git push и подтверждение деплоя на боевом сайте `https://grinstr.ru/configurator`.
+- **UI/UX дизайн и анализ разметки (@designer):**
+  - Все три чертежа имеют единое заводское разрешение `2071x1666 px` (`viewBox="0 0 2071 1666"`).
+  - Сформированы контактные листы фрагментов всех 46 масок. Установлено:
+    * 44 активные размерные метки и 2 вспомогательные маскирующие подложки (№7 для `w`, №45 для `h1`).
+    * Точная ориентация параметров:
+      - Повернуты на -90° (вертикальные размеры): `t II`, `t I`, `d I`, `d3`, `d II`, `d3`, `a1`, `D1` (деталь), `D2` (деталь), `a2`, `D1` (вид), `D2` (вид), `G`, `AC`, `p3`, `h`, `h1`.
+      - Горизонтальные (0°): `u I`, `M1-8.8`, `c1`, `c2`, `w`, `w`, `u II`, `w`, `w`, `c3`, `c4`, `M2-8.8`, `a3`, `a4`, `f2`, `f1`, `AD`, `L1`, `q`, `q1`, `w1`, `w`, `f1`, `D`, `a7`, `f`, `D`.
+    * Буква `D` на боковом виде (№43) откалибрована под координаты каждого чертежа:
+      - `GSAZ49,69`: (168, 984)
+      - `GSAZ59`: (661, 1082)
+      - `GSAZ79,89,99`: (1183, 1002)
+- **Разработка и файловая структура (@developer):**
+  - Сформирована чистовая папка: `Drawing/GS/GSAZ49-99 (выполнено)`:
+    * `GSAZ49,69.svg`, `GSAZ59.svg`, `GSAZ79,89,99.svg` (чистовые параметризованные SVG со 100% сохранением всех белых прямоугольников)
+    * `GSAZ49-99.csv` и `gsaz_db.json` (локальная база данных на 6 моделей: GSAZ49, 59, 69, 79, 89, 99)
+    * `GSAZ49,69.txt`, `GSAZ59.txt`, `GSAZ79,89,99.txt` (Gist URL)
+    * `GSAZ49,69.jpg`, `GSAZ59.jpg`, `GSAZ79,89,99.jpg`, `GSAZ49-99.jpg`, `GSAZ49-99_param.png` (эталонные изображения)
+  - Старая папка `Drawing/GS/GSAZ49-99` удалена.
+- **Тестирование и валидация (@qa-engineer):**
+  - Написан тест симуляции подстановки данных: для всех 6 типоразмеров подтверждена 100% успешная подстановка всех 44 параметров.
+  - Проверено совпадение регистров параметров 1-к-1 с таблицей (`q`, `p3`, `q1`, `w`, `h`, `f1`, `h1`, `d3`, `d I`, `D`, `u I`, `D1`, `t I`, `D2`, `d II`, `u II`, `t II`, `c1`, `c2`, `c3`, `c4`, `M1`, `M2`, `G`, `w1`, `a1`, `a2`, `a3`, `a4`, `a7`, `f`, `f2`).
+  - Создан автоматический бэкап: `v1.0.121 (Шаг 1 Подготовка ассетов и базы данных GSAZ49-99)`.
+
+**📊 Результат и статус:**
+[ВЫПОЛНЕНО] Шаг 1 завершен. Все чистовые SVG, база данных и ассеты подготовлены в `Drawing/GS/GSAZ49-99 (выполнено)`. Создан бэкап `v1.0.121`.
+
+**⏩ Промт для следующего шага:**
+```text
+Выполни Шаг 2:
+1. Интегрируй fallback константы FALLBACK_GSAZ49_69_SVG, FALLBACK_GSAZ59_SVG, FALLBACK_GSAZ79_99_SVG, переменные gsaz49_69SvgCode, gsaz59SvgCode, gsaz79_99SvgCode и локальную базу данных gsazModelDatabase в configurator_work.html и index.html.
+2. Добавь загрузку листа таблицы GSAZ49-99 (https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GSAZ49-99) и Gist URL чертежей GSAZ49,69, GSAZ59, GSAZ79,89,99 в функцию initInteractiveDrawingsCore() с отказоустойчивой обработкой через Promise.allSettled и fetchSafeText.
+3. Настрой маршрутизацию серии GS при выборе исполнений GSAZ (targetModelCode.startsWith('GSAZ')):
+   - В блоке updateCalculations:
+     * Для currentFrame === 59 && gsaz59SvgCode: updateInteractiveSvgDrawing(targetModelCode, gsaz59SvgCode, gsazModelDatabase, 'GSAZ59')
+     * Для (currentFrame === 49 || currentFrame === 69) && gsaz49_69SvgCode: updateInteractiveSvgDrawing(targetModelCode, gsaz49_69SvgCode, gsazModelDatabase, 'GSAZ49_69')
+     * Для (currentFrame === 79 || currentFrame === 89 || currentFrame === 99) && gsaz79_99SvgCode: updateInteractiveSvgDrawing(targetModelCode, gsaz79_99SvgCode, gsazModelDatabase, 'GSAZ79_99')
+   - В функции updateInteractiveSvgDrawing:
+     * Для seriesPrefix.startsWith('GSAZ'): viewBox="0 0 2071 1666", preserveAspectRatio="xMidYMid meet", шрифт 18px Noto Sans JP.
+   - В модальном окне (#drawingModal / openModalDrawing) и функции экспорта в PDF (downloadDrawingAsPdf):
+     * Для currentMarking.startsWith('GSAZ'): viewBox="0 0 2071 1666".
+4. Выполни синтаксическую валидацию JavaScript через Node.js.
+5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP (отображение GSAZ49, GSAZ59, GSAZ69, GSAZ79, GSAZ89, GSAZ99, проверка подстановки значений параметров, открытие модального окна и экспорт в PDF).
+6. Запусти бэкап python backup.py, зафиксируй результаты в PROJECT_LOG.md, сделай git commit и git push origin main, проверь деплой на GitHub Pages и доступность на https://grinstr.ru/configurator.
+```
+
+
+---
+### 🕒 [08-09-2026 01:15]
+
+> **👤 Запрос пользователя:**
+> Выполни Шаг 2:
+> 1. Интегрируй fallback константы FALLBACK_GSAZ49_69_SVG, FALLBACK_GSAZ59_SVG, FALLBACK_GSAZ79_99_SVG, переменные gsaz49_69SvgCode, gsaz59SvgCode, gsaz79_99SvgCode и локальную базу данных gsazModelDatabase в configurator_work.html и index.html.
+> 2. Добавь загрузку листа таблицы GSAZ49-99 (https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GSAZ49-99) и Gist URL чертежей GSAZ49,69, GSAZ59, GSAZ79,89,99 в функцию initInteractiveDrawingsCore() с отказоустойчивой обработкой через Promise.allSettled и fetchSafeText.
+> 3. Настрой маршрутизацию серии GS при выборе исполнений GSAZ (targetModelCode.startsWith('GSAZ')):
+>    - В блоке updateCalculations:
+>      * Для currentFrame === 59 && gsaz59SvgCode: updateInteractiveSvgDrawing(targetModelCode, gsaz59SvgCode, gsazModelDatabase, 'GSAZ59')
+>      * Для (currentFrame === 49 || currentFrame === 69) && gsaz49_69SvgCode: updateInteractiveSvgDrawing(targetModelCode, gsaz49_69SvgCode, gsazModelDatabase, 'GSAZ49_69')
+>      * Для (currentFrame === 79 || currentFrame === 89 || currentFrame === 99) && gsaz79_99SvgCode: updateInteractiveSvgDrawing(targetModelCode, gsaz79_99SvgCode, gsazModelDatabase, 'GSAZ79_99')
+>    - В блоке updateInteractiveSvgDrawing: для seriesPrefix.startsWith('GSAZ') калибровка viewBox='0 0 2071 1666', preserveAspectRatio='xMidYMid meet', шрифт 18px с центровкой text-anchor='middle'.
+>    - В модальном окне (openModalDrawing) и функции PDF экспорта (downloadDrawingAsPdf): viewBox='0 0 2071 1666'.
+> 4. Выполни синтаксическую валидацию JavaScript через Node.js.
+> 5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP (отображение GSAZ в интерфейсе, корректная смена типоразмеров от 49 до 99, открытие модального окна, проверка консоли на 0 ошибок).
+> 6. Создай бэкап через python backup.py.
+> 7. Зафиксируй изменения в PROJECT_LOG.md.
+> 8. Выполни git push origin main и подтверди публикацию на GitHub Pages и grinstr.ru/configurator.
+
+**🤖 Ответ и отчет субагентов:**
+- **Архитектура и проектирование (`@architect`, `@designer`):**
+  - Разработана и применена унифицированная маршрутизация типоразмеров червячно-цилиндрических мотор-редукторов серии GS в исполнении с полым валом и фланцем B14 (`GSAZ49-99`).
+  - Установлены оптимальные геометрические пропорции `viewBox="0 0 2071 1666"` для рабочего SVG-контейнера, полноэкранного модального окна `#drawingModal` и экспортного PDF-канваса.
+  - Сохранены все 46 белых маскирующих прямоугольников чертежа; калиброваны 44 динамических размерных маркера с шрифтом 18px `Noto Sans JP` и центровкой `text-anchor="middle"`.
+
+- **Реализация в коде (`@developer`):**
+  - В `configurator_work.html` и `index.html` интегрированы:
+    * Автономные fallback-константы `FALLBACK_GSAZ49_69_SVG`, `FALLBACK_GSAZ59_SVG`, `FALLBACK_GSAZ79_99_SVG` и переменные `gsaz49_69SvgCode`, `gsaz59SvgCode`, `gsaz79_99SvgCode`.
+    * База данных `gsazModelDatabase` с точными размерами 6 типоразмеров (GSAZ49, GSAZ59, GSAZ69, GSAZ79, GSAZ89, GSAZ99).
+    * Сетевая загрузка листа Google Sheets `GSAZ49-99` через отказоустойчивый пул `Promise.allSettled`.
+    * Прямые Raw Gist URL со строгой валидацией разметки через `fetchSafeText`.
+    * Приоритетная ветка маршрутизации `targetModelCode.startsWith('GSAZ')` в функции `updateCalculations()`.
+    * Калибровка стилизации и позиционирования в `updateInteractiveSvgDrawing()`, `openModalDrawing()` и `downloadDrawingAsPdf()`.
+  - Успешно пройдена синтаксическая валидация всего блока скрипта (17.9 МБ) через `node -c temporary files/temp_validate.js` (код возврата 0).
+  - Подтверждена побайтовая идентичность `configurator_work.html` и `index.html` (18 003 567 байт).
+
+- **Тестирование и валидация (`@qa-engineer`):**
+  - Развернут локальный HTTP-сервер на порту 8085.
+  - Проведено E2E тестирование в реальном браузере через Chrome DevTools MCP:
+    * Проверена корректность переключения серии GS на исполнение «Полый вал» (`shaftType = 'hollow'`) и способ крепления «Фланец В14» (`baseType = 'flange_b14'`).
+    * Протестированы все 6 типоразмеров: GSAZ49, GSAZ59, GSAZ69, GSAZ79, GSAZ89, GSAZ99.
+    * Все 44 динамических размера безошибочно подставляются из таблицы; `viewBox="0 0 2071 1666"` устанавливается во всех режимах.
+    * Протестировано открытие и закрытие модального окна чертежа `#drawingModal` (viewBox `0 0 2071 1666`).
+    * В консоли браузера зафиксировано 0 ошибок.
+    * Снят контрольный скриншот визуализации конфигуратора.
+
+**📊 Результат и статус:**
+- Параметрические интерактивные чертежи GSAZ49-99 полностью интегрированы и протестированы.
+- Создан бэкап: `v1.0.122 (Шаг 2 Интеграция параметрических чертежей GSAZ49-99)`.
+- Статус: [ВЫПОЛНЕНО].
+
+**⏩ Промт для следующего шага:**
+```text
+Продолжить развитие и расширение чертежей мотор-редукторов Guomao серии G согласно каталогам и техническим заданиям пользователя.
+```
