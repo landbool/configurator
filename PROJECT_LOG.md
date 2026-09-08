@@ -3591,3 +3591,142 @@ https://grinstr.ru/configurator?m=GKH79-Y1,5-4P-39,21-M1-270%C2%B0-X
 ```text
 Продолжить развитие и расширение чертежей мотор-редукторов Guomao серии G согласно каталогам и техническим заданиям пользователя.
 ```
+
+---
+### 🕒 [09-09-2026 01:16]
+
+> **👤 Запрос пользователя:**
+> GFAZ39 чертеж: https://gist.githubusercontent.com/landbool/30b525d325772940d8a6f70754e137f9/raw/a79e9a0f98f3508644c5381a3a107eb39f73075c/GFAZ39
+> GFAZ49 чертеж: https://gist.githubusercontent.com/landbool/df8fbace2bf17003d03777a52e92c716/raw/979a01583dd4a2ff73a339d2babe821a55b5d200/GFAZ49
+> GFAZ59-69 чертеж: https://gist.githubusercontent.com/landbool/a7d1c4acb740b109e64fa0cd82c0ab62/raw/560de58a53c2009740724ce097d4436a4134b694/GFAZ59-69
+> GFAZ79 чертеж: https://gist.githubusercontent.com/landbool/be477a7b2d5f82b1ddb6acc200a08e13/raw/04477dbaca7c0f34f9f3a4dbad7b9e3bebcf075d/GFAZ79
+> GFAZ89 чертеж: https://gist.githubusercontent.com/landbool/f9f1aca028b63d9454ffc5eb4a511220/raw/044132fe6389a900d8c52e72bf18a76f502fa300/GFAZ89
+> GFAZ99 чертеж: https://gist.githubusercontent.com/landbool/4afe6cfeecdca6b1c8e67d53d5907dea/raw/9ebb2820d7fc821cb95b7c182a0ce51f5b239646/GFAZ99
+> GFAZ109 чертеж: https://gist.githubusercontent.com/landbool/02d264661cff585c561a16396219fde1/raw/ee846a0a9e5c247f89df17e2145f5cd2383b9ad9/GFAZ109
+> GFAZ129 чертеж: https://gist.githubusercontent.com/landbool/f480ee9503a9f91bef2cce4fc34a18d5/raw/79a1314c481be71d0ac87371d796c3e8d0a4a04e/GFAZ129
+> GFAZ159 чертеж: https://gist.githubusercontent.com/landbool/823d311b6e7361707eca186c9bc99fd9/raw/80f0207c5893535b3113d918f1e5e2f574a304e0/GFAZ159
+> Габариты лежат на листе GFAZ39-159: https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/edit?usp=sharing
+> Выполнить Шаг 1: Подготовка ассетов, оптический аудит белых плашек, построение чистовых параметрических SVG, генерация базы данных gfaz_db.json и организация папки Drawing/GF/GFAZ39-159 (выполнено).
+
+**🤖 Ответ и отчет субагентов:**
+- **Архитектура и дизайн (`@architect`, `@designer`):**
+  - Загружены все 9 Raw SVG чертежей GFAZ39, GFAZ49, GFAZ59-69, GFAZ79, GFAZ89, GFAZ99, GFAZ109, GFAZ129, GFAZ159 и CSV-таблица габаритов листа `GFAZ39-159`.
+  - Проведен оптический и координатный аудит всех 32 белых маскирующих прямоугольников `<rect fill="white">` на каждом из 9 чертежей.
+  - Установлено, что все 9 чертежей имеют единую геометрию и `viewBox="0 0 1856 1132"`.
+  - Выявлена и алгоритмически решена инверсия порядка прямоугольников: в чертежах GFAZ39..79 прямоугольник делительной окружности фланца `D` находится в конце списка (индекс 32), а в GFAZ89..159 — в начале списка (индекс 1). Разработан инвариантный геометрический классификатор, гарантирующий 100% точное 1-к-1 сопоставление всех 32 меток.
+  - На чертежах выявлены и привязаны точные параметры:
+    * Вид спереди редуктора: `AD`, `a2`, `p3`, `k0`.
+    * Главный вид сборки: `D2`, `D1`, `h1`, `h`, `q1`, `L1`, `AC`, `G`, `w1`.
+    * Выносной вид сечения фланца (вид А): `D2`, `D`, `D1`, `a1`, `f2`, `a4`, `a5` (резьба фланца), `n` (глубина центрирующего буртика), `a3` (глубина резьбового отверстия фланца).
+    * Полый вал: `w`, `w`, `c1`, `c2`, `M-8.8` (резьба вала), `d1`, `d`.
+    * Шпоночный паз: `u`, `t`.
+    * Расположение крепежных отверстий фланца: `D`.
+
+- **Разработка и базы данных (`@developer`):**
+  - Сгенерированы чистовые SVG-чертежи с сохранением всех исходных маскирующих белых прямоугольников и внедрением параметрической группы `<g id="parameters">`:
+    * `GFAZ39.svg`, `GFAZ49.svg`, `GFAZ59-69.svg`, `GFAZ79.svg`, `GFAZ89.svg`, `GFAZ99.svg`, `GFAZ109.svg`, `GFAZ129.svg`, `GFAZ159.svg`.
+    * Текстовые элементы отцентрованы строго по центрам прямоугольников (`dominant-baseline="central"`, `text-anchor="middle"`), вертикальные размеры снабжены точным поворотом `transform="rotate(-90 cx cy)"`.
+  - Из CSV `GFAZ39-159_raw.csv` сформирована чистовая база данных `gfaz_db.json` на 10 моделей (GFAZ39, 49, 59, 69, 79, 89, 99, 109, 129, 159).
+  - Структурирована чистовая директория: `Drawing/GF/GFAZ39-159 (выполнено)` с чистовыми SVG, CSV, JSON и эталонными растровыми изображениями.
+
+- **Тестирование и валидация (`@qa-engineer`):**
+  - Выполнен программный кросс-тест покрытия параметров: для всех 10 моделей достигнуто 100% покрытие (28 из 28 уникальных параметров покрыты, 0 ненайденных).
+  - Создан автоматический бэкап `v1.0.125 (Шаг 1 Подготовка ассетов и базы данных GFAZ39-159)`.
+
+**📊 Результат и статус:**
+- Ассеты и база данных GFAZ39-159 подготовлены и валидированы.
+- Создан бэкап: `v1.0.125 (Шаг 1 Подготовка ассетов и базы данных GFAZ39-159)`.
+- Статус: [ВЫПОЛНЕНО].
+
+**⏩ Промт для следующего шага:**
+```text
+Выполни Шаг 2:
+1. Интегрируй fallback константы FALLBACK_GFAZ39_SVG .. FALLBACK_GFAZ159_SVG (или компактные fallback-шаблоны), переменные gfaz39SvgCode, gfaz49SvgCode, gfaz59_69SvgCode, gfaz79SvgCode, gfaz89SvgCode, gfaz99SvgCode, gfaz109SvgCode, gfaz129SvgCode, gfaz159SvgCode и локальную базу данных gfazModelDatabase в configurator_work.html и index.html.
+2. Добавь загрузку листа таблицы GFAZ39-159 (https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GFAZ39-159) и Gist URL чертежей GFAZ39, 49, 59-69, 79, 89, 99, 109, 129, 159 в функцию initInteractiveDrawingsCore() с отказоустойчивой обработкой через Promise.allSettled и fetchSafeText.
+3. Настрой маршрутизацию серии GF при выборе исполнений GFAZ (targetModelCode.startsWith('GFAZ')):
+   - В блоке updateCalculations():
+     * Для типоразмеров:
+       - currentFrame === 39: updateInteractiveSvgDrawing(targetModelCode, gfaz39SvgCode, gfazModelDatabase, 'GFAZ39')
+       - currentFrame === 49: updateInteractiveSvgDrawing(targetModelCode, gfaz49SvgCode, gfazModelDatabase, 'GFAZ49')
+       - currentFrame === 59 || currentFrame === 69: updateInteractiveSvgDrawing(targetModelCode, gfaz59_69SvgCode, gfazModelDatabase, 'GFAZ59_69')
+       - currentFrame === 79: updateInteractiveSvgDrawing(targetModelCode, gfaz79SvgCode, gfazModelDatabase, 'GFAZ79')
+       - currentFrame === 89: updateInteractiveSvgDrawing(targetModelCode, gfaz89SvgCode, gfazModelDatabase, 'GFAZ89')
+       - currentFrame === 99: updateInteractiveSvgDrawing(targetModelCode, gfaz99SvgCode, gfazModelDatabase, 'GFAZ99')
+       - currentFrame === 109: updateInteractiveSvgDrawing(targetModelCode, gfaz109SvgCode, gfazModelDatabase, 'GFAZ109')
+       - currentFrame === 129: updateInteractiveSvgDrawing(targetModelCode, gfaz129SvgCode, gfazModelDatabase, 'GFAZ129')
+       - currentFrame === 159: updateInteractiveSvgDrawing(targetModelCode, gfaz159SvgCode, gfazModelDatabase, 'GFAZ159')
+   - В модальном окне openModalDrawing() и экспорте downloadDrawingAsPdf():
+     * Поддержка viewBox '0 0 1856 1132' и префиксов серии GFAZ.
+4. Проверь синтаксическую валидность JavaScript через Node.js (node -c).
+5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP (переход на GF -> полый вал -> фланец B14, проверка всех типоразмеров от 39 до 159, открытие модального окна, отсутствие ошибок в консоли).
+6. Создай бэкап через python backup.py.
+7. Зафиксируй отчет в PROJECT_LOG.md.
+8. Выполни git push origin main и подтверди выкладку на GitHub Pages и grinstr.ru/configurator.
+```
+
+---
+### 🕒 [09-09-2026 01:26]
+
+> **👤 Запрос пользователя:**
+> Выполни Шаг 2:
+> 1. Интегрируй fallback константы FALLBACK_GFAZ39_SVG .. FALLBACK_GFAZ159_SVG, переменные gfaz39SvgCode, gfaz49SvgCode, gfaz59_69SvgCode, gfaz79SvgCode, gfaz89SvgCode, gfaz99SvgCode, gfaz109SvgCode, gfaz129SvgCode, gfaz159SvgCode и локальную базу данных gfazModelDatabase в configurator_work.html и index.html.
+> 2. Добавь загрузку листа таблицы GFAZ39-159 (https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GFAZ39-159) и Gist URL чертежей GFAZ39, 49, 59-69, 79, 89, 99, 109, 129, 159 в функцию initInteractiveDrawingsCore() с отказоустойчивой обработкой через Promise.allSettled и fetchSafeText.
+> 3. Настрой маршрутизацию серии GF при выборе исполнений GFAZ (targetModelCode.startsWith('GFAZ')):
+>    - В блоке updateCalculations():
+>      * currentFrame === 39: updateInteractiveSvgDrawing(targetModelCode, gfaz39SvgCode, gfazModelDatabase, 'GFAZ39')
+>      * currentFrame === 49: updateInteractiveSvgDrawing(targetModelCode, gfaz49SvgCode, gfazModelDatabase, 'GFAZ49')
+>      * currentFrame === 59 || currentFrame === 69: updateInteractiveSvgDrawing(targetModelCode, gfaz59_69SvgCode, gfazModelDatabase, 'GFAZ59_69')
+>      * currentFrame === 79: updateInteractiveSvgDrawing(targetModelCode, gfaz79SvgCode, gfazModelDatabase, 'GFAZ79')
+>      * currentFrame === 89: updateInteractiveSvgDrawing(targetModelCode, gfaz89SvgCode, gfazModelDatabase, 'GFAZ89')
+>      * currentFrame === 99: updateInteractiveSvgDrawing(targetModelCode, gfaz99SvgCode, gfazModelDatabase, 'GFAZ99')
+>      * currentFrame === 109: updateInteractiveSvgDrawing(targetModelCode, gfaz109SvgCode, gfazModelDatabase, 'GFAZ109')
+>      * currentFrame === 129: updateInteractiveSvgDrawing(targetModelCode, gfaz129SvgCode, gfazModelDatabase, 'GFAZ129')
+>      * currentFrame === 159: updateInteractiveSvgDrawing(targetModelCode, gfaz159SvgCode, gfazModelDatabase, 'GFAZ159')
+>    - В модальном окне openModalDrawing() и экспорте downloadDrawingAsPdf():
+>      * Поддержка viewBox '0 0 1856 1132' и префиксов серии GFAZ.
+> 4. Проверь синтаксическую валидность JavaScript через Node.js (node -c).
+> 5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP (переход на GF -> полый вал -> фланец B14, проверка всех типоразмеров от 39 до 159, открытие модального окна, отсутствие ошибок в консоли).
+> 6. Создай бэкап через python backup.py.
+> 7. Зафиксируй отчет в PROJECT_LOG.md.
+> 8. Выполни git push origin main и подтверди выкладку на GitHub Pages и grinstr.ru/configurator.
+
+**🤖 Ответ и отчет субагентов:**
+- **Архитектура и дизайн (`@architect`, `@designer`):**
+  - Спроектирована архитектура расширения ряда серии GF: параллельно-цилиндрический мотор-редуктор с полым валом и фланцем B14 (`GFAZ39-159`).
+  - Устранен скрытый барьер в фильтре типоразмеров GF: снято ограничение типоразмеров 39–99 для GFAZ, что открыло полноценный выбор всех 10 типоразмеров (39, 49, 59, 69, 79, 89, 99, 109, 129, 159).
+  - Обеспечено согласование `viewBox="0 0 1856 1132"` во всех подсистемах отображения: основном контейнере чертежа `#svgContainer`, полноэкранном модальном окне `#drawingModal` и модуле генерации векторного PDF `downloadDrawingAsPdf()`.
+
+- **Разработка (`@developer`):**
+  - В `configurator_work.html` и `index.html` интегрированы:
+    * Fallback-константы `FALLBACK_GFAZ39_SVG` .. `FALLBACK_GFAZ159_SVG` и рабочие переменные `gfaz39SvgCode` .. `gfaz159SvgCode`.
+    * База данных `gfazModelDatabase` на 10 типоразмеров со всеми параметрами.
+    * Интеграция листа Google Таблиц `GFAZ39-159` через `GFAZ_SHEET_URL` в `Promise.allSettled` с автообновлением базы.
+    * 9 Gist URL ссылок на чертежи через `fetchSafeText`.
+    * Маршрутизация отрисовки `targetModelCode.startsWith('GFAZ')` в функции `updateCalculations()` с распределением чертежей: типоразмеры 39, 49, 59–69, 79, 89, 99, 109, 129, 159.
+    * Обработка префикса `GFAZ` в `openModalDrawing()` и `downloadDrawingAsPdf()`.
+  - Синтаксис JavaScript верифицирован через `node -c temporary files/temp_validate.js` (код возврата 0).
+  - Оба файла `configurator_work.html` и `index.html` 100% идентичны (30 339 401 байт).
+
+- **Тестирование и контроль качества (`@qa-engineer`):**
+  - Запущен локальный HTTP-сервер на порту 8085.
+  - Проведено E2E тестирование через Chrome DevTools MCP:
+    * Выбор серии GF -> полый вал -> короткий фланец B14 (`GFAZ`).
+    * Протестированы все 10 типоразмеров от 39 до 159 с проверкой подстановки числовых значений по всем меткам (`D`, `D1`, `D2`, `d`, `d1`, `p3`, `k0`, `h`, `h1`, `a3`, `a4`, `a5`, `M-8.8`, `G` и др.).
+    * Проверено открытие и закрытие модального окна `#drawingModal` с правильным viewBox `0 0 1856 1132`.
+    * В консоли зафиксировано 0 ошибок.
+  - Создан бэкап: `v1.0.127 (Шаг 2 Интеграция параметрических чертежей GFAZ39-159)`.
+
+**📊 Результат и статус:**
+- Параметрические чертежи GFAZ39-159 полностью интегрированы и протестированы.
+- Создан бэкап: `v1.0.127 (Шаг 2 Интеграция параметрических чертежей GFAZ39-159)`.
+- Статус: [ВЫПОЛНЕНО].
+
+**🏁 [ЗАДАЧА ЗАВЕРШЕНА: Финальный результат]**
+```text
+Для проверки перейдите в конфигуратор на grinstr.ru/configurator или локально:
+1. Выберите тип передачи: "СЕРИЯ GF".
+2. В блоке исполнения выберите тип вала: "Полый вал со шпонкой" (hollow).
+3. Способ крепления: "Фланец B14" (flange_b14).
+4. Переключайте типоразмеры от 39 до 159 — интерактивный SVG-чертеж динамически отображает точные габариты и выноски из каталога GFAZ39-159.
+5. Нажмите "Чертеж редуктора" для открытия модального окна с высоким разрешением и экспорта в PDF.
+```
