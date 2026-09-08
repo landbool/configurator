@@ -4122,3 +4122,52 @@ https://grinstr.ru/configurator?m=GKH79-Y1,5-4P-39,21-M1-270%C2%B0-X
 5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP для серии GR (лапы, фланец B5) и регрессионно для смежных серий.
 6. Создай бэкап через python backup.py, отправь изменения в git (git push origin main) и подтверди развертывание на grinstr.ru/configurator.
 ```
+
+---
+### 🕒 [09-09-2026 02:57]
+
+> **👤 Запрос пользователя:**
+> Выполни Этап 2: Очистка серии GR от fallback-констант и перевод на чистые ссылки GitHub Gist.
+> 1. Подключи прямые ссылки GitHub Gist для серии GR (grSvgUrl, grfSvgUrl, grAdSvgUrl, grxSvgUrl, grxf59SvgUrl, grxf109SvgUrl).
+> 2. В updateCalculations() для серии GR переведи вызовы updateInteractiveSvgDrawing на прямую передачу Gist URL.
+> 3. Удали из файлов configurator_work.html и index.html тяжелые константы FALLBACK_GR_SVG, FALLBACK_GRF_SVG, FALLBACK_GRX_SVG, FALLBACK_GRXF59_SVG, FALLBACK_GRXF109_SVG, FALLBACK_GR_AD_SVG.
+> 4. Проверь синтаксическую валидность JavaScript через Node.js.
+> 5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP (GR на лапах, GRF фланец B5, GR_AD входной вал, регрессия на GK и GF).
+> 6. Создай бэкап через python backup.py, обнови PROJECT_LOG.md, отправь изменения в репозиторий через git push origin main и подтверди деплой на grinstr.ru/configurator.
+
+**🤖 Ответ и отчет субагентов:**
+- Исходные задачи и результаты аудита/проектирования (`@architect`, `@designer`):
+  * Проведен аудит всех fallback-констант серии GR. Выявлен блок размером ~653 КБ (FALLBACK_GR_SVG, FALLBACK_GRF_SVG, FALLBACK_GRX_SVG, FALLBACK_GRXF59_SVG, FALLBACK_GRXF109_SVG, FALLBACK_GR_AD_SVG).
+  * Настроена архитектура прямой передачи URL в updateInteractiveSvgDrawing(), использующая асинхронный on-demand кэш-загрузчик из Этапа 1 (getDrawingSvg).
+  * Все URL серии GR проверены на доступность (HTTP 200, CORS header *).
+- Структура файлов, написанный код и его логика (`@developer`):
+  * В файлах `configurator_work.html` и `index.html` полностью удалены 6 тяжелых inline fallback-констант серии GR (размер файлов уменьшился на ~653 КБ).
+  * Подключены прямые ссылки: `grSvgUrl`, `grfSvgUrl`, `grAdSvgUrl`, `grxSvgUrl`, `grxf59SvgUrl`, `grxf109SvgUrl`.
+  * В `updateCalculations()` для `currentSeries === 'GR'` настроена прямая передача URL чертежей в `updateInteractiveSvgDrawing()`.
+  * В `initLocalDatabases()` добавлено сохранение полученных SVG в `drawingSvgCache`.
+- Результаты проверок, тестов, логи ошибок и их исправление (`@qa-engineer`):
+  * Синтаксическая валидация: `node -c temporary files/temp_validate.js` успешно завершена с кодом 0 (ошибок нет).
+  * Chrome DevTools MCP E2E тестирование в реальном браузере:
+    1. GR (лапы, `GR89`): чертеж загружен по URL, 27 параметров успешно привязаны к числовым значениям (`d` -> "Φ50k6", `q1` -> "372", `h` -> "180-0.5", `a` -> "215", `b` -> "260" и т.д.).
+    2. GRF (фланец B5, `GRF89`): чертеж загружен по URL, 28 параметров успешно привязаны к числам (`h5` -> "115", `D1` -> "Φ250h6", `D2` -> "Φ350", `d` -> "Φ50k6").
+    3. GR-AD (входной вал, `GRF89-AD`): 19 параметров успешно заполнены (`k2` -> "136", `l` -> "40", `d` -> "19k6").
+    4. Модальное окно `openModalDrawing()`: открывается с корректным viewBox `-25 -20 1245 745` и полным набором числовых параметров.
+    5. Сквозная регрессионная проверка серий GK (лапы, GKAF) и GF (GFAF, GFAZ): чертежи и размеры отображаются без сбоев, шрифты 50px сохранены.
+    6. Консоль браузера: 0 ошибок.
+
+**📊 Результат и статус:**
+[ВЫПОЛНЕНО] Серия GR полностью очищена от тяжелых fallback-констант и переведена на загрузку по прямым ссылкам GitHub Gist / GitHub Pages. Создан бэкап: `v1.0.136 (Этап 2 Очистка серии GR от fallback-констант и перевод на Gist ссылки)`.
+
+**⏩ Промт для следующего шага:**
+```text
+Выполни Этап 3: Очистка серии GF от fallback-констант и перевод на чистые ссылки GitHub Gist.
+1. Подключи прямые ссылки GitHub Gist для серии GF:
+   - gfSvgUrl: https://gist.githubusercontent.com/landbool/901f60b00b5039efefeefb4fd1d4096a/raw/gistfile2.txt
+   - gfaSvgUrl: https://landbool.github.io/configurator/GF/GFA.svg
+   - gfaf39_89SvgUrl, gfaf99_159SvgUrl, gfaz39SvgUrl .. gfaz159SvgUrl
+2. В updateCalculations() для серии GF переведи вызовы updateInteractiveSvgDrawing на прямую передачу Gist URL.
+3. Удали из файлов configurator_work.html и index.html тяжелые fallback-константы серии GF (FALLBACK_GF_SVG, FALLBACK_GFA_SVG, FALLBACK_GFAF_..., FALLBACK_GFAZ_...).
+4. Проверь синтаксическую валидность JavaScript через Node.js.
+5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP (серия GF: лапы GF, полый вал GFA, фланцы GFAF и GFAZ во всех типоразмерах, регрессия на GR и GK).
+6. Создай бэкап через python backup.py, обнови PROJECT_LOG.md, отправь изменения в репозиторий через git push origin main и подтверди деплой на grinstr.ru/configurator.
+```
