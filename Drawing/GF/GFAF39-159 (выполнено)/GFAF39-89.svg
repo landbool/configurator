@@ -64,7 +64,7 @@
 <g id="h1_mask">
   <rect x="893" y="393" width="44" height="78" fill="white"/>
 </g>
-<g id="parameters" font-family="Noto Sans JP, Arial, sans-serif" font-size="18px" fill="#000000" text-anchor="middle">
+<g id="parameters" font-family="Noto Sans JP, Arial, sans-serif" font-size="50px" fill="#000000" text-anchor="middle">
   <text data-param="AD" x="130.5" y="105.5" dominant-baseline="central">AD</text>
   <text data-param="a2" x="130.5" y="178.5" dominant-baseline="central">a2</text>
   <text data-param="D2" x="605.5" y="503.5" transform="rotate(-90 605.5 503.5)" dominant-baseline="central">D2</text>
