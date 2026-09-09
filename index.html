@@ -1054,7 +1054,7 @@
         
         function findGkAdEntry(frameName, power) {
             if (!gkAdModelDatabase || !gkAdModelDatabase.length) return null;
-            const num = parseInt(frameName.replace(/[^0-9]/g, '')) || 39;
+            const num = parseInt((frameName.match(/^[A-Za-z]+(\d+)/) || [,'39'])[1]) || 39;
             let targetFrame = 'GK' + num;
             let candidates = gkAdModelDatabase.filter(e => e.frames && e.frames.includes(targetFrame));
             if (candidates.length === 0) return null;
@@ -1077,7 +1077,7 @@
 
         function findGrAdEntry(frameName, power) {
             if (!grAdModelDatabase || !grAdModelDatabase.length) return null;
-            const num = parseInt(frameName.replace(/[^0-9]/g, '')) || 29;
+            const num = parseInt((frameName.match(/^[A-Za-z]+(\d+)/) || [,'29'])[1]) || 29;
             let targetFrame = 'GR' + num;
             let candidates = grAdModelDatabase.filter(e => e.frames && e.frames.includes(targetFrame));
             if (candidates.length === 0) return null;
@@ -1745,7 +1745,7 @@
 
         function findAdEntry(frameName, power) {
             if (!gkAdModelDatabase || !gkAdModelDatabase.length) return null;
-            const num = parseInt(frameName.replace(/[^0-9]/g, '')) || 39;
+            const num = parseInt((frameName.match(/^[A-Za-z]+(\d+)/) || [,'39'])[1]) || 39;
             let targetFrame = 'GK' + num;
             let candidates = gkAdModelDatabase.filter(e => {
                 if (e.frames && e.frames.includes(targetFrame)) return true;
@@ -7424,7 +7424,7 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                         } else if (currentMarking.startsWith('GKHT')) {
                             clonedSvg.setAttribute('viewBox', '0 0 716 267');
                         } else if (currentMarking.startsWith('GKAT')) {
-                            const digits = parseInt(currentMarking.split('-')[0].replace(/[^0-9]/g, '')) || 39;
+                            const digits = parseInt((currentMarking.split('-')[0].match(/^[A-Za-z]+(\d+)/) || [,'39'])[1]) || 39;
                             if (digits >= 129) {
                                 clonedSvg.setAttribute('viewBox', '0 0 692 294');
                             } else {
@@ -7437,7 +7437,7 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                         } else if (currentMarking.startsWith('GKHF')) {
                             clonedSvg.setAttribute('viewBox', '0 0 757 566');
                         } else if (currentMarking.startsWith('GKH') && !currentMarking.startsWith('GKHZ')) {
-                            const digits = parseInt(currentMarking.split('-')[0].replace(/[^0-9]/g, '')) || 39;
+                            const digits = parseInt((currentMarking.split('-')[0].match(/^[A-Za-z]+(\d+)/) || [,'39'])[1]) || 39;
                             if (digits >= 169) {
                                 clonedSvg.setAttribute('viewBox', '0 0 779 582');
                             } else if (digits >= 129) {
@@ -7596,7 +7596,7 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     } else if (currentMarking.startsWith('GKHT')) {
                             clonedSvg.setAttribute('viewBox', '0 0 716 267');
                         } else if (currentMarking.startsWith('GKAT')) {
-                            const digits = parseInt(currentMarking.split('-')[0].replace(/[^0-9]/g, '')) || 39;
+                            const digits = parseInt((currentMarking.split('-')[0].match(/^[A-Za-z]+(\d+)/) || [,'39'])[1]) || 39;
                             if (digits >= 129) {
                                 clonedSvg.setAttribute('viewBox', '0 0 692 294');
                             } else {
@@ -7609,7 +7609,7 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                         } else if (currentMarking.startsWith('GKHF')) {
                             clonedSvg.setAttribute('viewBox', '0 0 757 566');
                         } else if (currentMarking.startsWith('GKH') && !currentMarking.startsWith('GKHZ')) {
-                            const digits = parseInt(currentMarking.split('-')[0].replace(/[^0-9]/g, '')) || 39;
+                            const digits = parseInt((currentMarking.split('-')[0].match(/^[A-Za-z]+(\d+)/) || [,'39'])[1]) || 39;
                             if (digits >= 169) {
                                 clonedSvg.setAttribute('viewBox', '0 0 779 582');
                             } else if (digits >= 129) {
@@ -8352,7 +8352,7 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                 if (svgContainer) { 
                     svgContainer.classList.remove('hidden'); 
                     if (state.motorType === 'AD') {
-                        const frameDigits = parseInt(targetModelCode.replace(/[^0-9]/g, '')) || 29;
+                        const frameDigits = parseInt((targetModelCode.match(/^[A-Za-z]+(\d+)/) || [,'29'])[1]) || 29;
                         const adEntry = findGrAdEntry('GR' + frameDigits, state.power);
                         const adDb = {};
                         if (adEntry) {
@@ -8382,8 +8382,8 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     const targetModelCode = bestConfig.marking.split('-')[0];
                     const isInputShaftAD = state.cableOutlet === 'Входящий вал (AD)' || (window.bestConfig && window.bestConfig.cableOutlet === 'Входящий вал (AD)');
                     if (isInputShaftAD) {
-                        const frameDigits = parseInt(targetModelCode.replace(/[^0-9]/g, '')) || 39;
-                        const adEntry = findAdEntry('GK' + frameDigits, state.power);
+                        const frameDigits = parseInt((targetModelCode.match(/^[A-Za-z]+(\d+)/) || [,'39'])[1]) || 39;
+                        const adEntry = findGkAdEntry('GK' + frameDigits, state.power);
                         const adDb = {};
                         if (adEntry) {
                             adDb[targetModelCode] = adEntry.params;
@@ -8392,14 +8392,14 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                         }
                         updateInteractiveSvgDrawing(targetModelCode, gkAdSvgUrl, adDb, 'GK_AD');
                     } else if (targetModelCode.startsWith('GKHT')) {
-                        const digits = parseInt(targetModelCode.replace(/[^0-9]/g, '')) || 39;
+                        const digits = parseInt((targetModelCode.match(/^[A-Za-z]+(\d+)/) || [,'39'])[1]) || 39;
                         let targetSvgUrl = gkht39SvgUrl;
                         if (digits >= 129) {
                             targetSvgUrl = gkht129SvgUrl;
                         }
                         updateInteractiveSvgDrawing(targetModelCode, targetSvgUrl, gkhtModelDatabase, 'GKHT');
                     } else if (targetModelCode.startsWith('GKAT')) {
-                        const digits = parseInt(targetModelCode.replace(/[^0-9]/g, '')) || 39;
+                        const digits = parseInt((targetModelCode.match(/^[A-Za-z]+(\d+)/) || [,'39'])[1]) || 39;
                         let targetSvgUrl = gkat39SvgUrl;
                         if (digits >= 129) {
                             targetSvgUrl = gkat129SvgUrl;
@@ -8423,14 +8423,14 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     } else if (targetModelCode.startsWith('GKHB')) {
                         updateInteractiveSvgDrawing(targetModelCode, gkhb49SvgUrl, gkhbModelDatabase, 'GKHB');
                     } else if (targetModelCode.startsWith('GKHF')) {
-                        const digits = parseInt(targetModelCode.replace(/[^0-9]/g, '')) || 39;
+                        const digits = parseInt((targetModelCode.match(/^[A-Za-z]+(\d+)/) || [,'39'])[1]) || 39;
                         let targetSvgUrl = gkhf39SvgUrl;
                         if (digits >= 99) {
                             targetSvgUrl = gkhf99SvgUrl;
                         }
                         updateInteractiveSvgDrawing(targetModelCode, targetSvgUrl, gkhfModelDatabase, 'GKHF');
                     } else if (targetModelCode.startsWith('GKH') && !targetModelCode.startsWith('GKHZ')) {
-                        const digits = parseInt(targetModelCode.replace(/[^0-9]/g, '')) || 39;
+                        const digits = parseInt((targetModelCode.match(/^[A-Za-z]+(\d+)/) || [,'39'])[1]) || 39;
                         let targetSvgUrl = gkh39SvgUrl;
                         if (digits >= 169) {
                             targetSvgUrl = gkh159SvgUrl;
