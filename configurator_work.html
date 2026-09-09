@@ -5739,7 +5739,7 @@ let gkhzModelDatabase = {
         // Прямые ссылки на чертежи (Raw Gist без лимитов)
         const grSvgUrl = 'https://gist.githubusercontent.com/landbool/1ece0e8ea202b912df8d34e68953585d/raw/af668be2f54303521c1f0d9de52c6aa74ef8e99d/GR';
         const gr19_179SvgUrl = grSvgUrl;
-        const gkSvgUrl = 'https://landbool.github.io/configurator/Drawing/GK/GK39-159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GK.svg';
+        const gkSvgUrl = 'https://gist.githubusercontent.com/landbool/78017be6756fdedd61ccf5416616c04b/raw/ce5335f3bd582889a02483713fe4f0c83ce3dc74/GK';
         const gk169SvgUrl = 'https://landbool.github.io/configurator/Drawing/GK/GK169-189%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GK169.svg';
         const gk189SvgUrl = 'https://landbool.github.io/configurator/Drawing/GK/GK169-189%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GK189.svg';
         const gkAdSvgUrl = 'https://landbool.github.io/configurator/Drawing/GK/GK_AD/GK39-189AD%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GK39-189AD.svg';
@@ -6218,10 +6218,18 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                 textElements.forEach(el => {
                     const currentText = el.textContent.trim();
                     let matchedParam = null;
-                    if (headers.includes(currentText) || currentText === '4-s' || currentText === 'n-s' || currentText === '8-s') {
-                        matchedParam = currentText;
-                    } else if (currentText === 'O1' || currentText === 'O2') {
-                        matchedParam = headers.find(h => h.toUpperCase() === currentText) || currentText;
+                    if (seriesPrefix === 'GK') {
+                        const GK_TYPO_ALIASES = { 'S': 's', 'C': 'c', 'W': 'w' };
+                        if (GK_TYPO_ALIASES[currentText]) {
+                            matchedParam = GK_TYPO_ALIASES[currentText];
+                        }
+                    }
+                    if (!matchedParam) {
+                        if (headers.includes(currentText) || currentText === '4-s' || currentText === 'n-s' || currentText === '8-s') {
+                            matchedParam = currentText;
+                        } else if (currentText === 'O1' || currentText === 'O2') {
+                            matchedParam = headers.find(h => h.toUpperCase() === currentText) || currentText;
+                        }
                     }
                     if (matchedParam) {
                         el.setAttribute('data-param', matchedParam);
@@ -6441,7 +6449,7 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                     }
                     else if (seriesPrefix === 'GK169') { svgEl.setAttribute('viewBox', '0 0 673 553'); svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet'); }
                     else if (seriesPrefix === 'GK189') { svgEl.setAttribute('viewBox', '0 0 658 509'); svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet'); }
-                    else if (seriesPrefix === 'GK') { svgEl.setAttribute('viewBox', '170 70 940 600'); svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet'); container.querySelectorAll('text').forEach(text => { text.removeAttribute('font-weight'); text.style.fontWeight = 'normal'; text.setAttribute('font-family', 'Noto Sans JP'); text.style.fontFamily = 'Noto Sans JP'; }); }
+                    else if (seriesPrefix === 'GK') { svgEl.setAttribute('viewBox', '150 45 990 645'); svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet'); container.querySelectorAll('text').forEach(text => { text.removeAttribute('font-weight'); text.style.fontWeight = 'normal'; text.setAttribute('font-family', 'Noto Sans JP'); text.style.fontFamily = 'Noto Sans JP'; }); }
                     else if (seriesPrefix === 'GRF') {
                         svgEl.setAttribute('viewBox', '-25 -20 1245 745');
                         container.querySelectorAll('text').forEach(text => {
@@ -6656,7 +6664,13 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
 
             const paramElements = container.querySelectorAll('text[data-param]');
             paramElements.forEach(el => {
-                const param = el.getAttribute('data-param'); 
+                let param = el.getAttribute('data-param');
+                if (seriesPrefix === 'GK') {
+                    const GK_TYPO_ALIASES = { 'S': 's', 'C': 'c', 'W': 'w' };
+                    if (GK_TYPO_ALIASES[param]) {
+                        param = GK_TYPO_ALIASES[param];
+                    }
+                } 
                 el.style.fontSize = ""; 
                 // Сбрасываем transform к исходному базовому перед каждым расчетом
                 setElOffset(el, 0, 0);
@@ -7113,7 +7127,7 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                             if (digits >= 49 && digits <= 109) {
                                 clonedSvg.setAttribute('viewBox', '0 0 994 686');
                             } else {
-                                clonedSvg.setAttribute('viewBox', '170 70 940 600');
+                                clonedSvg.setAttribute('viewBox', '150 45 990 645');
                             }
                         } else if (currentMarking.startsWith('GKA169')) {
                             clonedSvg.setAttribute('viewBox', '0 0 961 766');
@@ -7128,14 +7142,14 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                             } else if (digits >= 39 && digits <= 109) {
                                 clonedSvg.setAttribute('viewBox', '0 0 1028 735');
                             } else {
-                                clonedSvg.setAttribute('viewBox', '170 70 940 600');
+                                clonedSvg.setAttribute('viewBox', '150 45 990 645');
                             }
                         } else if (currentMarking.startsWith('GK169')) {
                             clonedSvg.setAttribute('viewBox', '0 0 673 553');
                         } else if (currentMarking.startsWith('GK189')) {
                             clonedSvg.setAttribute('viewBox', '0 0 658 509');
                         } else {
-                            clonedSvg.setAttribute('viewBox', '170 70 940 600');
+                            clonedSvg.setAttribute('viewBox', '150 45 990 645');
                         }
                         clonedSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
                     } 
@@ -7284,7 +7298,7 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                             if (digits >= 49 && digits <= 109) {
                                 clonedSvg.setAttribute('viewBox', '0 0 994 686');
                             } else {
-                                clonedSvg.setAttribute('viewBox', '170 70 940 600');
+                                clonedSvg.setAttribute('viewBox', '150 45 990 645');
                             }
                         } else if (currentMarking.startsWith('GKA169')) {
                             clonedSvg.setAttribute('viewBox', '0 0 961 766');
@@ -7299,14 +7313,14 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                             } else if (digits >= 39 && digits <= 109) {
                                 clonedSvg.setAttribute('viewBox', '0 0 1028 735');
                             } else {
-                                clonedSvg.setAttribute('viewBox', '170 70 940 600');
+                                clonedSvg.setAttribute('viewBox', '150 45 990 645');
                             }
                         } else if (currentMarking.startsWith('GK169')) {
                             clonedSvg.setAttribute('viewBox', '0 0 673 553');
                         } else if (currentMarking.startsWith('GK189')) {
                             clonedSvg.setAttribute('viewBox', '0 0 658 509');
                         } else {
-                            clonedSvg.setAttribute('viewBox', '170 70 940 600');
+                            clonedSvg.setAttribute('viewBox', '150 45 990 645');
                         }
                         clonedSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
                     }
