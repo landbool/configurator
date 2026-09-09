@@ -95,3 +95,7 @@ GSAZ79,89,99 (gsaz79_99SvgUrl): https://raw.githubusercontent.com/landbool/confi
 GSF109 (gsf109SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSF109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSF109.svg
 GSF39-89 (gsf39_89SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSF39-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSF39-89.svg
 GSF99 (gsf99SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSF39-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSF99.svg
+
+## GF (2 чертежа)
+GFHF39-89 (gfhf39_89SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHF39-89.svg
+GFHF99-159 (gfhf99_159SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHF99-159.svg
