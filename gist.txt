@@ -1,3 +1,7 @@
+GFF39-89: https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFF39-159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GFF39-89.svg
+
+GFF99-159: https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFF39-159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GFF99-159.svg
+
 GFA39-159: https://gist.githubusercontent.com/landbool/ff5b22e051eab70b82a3daa1b0dd200b/raw/GFA39-159
 
 GF109-159: https://gist.githubusercontent.com/landbool/d1a820421b0279add89d02ab38c42c7a/raw/GF109-159
