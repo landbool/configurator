@@ -6668,7 +6668,7 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
             const isBlankOrDash = (v) => {
                 if (v === undefined || v === null) return true;
                 const s = String(v).trim();
-                return s === '' || s === '-' || s === '—' || s === '–';
+                return s === '' || s === '-' || s === '—' || s === '–' || s === '−' || /^[\s\-\u2013\u2014\u2212]+$/.test(s);
             };
 
             const paramElements = container.querySelectorAll('text[data-param]');
