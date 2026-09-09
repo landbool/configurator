@@ -5781,7 +5781,7 @@ let gkhzModelDatabase = {
         const gkhz109SvgUrl = 'https://landbool.github.io/configurator/Drawing/GK/GKHZ%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKHZ109%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKHZ109.svg';
         const gkhz129SvgUrl = 'https://landbool.github.io/configurator/Drawing/GK/GKHZ%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKHZ129%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKHZ129.svg';
         const gkhz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GK/GKHZ%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKHZ159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKHZ159.svg';
-        const grfSvgUrl = 'https://gist.githubusercontent.com/landbool/00e2325b4325a2b1c203d0e2a8b41174/raw/gistfile11';
+        const grfSvgUrl = 'https://gist.githubusercontent.com/landbool/00e2325b4325a2b1c203d0e2a8b41174/raw/11cd156bbb0dc4e2eae5aba9cf921f3846e7f79b/GRF';
         const gfSvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GF39-159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GF_code.txt';
         const gfaSvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFA39-159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GFA.svg';
         const gsSvgUrl = 'https://gist.githubusercontent.com/landbool/b9902b8a2d1e590ec33d7b21731d1411/raw/d3faeacfd07eb0d633787dac9090b360fdb72550/GS49-99';
@@ -6211,14 +6211,20 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                 }
             }
 
-            if (container.rawSvgCode !== svgCode) {
+            if (container.rawSvgCode !== svgCode || container.querySelectorAll('text[data-param]').length === 0) {
                 container.innerHTML = svgCode;
                 container.rawSvgCode = svgCode;
                 const textElements = container.querySelectorAll('text'); const headers = Object.keys(modelDatabase).length > 0 ? Object.keys(Object.values(modelDatabase)[0]) : [];
                 textElements.forEach(el => {
                     const currentText = el.textContent.trim();
+                    let matchedParam = null;
                     if (headers.includes(currentText) || currentText === '4-s' || currentText === 'n-s' || currentText === '8-s') {
-                        el.setAttribute('data-param', currentText);
+                        matchedParam = currentText;
+                    } else if (currentText === 'O1' || currentText === 'O2') {
+                        matchedParam = headers.find(h => h.toUpperCase() === currentText) || currentText;
+                    }
+                    if (matchedParam) {
+                        el.setAttribute('data-param', matchedParam);
                         if (el.id !== 'svg_139' && el.id !== 'svg_250') {
                             try {
                                 const transform = el.getAttribute('transform'); el.removeAttribute('transform'); const bbox = el.getBBox();
@@ -6687,8 +6693,8 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                         setElOffset(el, 20, 0);
                     }
                 }
-                else if (modelData[param] !== undefined) {
-                    const val = modelData[param]; if (!seriesPrefix.startsWith('GKAZ') && !seriesPrefix.startsWith('GKHZ') && param === 'd' && (val.toLowerCase().includes('m6') || val.length > 5)) el.style.fontSize = "20px";
+                else if (modelData[param] !== undefined || modelData[param.toLowerCase()] !== undefined || modelData[param.toUpperCase()] !== undefined) {
+                    const val = modelData[param] !== undefined ? modelData[param] : (modelData[param.toLowerCase()] !== undefined ? modelData[param.toLowerCase()] : modelData[param.toUpperCase()]); if (!seriesPrefix.startsWith('GKAZ') && !seriesPrefix.startsWith('GKHZ') && param === 'd' && (val.toLowerCase().includes('m6') || val.length > 5)) el.style.fontSize = "20px";
                     if (!seriesPrefix.startsWith('GKAZ') && !seriesPrefix.startsWith('GKHZ') && (param === 'h' || param === 'q')) el.style.fontSize = "20px"; if (param === 'a' && val.length > 2) el.style.fontSize = "22px"; if (param === 'e' && val.length > 2) el.style.fontSize = "22px";
                     if (param === '`') el.style.fontSize = "22px"; if (param === 'b' && val.length > 2) el.style.fontSize = "22px";
                     if (el.id === 'svg_47' || el.id === 'svg_48') el.style.fontSize = "22px";
@@ -7057,6 +7063,8 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                             clonedSvg.setAttribute('viewBox', digits >= 109 ? '0 0 994 296' : '0 0 968 294');
                         } else if (currentMarking.startsWith('GRX')) {
                             clonedSvg.setAttribute('viewBox', '0 0 1036 351');
+                        } else if (currentMarking.startsWith('GRF')) {
+                            clonedSvg.setAttribute('viewBox', '-25 -20 1245 745');
                         }
                     }
                     if (currentSeries === 'GK') {
