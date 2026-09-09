@@ -6414,12 +6414,12 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                 if (gkSvg) { gkSvgCode = gkSvg; drawingSvgCache[gkSvgUrl] = gkSvg; }
                 if (grfSvg) { drawingSvgCache[grfSvgUrl] = grfSvg; }
                 if (gfSvg) { drawingSvgCache[gf39SvgUrl] = gfSvg; }
-                try { const s49 = await fetchSafeText(gf49SvgUrl); if (s49 && s49.includes('<svg')) drawingSvgCache[gf49SvgUrl] = s49; } catch(e) {}
-                try { const s59 = await fetchSafeText(gf59_69SvgUrl); if (s59 && s59.includes('<svg')) drawingSvgCache[gf59_69SvgUrl] = s59; } catch(e) {}
-                try { const s79 = await fetchSafeText(gf79SvgUrl); if (s79 && s79.includes('<svg')) drawingSvgCache[gf79SvgUrl] = s79; } catch(e) {}
-                try { const s89 = await fetchSafeText(gf89SvgUrl); if (s89 && s89.includes('<svg')) drawingSvgCache[gf89SvgUrl] = s89; } catch(e) {}
-                try { const s99 = await fetchSafeText(gf99SvgUrl); if (s99 && s99.includes('<svg')) drawingSvgCache[gf99SvgUrl] = s99; } catch(e) {}
-                try { const s109 = await fetchSafeText(gf109_159SvgUrl); if (s109 && s109.includes('<svg')) drawingSvgCache[gf109_159SvgUrl] = s109; } catch(e) {}
+                try { const s49 = await getDrawingSvg(gf49SvgUrl); if (s49) drawingSvgCache[gf49SvgUrl] = s49; } catch(e) {}
+                try { const s59 = await getDrawingSvg(gf59_69SvgUrl); if (s59) drawingSvgCache[gf59_69SvgUrl] = s59; } catch(e) {}
+                try { const s79 = await getDrawingSvg(gf79SvgUrl); if (s79) drawingSvgCache[gf79SvgUrl] = s79; } catch(e) {}
+                try { const s89 = await getDrawingSvg(gf89SvgUrl); if (s89) drawingSvgCache[gf89SvgUrl] = s89; } catch(e) {}
+                try { const s99 = await getDrawingSvg(gf99SvgUrl); if (s99) drawingSvgCache[gf99SvgUrl] = s99; } catch(e) {}
+                try { const s109 = await getDrawingSvg(gf109_159SvgUrl); if (s109) drawingSvgCache[gf109_159SvgUrl] = s109; } catch(e) {}
                 if (gsSvg) { gsSvgCode = gsSvg; drawingSvgCache[gsSvgUrl] = gsSvg; }
                 if (gs39Svg) { gs39SvgCode = gs39Svg; drawingSvgCache[gs39SvgUrl] = gs39Svg; }
                 if (gs109Svg) { gs109SvgCode = gs109Svg; drawingSvgCache[gs109SvgUrl] = gs109Svg; }
@@ -6486,22 +6486,24 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                 container.rawSvgCode = svgCode;
                 const textElements = container.querySelectorAll('text'); const headers = Object.keys(modelDatabase).length > 0 ? Object.keys(Object.values(modelDatabase)[0]) : [];
                 textElements.forEach(el => {
-                    const currentText = el.textContent.trim();
-                    let matchedParam = null;
-                    if (seriesPrefix === 'GK') {
-                        const GK_TYPO_ALIASES = { 'S': 's', 'C': 'c', 'W': 'w' };
-                        if (GK_TYPO_ALIASES[currentText]) {
-                            matchedParam = GK_TYPO_ALIASES[currentText];
-                        }
-                    }
+                    let matchedParam = el.getAttribute('data-param');
                     if (!matchedParam) {
-                        if (headers.includes(currentText) || currentText === '4-s' || currentText === 'n-s' || currentText === '8-s' || currentText === 'M-8.8') {
-                            matchedParam = currentText;
-                        } else if (currentText === 'O1' || currentText === 'O2') {
-                            matchedParam = headers.find(h => h.toUpperCase() === currentText) || currentText;
-                        } else {
-                            const ciHeader = headers.find(h => h.toLowerCase() === currentText.toLowerCase());
-                            if (ciHeader) matchedParam = ciHeader;
+                        const currentText = el.textContent.trim();
+                        if (seriesPrefix === 'GK') {
+                            const GK_TYPO_ALIASES = { 'S': 's', 'C': 'c', 'W': 'w' };
+                            if (GK_TYPO_ALIASES[currentText]) {
+                                matchedParam = GK_TYPO_ALIASES[currentText];
+                            }
+                        }
+                        if (!matchedParam) {
+                            if (headers.includes(currentText) || currentText === '4-s' || currentText === 'n-s' || currentText === '8-s' || currentText === 'M-8.8') {
+                                matchedParam = currentText;
+                            } else if (currentText === 'O1' || currentText === 'O2') {
+                                matchedParam = headers.find(h => h.toUpperCase() === currentText) || currentText;
+                            } else if (currentText !== 'L1' && currentText !== 'l1') {
+                                const ciHeader = headers.find(h => h.toLowerCase() === currentText.toLowerCase());
+                                if (ciHeader) matchedParam = ciHeader;
+                            }
                         }
                     }
                     if (matchedParam) {
@@ -7032,13 +7034,9 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                         setElOffset(el, 20, 0);
                     }
                 } else {
-                    let rawVal = undefined;
-                    if (modelData[param] !== undefined) {
-                        rawVal = modelData[param];
-                    } else if (modelData[param.toLowerCase()] !== undefined) {
+                    let rawVal = modelData[param];
+                    if (rawVal === undefined && (param === 'S' || param === 'C') && modelData[param.toLowerCase()] !== undefined) {
                         rawVal = modelData[param.toLowerCase()];
-                    } else if (modelData[param.toUpperCase()] !== undefined) {
-                        rawVal = modelData[param.toUpperCase()];
                     }
 
                     if (isBlankOrDash(rawVal, param)) {
