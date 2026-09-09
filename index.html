@@ -5782,7 +5782,13 @@ let gkhzModelDatabase = {
         const gkhz129SvgUrl = 'https://landbool.github.io/configurator/Drawing/GK/GKHZ%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKHZ129%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKHZ129.svg';
         const gkhz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GK/GKHZ%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKHZ159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKHZ159.svg';
         const grfSvgUrl = 'https://gist.githubusercontent.com/landbool/00e2325b4325a2b1c203d0e2a8b41174/raw/GRF';
-        const gfSvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GF39-159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GF_code.txt';
+        const gf39SvgUrl = 'https://gist.githubusercontent.com/landbool/814237b19f66bfeab4c0a58073bb0c86/raw/GF39';
+        const gf49SvgUrl = 'https://gist.githubusercontent.com/landbool/34f4fcf5d7476067e0aae551eb31edf3/raw/GF49';
+        const gf59_69SvgUrl = 'https://gist.githubusercontent.com/landbool/283cd1d7fdbbd69f9a3981180b7f8d02/raw/GF59-69';
+        const gf79SvgUrl = 'https://gist.githubusercontent.com/landbool/0e04eaf833ec1ef3667a15aab0332568/raw/GF79';
+        const gf89SvgUrl = 'https://gist.githubusercontent.com/landbool/380a120e1b0ae904ff6a3849e8b67884/raw/GF89';
+        const gf99SvgUrl = 'https://gist.githubusercontent.com/landbool/e08ac63b31017fbcf7c88383d057ff70/raw/GF99';
+        const gf109_159SvgUrl = 'https://gist.githubusercontent.com/landbool/d1a820421b0279add89d02ab38c42c7a/raw/GF109-159';
         const gfaSvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFA39-159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GFA.svg';
         const gsSvgUrl = 'https://gist.githubusercontent.com/landbool/b9902b8a2d1e590ec33d7b21731d1411/raw/GS49-99';
         const gs39SvgUrl = 'https://gist.githubusercontent.com/landbool/3f954fbf92ed6f9bfdccadd6f1bc84d5/raw/GS39';
@@ -6059,7 +6065,7 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                     fetchSafeText(gkSvgUrl), fetchSafeText(gkSheetsUrl),
                     fetchSafeText(grfSvgUrl), fetchSafeText(grfSheetsUrl),
                     fetchSafeText(shaftsSheetsUrl),
-                    fetchSafeText(gfSvgUrl), fetchSafeText(gfSheetsUrl), fetchSafeText(gfaSheetsUrl),
+                    fetchSafeText(gf39SvgUrl), fetchSafeText(gfSheetsUrl), fetchSafeText(gfaSheetsUrl),
                     fetchSafeText(gsSvgUrl), fetchSafeText(gsSheetsUrl),
                     fetchSafeText(gs39SvgUrl), fetchSafeText(gs109SvgUrl), fetchSafeText(gsf109SvgUrl), fetchSafeText(gfaSvgUrl),
                     fetchSafeText(grxSvgUrl), fetchSafeText(grxSheetsUrl),
@@ -6149,7 +6155,13 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                 if (grSvg) { grSvgCode = grSvg; drawingSvgCache[grSvgUrl] = grSvg; }
                 if (gkSvg) { gkSvgCode = gkSvg; drawingSvgCache[gkSvgUrl] = gkSvg; }
                 if (grfSvg) { grfSvgCode = grfSvg; drawingSvgCache[grfSvgUrl] = grfSvg; }
-                if (gfSvg) { gfSvgCode = gfSvg; drawingSvgCache[gfSvgUrl] = gfSvg; }
+                if (gfSvg) { drawingSvgCache[gf39SvgUrl] = gfSvg; }
+                try { const s49 = await fetchSafeText(gf49SvgUrl); if (s49 && s49.includes('<svg')) drawingSvgCache[gf49SvgUrl] = s49; } catch(e) {}
+                try { const s59 = await fetchSafeText(gf59_69SvgUrl); if (s59 && s59.includes('<svg')) drawingSvgCache[gf59_69SvgUrl] = s59; } catch(e) {}
+                try { const s79 = await fetchSafeText(gf79SvgUrl); if (s79 && s79.includes('<svg')) drawingSvgCache[gf79SvgUrl] = s79; } catch(e) {}
+                try { const s89 = await fetchSafeText(gf89SvgUrl); if (s89 && s89.includes('<svg')) drawingSvgCache[gf89SvgUrl] = s89; } catch(e) {}
+                try { const s99 = await fetchSafeText(gf99SvgUrl); if (s99 && s99.includes('<svg')) drawingSvgCache[gf99SvgUrl] = s99; } catch(e) {}
+                try { const s109 = await fetchSafeText(gf109_159SvgUrl); if (s109 && s109.includes('<svg')) drawingSvgCache[gf109_159SvgUrl] = s109; } catch(e) {}
                 if (gsSvg) { gsSvgCode = gsSvg; drawingSvgCache[gsSvgUrl] = gsSvg; }
                 if (gs39Svg) { gs39SvgCode = gs39Svg; drawingSvgCache[gs39SvgUrl] = gs39Svg; }
                 if (gs109Svg) { gs109SvgCode = gs109Svg; drawingSvgCache[gs109SvgUrl] = gs109Svg; }
@@ -6500,8 +6512,14 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                             text.style.fontSize = '14px';
                         });
                     }
-                    else if (seriesPrefix === 'GF') {
-                        svgEl.setAttribute('viewBox', '-50 -10 778 431');
+                    else if (seriesPrefix === 'GF' || seriesPrefix.startsWith('GF')) {
+                        if (seriesPrefix === 'GF109_159') {
+                            svgEl.setAttribute('viewBox', '0 0 1865 953');
+                        } else if (seriesPrefix.startsWith('GF') && seriesPrefix !== 'GFA' && !seriesPrefix.startsWith('GFAZ') && !seriesPrefix.startsWith('GFAF')) {
+                            svgEl.setAttribute('viewBox', '0 0 1865 1106');
+                        } else {
+                            svgEl.setAttribute('viewBox', '-50 -10 778 431');
+                        }
                         container.querySelectorAll('text').forEach(text => {
                             text.removeAttribute('font-weight');
                             text.removeAttribute('stroke');
@@ -7195,7 +7213,7 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                         }
                         clonedSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
                     } 
-                    if (currentSeries === 'GF') { if (currentMarking.startsWith('GFAZ')) clonedSvg.setAttribute('viewBox', '0 0 1856 1132'); else if (currentMarking.startsWith('GFAF')) clonedSvg.setAttribute('viewBox', '0 0 2241 1387'); else if (currentMarking.startsWith('GFA')) clonedSvg.setAttribute('viewBox', '0 0 1028 693'); else clonedSvg.setAttribute('viewBox', '0 0 778 431'); } 
+                    if (currentSeries === 'GF') { if (currentMarking.startsWith('GFAZ')) clonedSvg.setAttribute('viewBox', '0 0 1856 1132'); else if (currentMarking.startsWith('GFAF')) clonedSvg.setAttribute('viewBox', '0 0 2241 1387'); else if (currentMarking.startsWith('GFA')) clonedSvg.setAttribute('viewBox', '0 0 1028 693'); else { const gfFrame = parseInt(currentMarking.replace(/^GF/, '').match(/\d+/)?.[0] || '0'); if (gfFrame >= 109) clonedSvg.setAttribute('viewBox', '0 0 1865 953'); else clonedSvg.setAttribute('viewBox', '0 0 1865 1106'); } } 
                     if (currentSeries === 'GS') {
                         if (currentMarking.startsWith('GSAZ')) {
                             clonedSvg.setAttribute('viewBox', '0 0 2071 1666');
@@ -7366,7 +7384,7 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                         }
                         clonedSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
                     }
-                if (currentSeries === 'GF') { if (currentMarking.startsWith('GFAZ')) clonedSvg.setAttribute('viewBox', '0 0 1856 1132'); else if (currentMarking.startsWith('GFAF')) clonedSvg.setAttribute('viewBox', '0 0 2241 1387'); else if (currentMarking.startsWith('GFA')) clonedSvg.setAttribute('viewBox', '0 0 1028 693'); else clonedSvg.setAttribute('viewBox', '0 0 778 431'); }
+                if (currentSeries === 'GF') { if (currentMarking.startsWith('GFAZ')) clonedSvg.setAttribute('viewBox', '0 0 1856 1132'); else if (currentMarking.startsWith('GFAF')) clonedSvg.setAttribute('viewBox', '0 0 2241 1387'); else if (currentMarking.startsWith('GFA')) clonedSvg.setAttribute('viewBox', '0 0 1028 693'); else { const gfFrame = parseInt(currentMarking.replace(/^GF/, '').match(/\d+/)?.[0] || '0'); if (gfFrame >= 109) clonedSvg.setAttribute('viewBox', '0 0 1865 953'); else clonedSvg.setAttribute('viewBox', '0 0 1865 1106'); } }
                 if (currentSeries === 'GS') {
                     if (currentMarking.startsWith('GSAZ')) {
                         clonedSvg.setAttribute('viewBox', '0 0 2071 1666');
@@ -8234,7 +8252,21 @@ const gfaz159SvgUrl = 'https://landbool.github.io/configurator/Drawing/GF/GFAZ39
                         } else if (targetModelCode.startsWith('GFA') || state.shaftType.startsWith('hollow')) {
                             updateInteractiveSvgDrawing(targetModelCode, gfaSvgUrl, gfaModelDatabase, 'GFA');
                         } else {
-                            updateInteractiveSvgDrawing(targetModelCode, gfSvgUrl, gfModelDatabase, 'GF');
+                            if (currentFrame === 39) {
+                                updateInteractiveSvgDrawing(targetModelCode, gf39SvgUrl, gfModelDatabase, 'GF39');
+                            } else if (currentFrame === 49) {
+                                updateInteractiveSvgDrawing(targetModelCode, gf49SvgUrl, gfModelDatabase, 'GF49');
+                            } else if (currentFrame === 59 || currentFrame === 69) {
+                                updateInteractiveSvgDrawing(targetModelCode, gf59_69SvgUrl, gfModelDatabase, 'GF59_69');
+                            } else if (currentFrame === 79) {
+                                updateInteractiveSvgDrawing(targetModelCode, gf79SvgUrl, gfModelDatabase, 'GF79');
+                            } else if (currentFrame === 89) {
+                                updateInteractiveSvgDrawing(targetModelCode, gf89SvgUrl, gfModelDatabase, 'GF89');
+                            } else if (currentFrame === 99) {
+                                updateInteractiveSvgDrawing(targetModelCode, gf99SvgUrl, gfModelDatabase, 'GF99');
+                            } else if (currentFrame >= 109) {
+                                updateInteractiveSvgDrawing(targetModelCode, gf109_159SvgUrl, gfModelDatabase, 'GF109_159');
+                            }
                         }
                     }
                 }
