@@ -4171,3 +4171,54 @@ https://grinstr.ru/configurator?m=GKH79-Y1,5-4P-39,21-M1-270%C2%B0-X
 5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP (серия GF: лапы GF, полый вал GFA, фланцы GFAF и GFAZ во всех типоразмерах, регрессия на GR и GK).
 6. Создай бэкап через python backup.py, обнови PROJECT_LOG.md, отправь изменения в репозиторий через git push origin main и подтверди деплой на grinstr.ru/configurator.
 ```
+
+---
+### 🕒 [09-09-2026 03:05]
+
+> **👤 Запрос пользователя:**
+> Выполни Этап 3: Очистка серии GF от fallback-констант и перевод на чистые ссылки GitHub Gist.
+> 1. Подключи прямые ссылки GitHub Gist / GitHub Pages для серии GF (gfSvgUrl, gfaSvgUrl, gfaf39_89SvgUrl, gfaf99_159SvgUrl, gfaz39SvgUrl .. gfaz159SvgUrl).
+> 2. В updateCalculations() для серии GF переведи вызовы updateInteractiveSvgDrawing на прямую передачу Gist URL.
+> 3. Удали из файлов configurator_work.html и index.html тяжелые fallback-константы серии GF (FALLBACK_GF_SVG, FALLBACK_GFA_SVG, FALLBACK_GFAF_..., FALLBACK_GFAZ_...).
+> 4. Проверь синтаксическую валидность JavaScript через Node.js.
+> 5. Проведи сквозное E2E тестирование в браузере через Chrome DevTools MCP (серия GF: лапы GF, полый вал GFA, фланцы GFAF и GFAZ во всех типоразмерах, регрессия на GR и GK).
+> 6. Создай бэкап через python backup.py, обнови PROJECT_LOG.md, отправь изменения в git push origin main и подтверди деплой на grinstr.ru/configurator.
+
+**🤖 Ответ и отчет субагентов:**
+- Исходные задачи и результаты аудита/проектирования (`@architect`, `@designer`):
+  * Проведен аудит всех fallback-констант серии GF: выявлен блок GF/GFA (~529 КБ) и огромный массив GFAF/GFAZ (~11.88 МБ).
+  * Суммарное сокращение размера кодовой базы за один шаг составило рекордные **12 411 410 байт (~12.4 МБ)** (размер файлов уменьшился с 29.6 МБ до 17.2 МБ).
+  * Настроена загрузка чистовых калиброванных SVG с полным набором меток `data-param` и адаптивными шрифтами 50px.
+- Структура файлов, написанный код и его логика (`@developer`):
+  * В файлах `configurator_work.html` и `index.html` полностью удалены 13 тяжелых inline fallback-констант серии GF.
+  * Переменные `gfSvgCode`, `gfaSvgCode`, `gfaf...SvgCode`, `gfaz...SvgCode` инициализируются пустыми строками `''`.
+  * В `updateCalculations()` для `currentSeries === 'GF'` маршрутизация полностью переведена на передачу проверенных прямых URL в `updateInteractiveSvgDrawing()`.
+  * В `initLocalDatabases()` добавлена синхронизация кэша `drawingSvgCache` для `gfSvgUrl` и `gfaSvgUrl`.
+- Результаты проверок, тестов, логи ошибок и их исправление (`@qa-engineer`):
+  * Синтаксическая валидация: `node -c temporary files/temp_validate.js` успешно завершена с кодом 0 (ошибок нет).
+  * Chrome DevTools MCP E2E тестирование в реальном браузере:
+    1. GF (лапы, твердый вал, `GF89`): 30 параметров корректно отображаются.
+    2. GFA (полый вал, `GFA89`): 35 параметров подвязаны к таблице.
+    3. GFAF (фланец B5, `GFAF89`, `GFAF39`): 28 параметров, шрифты 50px и адаптивные размеры (44px) сохранены.
+    4. GFAZ (фланец B14, `GFAZ89`, `GFAZ39`, `GFAZ99`): 32 параметра, шрифты 50px сохранены.
+    5. Модальное окно `openModalDrawing()`: открывается с `viewBox="0 0 1856 1132"` и полным набором 32 числовых параметров.
+    6. Сквозная регрессионная проверка: серий GR (`GR89`, `GRF89`) и GK (`GK79`, `GKAF79`) подтвердила 100% точность отображения числовых размеров.
+    7. Консоль браузера: 0 ошибок.
+
+**📊 Результат и статус:**
+[ВЫПОЛНЕНО] Серия GF полностью очищена от 13 тяжелых fallback-констант и переведена на загрузку по прямым ссылкам GitHub Gist / GitHub Pages. Создан бэкап: `v1.0.137 (Этап 3 Очистка серии GF от fallback-констант и перевод на Gist ссылки)`.
+
+**⏩ Промт для следующего шага:**
+```text
+Выполни Этап 4: Очистка серии GS от fallback-констант и перевод на чистые ссылки GitHub Gist.
+1. Подключи прямые ссылки GitHub Gist / GitHub Pages для серии GS:
+   - gsSvgUrl, gs39SvgUrl, gs109SvgUrl, gsf109SvgUrl
+   - gsa39SvgUrl, gsa59SvgUrl, gsa49_69SvgUrl, gsa79_99SvgUrl, gsa109SvgUrl
+   - gsaf39_89SvgUrl, gsaf99SvgUrl, gsaf109SvgUrl
+   - gsaz49_69SvgUrl, gsaz59SvgUrl, gsaz79_99SvgUrl
+2. В updateCalculations() для серии GS переведи вызовы updateInteractiveSvgDrawing на прямую передачу Gist URL.
+3. Удали из файлов configurator_work.html и index.html тяжелые fallback-константы серии GS (FALLBACK_GS_SVG, FALLBACK_GS39_SVG, FALLBACK_GS109_SVG, FALLBACK_GSF109_SVG, FALLBACK_GSA..., FALLBACK_GSAF..., FALLBACK_GSAZ...).
+4. Проверь синтаксическую валидность JavaScript через Node.js (node -c temporary files/temp_validate.js).
+5. Проведи сквозное E2E тестирование в реальном браузере через Chrome DevTools MCP (серия GS: лапы GS, GS39, GS109, GSF, GSA, GSAF, GSAZ во всех типоразмерах, регрессия на GR, GK, GF).
+6. Создай бэкап через python backup.py, обнови PROJECT_LOG.md, отправь изменения в git push origin main и подтверди деплой на grinstr.ru/configurator.
+```
