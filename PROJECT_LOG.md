@@ -4222,3 +4222,40 @@ https://grinstr.ru/configurator?m=GKH79-Y1,5-4P-39,21-M1-270%C2%B0-X
 5. Проведи сквозное E2E тестирование в реальном браузере через Chrome DevTools MCP (серия GS: лапы GS, GS39, GS109, GSF, GSA, GSAF, GSAZ во всех типоразмерах, регрессия на GR, GK, GF).
 6. Создай бэкап через python backup.py, обнови PROJECT_LOG.md, отправь изменения в git push origin main и подтверди деплой на grinstr.ru/configurator.
 ```
+
+---
+### 🕒 [09-09-2026 03:19]
+
+> **👤 Запрос пользователя:**
+> /learn запомни, теперь в этот файл gist.txt нужно вносить новые ссылки gist на серии, чтобы у нас была вся база ссылок.
+
+**🤖 Ответ и отчет субагентов:**
+- Исходные задачи и результаты аудита/проектирования (`@architect`, `@designer`):
+  * Проведен анализ и аудит всех 84 ссылок в файле `gist.txt`. Выявлен и устранен устаревший дубль `GFA` (23 августа, 460 КБ) в пользу нового высококачественного `GFA39-159` (08 сентября, 2.27 МБ).
+  * Выявлена разница между сырыми векторными шаблонами Gist (без тегов `data-param`) и чистовыми калиброванными SVG в `Drawing/`.
+  * Сформировано предложение `/learn` и утверждено системное правило ведения реестра ссылок `gist.txt`.
+- Структура файлов, написанный код и его логика (`@developer`):
+  * В системный файл конфигурации проекта [GEMINI.md](file:///d:/GoogleDrive/Мой%20диск/AntigravityProject/Configurator/GEMINI.md) добавлен новый инженерный регламент:
+    **«#### 5. ПРАВИЛО ВЕДЕНИЯ ЕДИНОЙ БАЗЫ ССЫЛОК GIST (`gist.txt`)»**.
+  * Файл [gist.txt](file:///d:/GoogleDrive/Мой%20диск/AntigravityProject/Configurator/gist.txt) официально закреплен в репозитории как единый реестр (Single Source of Truth) всех Gist-ссылок проекта.
+- Результаты проверок, тестов, логи ошибок и их исправление (`@qa-engineer`):
+  * Проверена структура файла `gist.txt` (83 актуальные уникальные ссылки, дубликаты устранены).
+  * Все 83 ссылки проверены по HTTP (код 200, 100% доступность).
+
+**📊 Результат и статус:**
+[ВЫПОЛНЕНО] Правило ведения базы `gist.txt` официально зафиксировано в `GEMINI.md`. Создан бэкап: `v1.0.138 (Фиксация правила базы gisttxt в GEMINImd)`.
+
+**⏩ Промт для следующего шага:**
+```text
+Выполни Этап 4: Очистка серии GS от fallback-констант и перевод на чистые ссылки GitHub Gist.
+1. Подключи проверенные прямые ссылки GitHub Gist / GitHub Pages для серии GS:
+   - gsSvgUrl, gs39SvgUrl, gs109SvgUrl, gsf109SvgUrl
+   - gsa39SvgUrl, gsa59SvgUrl, gsa49_69SvgUrl, gsa79_99SvgUrl, gsa109SvgUrl
+   - gsaf39_89SvgUrl, gsaf99SvgUrl, gsaf109SvgUrl
+   - gsaz49_69SvgUrl, gsaz59SvgUrl, gsaz79_99SvgUrl
+2. В updateCalculations() для серии GS переведи вызовы updateInteractiveSvgDrawing на прямую передачу Gist URL.
+3. Удали из файлов configurator_work.html и index.html тяжелые fallback-константы серии GS (FALLBACK_GS_SVG, FALLBACK_GS39_SVG, FALLBACK_GS109_SVG, FALLBACK_GSF109_SVG, FALLBACK_GSA..., FALLBACK_GSAF..., FALLBACK_GSAZ...).
+4. Проверь синтаксическую валидность JavaScript через Node.js (node -c temporary files/temp_validate.js).
+5. Проведи сквозное E2E тестирование в реальном браузере через Chrome DevTools MCP (серия GS: лапы GS, GS39, GS109, GSF, GSA, GSAF, GSAZ во всех типоразмерах, регрессия на GR, GK, GF).
+6. Создай бэкап через python backup.py, обнови PROJECT_LOG.md, отправь изменения в git push origin main и подтверди деплой на grinstr.ru/configurator.
+```

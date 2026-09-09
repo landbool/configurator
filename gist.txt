@@ -1,0 +1,165 @@
+GFA39-159: https://gist.githubusercontent.com/landbool/ff5b22e051eab70b82a3daa1b0dd200b/raw/34b7c97d199d6db08166f675074a02826165fde3/GFA39-159
+
+GF109-159: https://gist.githubusercontent.com/landbool/d1a820421b0279add89d02ab38c42c7a/raw/4c974835c3b3052511a3df0e4d3bb0d8a5f7cc0c/GF109-159
+
+GF99: https://gist.githubusercontent.com/landbool/e08ac63b31017fbcf7c88383d057ff70/raw/625e67c868aa2969821191fa9d88fc88d8575b43/GF99
+
+GF89: https://gist.githubusercontent.com/landbool/380a120e1b0ae904ff6a3849e8b67884/raw/6f9dd86888b815df0c2eec847bf1b34353c5c71f/GF89
+
+GF79: https://gist.githubusercontent.com/landbool/0e04eaf833ec1ef3667a15aab0332568/raw/6711b251e67c0cd54abbb9eb163d34c2a12ad783/GF79
+
+GF59-69: https://gist.githubusercontent.com/landbool/283cd1d7fdbbd69f9a3981180b7f8d02/raw/4a21fc2bdad7280a848d77ba91eba4c3063965cb/GF59-69
+
+GF49: https://gist.githubusercontent.com/landbool/34f4fcf5d7476067e0aae551eb31edf3/raw/f7f56079100518fc7266c1587cb0415a86c34e3a/GF49
+
+GF39: https://gist.githubusercontent.com/landbool/814237b19f66bfeab4c0a58073bb0c86/raw/70b1196e5bb1e7fbc924e4021392a8eb91389736/GF39
+
+GFAZ159: https://gist.githubusercontent.com/landbool/823d311b6e7361707eca186c9bc99fd9/raw/80f0207c5893535b3113d918f1e5e2f574a304e0/GFAZ159
+
+GFAZ129: https://gist.githubusercontent.com/landbool/f480ee9503a9f91bef2cce4fc34a18d5/raw/79a1314c481be71d0ac87371d796c3e8d0a4a04e/GFAZ129
+
+GFAZ109: https://gist.githubusercontent.com/landbool/02d264661cff585c561a16396219fde1/raw/ee846a0a9e5c247f89df17e2145f5cd2383b9ad9/GFAZ109
+
+GFAZ99: https://gist.githubusercontent.com/landbool/4afe6cfeecdca6b1c8e67d53d5907dea/raw/9ebb2820d7fc821cb95b7c182a0ce51f5b239646/GFAZ99
+
+GFAZ89: https://gist.githubusercontent.com/landbool/f9f1aca028b63d9454ffc5eb4a511220/raw/044132fe6389a900d8c52e72bf18a76f502fa300/GFAZ89
+
+GFAZ79: https://gist.githubusercontent.com/landbool/be477a7b2d5f82b1ddb6acc200a08e13/raw/04477dbaca7c0f34f9f3a4dbad7b9e3bebcf075d/GFAZ79
+
+GFAZ59-69: https://gist.githubusercontent.com/landbool/a7d1c4acb740b109e64fa0cd82c0ab62/raw/560de58a53c2009740724ce097d4436a4134b694/GFAZ59-69
+
+GFAZ49: https://gist.githubusercontent.com/landbool/df8fbace2bf17003d03777a52e92c716/raw/979a01583dd4a2ff73a339d2babe821a55b5d200/GFAZ49
+
+GFAZ39: https://gist.githubusercontent.com/landbool/30b525d325772940d8a6f70754e137f9/raw/a79e9a0f98f3508644c5381a3a107eb39f73075c/GFAZ39
+
+GFAF99-159: https://gist.githubusercontent.com/landbool/8554c46f190534d769cf403e7e18c6c3/raw/5b26cd47ab24ffadef1ee58d10c7ce81c14e00dd/GFAF99-159
+
+GFAF39-89: https://gist.githubusercontent.com/landbool/e3f1d29a8102230a70c21ac6988c9c02/raw/5deee1243a7c57e604ab9651d68253a71d86f25f/GFAF39-89
+
+GSAZ79,89,99: https://gist.githubusercontent.com/landbool/7d64c9168f2614330d292efe0c75ba80/raw/de63fc0d3a8aea94534c27dfd45fa5bb29bba3f4/GSAZ79,89,99
+
+GSAZ59: https://gist.githubusercontent.com/landbool/39ec8eb5925c585297ad7071394a5295/raw/1b01fa7c713e9c660940951026322bcf72583e23/GSAZ59
+
+GSAZ49,69: https://gist.githubusercontent.com/landbool/7d18b3e4b616adb06bb9a51e36b026ea/raw/8221c17aa56d3a90aed10ab8b5094f2d2768acf1/GSAZ49,69
+
+GSAF39-89: https://gist.githubusercontent.com/landbool/812ada79d73156f558b1dc61d6f68d23/raw/03d489820bfcc3b7fda14db8edbb2a2a4e357d07/GSAF39-89
+
+GSAF99: https://gist.githubusercontent.com/landbool/17aa62698a58a488f95ba2e18ef48724/raw/87f001856ff923d5833e6176d320583300700a88/GSAF99
+
+GSA109: https://gist.githubusercontent.com/landbool/66831e49c1087884288147c188cb3a2b/raw/c0af5e8f7d4cbeb85123ff92d783a0ce72b3c295/GSA109
+
+GSAF109: https://gist.githubusercontent.com/landbool/8b8464b9d82e1df2dc7e813a245dc3b7/raw/345ffc0115289ea5c3f5c891e117a1f823914d5f/GSAF109
+
+GSA79,89,99: https://gist.githubusercontent.com/landbool/61c720626a8d8981e5fbb9d38300931e/raw/3673eabca8aa8be3ccf2c7e5e7c984aed1dd8214/GSA79,89,99
+
+GSA49,69: https://gist.githubusercontent.com/landbool/16fb32cd86b9a951896b1f17169863a6/raw/725dcf1d0c57834107654cf11a6c0a677a8580dd/GSA49,69
+
+GSA59: https://gist.githubusercontent.com/landbool/3960c9f5b38c3522f9a4baa90b86c90c/raw/62b5b7d6b39dfd5a5d9a30dd510a8e000ff4bd2d/GSA59
+
+GSA39: https://gist.githubusercontent.com/landbool/d1b13ff5115490aeb621ab44bc8bedfa/raw/6ea037eed66cb519fd776fed5fe35a70562827d2/GSA39
+
+GSF39-89: https://gist.githubusercontent.com/landbool/7476ca99e3e0f194accffb252c8def44/raw/2cd3cd694948491d397443c60402ea65caad9145/GSF39-89
+
+GSF99: https://gist.githubusercontent.com/landbool/8baaafeefeed8933bd2dfa38e3cbc16f/raw/73c3dff63bc844f2e7ad74ee407fed87e7407c9b/GSF99
+
+GR29-179AD: https://gist.githubusercontent.com/landbool/0bf4cced7ab310f42f8bda792f949b98/raw/1faf34b6f5d62ab7fc760784cb1edc7fbd0c5229/GR29-179AD
+
+GK39-189AD: https://gist.githubusercontent.com/landbool/170acc955e04ad4ef2fc454295f8a9a6/raw/6e0293d99df0533d79e4879124d47dd52f5284d0/GK39-189AD
+
+GKHZ109: https://gist.githubusercontent.com/landbool/d3b7fa840dbf556793f25b7df32b456d/raw/41a886abf488b6f4a60a327ef124da776062b0a4/GKHZ109
+
+GKHZ99: https://gist.githubusercontent.com/landbool/40a793ff9f9be1511a3458f36fc064e4/raw/c22b9bc469b4774836dd5558a221caf5cd349f0d/GKHZ99
+
+GKHZ89: https://gist.githubusercontent.com/landbool/5d784772b16e54f9e4d86f14a2040867/raw/d19b595987ed87fe0dfabe8cf61a3ff959aa24e4/GKHZ89
+
+GKHZ79: https://gist.githubusercontent.com/landbool/d9c4da8d26026eac6dd473254c5967d6/raw/6930ef1e5da3df64cb3a4ab184a4388fcf04f683/GKHZ79
+
+GKHZ59-69: https://gist.githubusercontent.com/landbool/6bdde094c7a95dce9b875cd5609e6c75/raw/da45fc51a595941710e6c497b0252185a05343d2/GKHZ59-69
+
+GKHZ49: https://gist.githubusercontent.com/landbool/a2125ef74bccf5d766a01d7a27a09453/raw/1ee895e3ee8c91ac8fc3f2a6d01919848415427c/GKHZ49
+
+GKHZ39: https://gist.githubusercontent.com/landbool/cfc7c8f44fc25920f4a9ed33a86ba135/raw/f91cbd04726a91cac2d99bd75078fd0aa86e6a42/GKHZ39
+
+GKHZ159: https://gist.githubusercontent.com/landbool/0b23c2b08cf8e46483d263e1be83705c/raw/0a67df04b2203dccbc7d160add6570ae050f417a/GKHZ159
+
+GKHZ129: https://gist.githubusercontent.com/landbool/6b3c7035e4245f5de911acf2f231e5ae/raw/ed9d46730d2949a8e9313e28d5b8764daade57ea/GKHZ129
+
+GKHT39-109: https://gist.githubusercontent.com/landbool/44efb2b8105d223dfbaf8cb420918810/raw/3bec13bd5d49989eb5572067ec4a38ee0f033423/GKHT39-109
+
+GKHT129-159: https://gist.githubusercontent.com/landbool/c0d3fa0149b2cca7281b41d98039e716/raw/23f908e68ccf9633d79b2f34f7a2b2cdf5169f75/GKHT129-159
+
+GKAT129-159: https://gist.githubusercontent.com/landbool/225ab6d300cf0876b1d322fb4291f7bb/raw/e747400a5672a439a8a0b4088c0a3a4aa9a7626f/GKAT129-159
+
+GKAT39-109: https://gist.githubusercontent.com/landbool/05c1351f8a1e6e0da7a9c7e5dfa47cc1/raw/89decd85e75a37a3b4b21f3f63be744e72b78c18/GKAT39-109
+
+GKHB49-109: https://gist.githubusercontent.com/landbool/770ea01a9e22ba68e7a7b4163085a2d8/raw/96893ca6050b5804b2659deec7ba5959dc533bae/GKHB49-109
+
+GKHF39-89: https://gist.githubusercontent.com/landbool/cb4c5a16eb3f67c64179815a4f06fc23/raw/0049aeaa384f4cdc348b0cc763a6d74b172e33c1/GKHF39-89
+
+GKHF99-159: https://gist.githubusercontent.com/landbool/e493a6b3acd1421d183248da58db0071/raw/ac73b7f039bd314ba621d83212d5d78271b3e017/GKHF99-159
+
+GKH159-189: https://gist.githubusercontent.com/landbool/9c2bd78dd7597eb785eabc687baed97c/raw/687acf3f39d4928b421349d9844cb3d23c1afffd/GKH159-189
+
+GKH129-159: https://gist.githubusercontent.com/landbool/6f9909115ef24c960e17c93bd3653a25/raw/83578f592d7866f5a575eaf8c417d04f79559e71/GKH129-159
+
+GKH39-109: https://gist.githubusercontent.com/landbool/ad7fe5819851dee5ef49238edbbe11ca/raw/9e699c3a4389198ee0d5b35d3bb4e6b5919af250/GKH39-109
+
+GKF39-89: https://gist.githubusercontent.com/landbool/37f56b64e4a2b9f459f460fe8bbba8db/raw/ec2f7d6e6068e07c93264fdc907d8114457ec784/GKF39-89
+
+GKF99-159: https://gist.githubusercontent.com/landbool/7e2f1d80d27d3d3ac07b5d095a78ab4c/raw/be043f04f2f2ba720b5e6113a8f31f827e7a0caa/GKF99-159
+
+GKAZ159: https://gist.githubusercontent.com/landbool/a9fd64283227506f8d8c0857dd1c6fe4/raw/9c4976f0f674d853dedcf167094d9da760101802/GKAZ159
+
+GKAZ129: https://gist.githubusercontent.com/landbool/f5954015215df9a3a79360a9658dff28/raw/a7c9d9809ef34ff6d5b284d661d29ca9259a09d5/GKAZ129
+
+GKAZ109: https://gist.githubusercontent.com/landbool/e3717b4b830d121fc50bc9b2b9c66acc/raw/78d5d625a06acc1bf031ce051fd2220ba80c344b/GKAZ109
+
+GKAZ99: https://gist.githubusercontent.com/landbool/0835162de7d7effb8839e8801983fb3a/raw/4c721af312b02a50629a8b1ff10e8e1d95c2cfd0/GKAZ99
+
+GKAZ89: https://gist.githubusercontent.com/landbool/e6fca0519644eff59c5f14ef4369feb3/raw/06e0ac8d41a4da921473e5fc3ff8c893b905a4f4/GKAZ89
+
+GKAZ79: https://gist.githubusercontent.com/landbool/e9cced58e5bbd3c8a60dc6baee906f43/raw/0afd0e028d7cc0b74be36eca2267dedb72b66202/GKAZ79
+
+GKAZ59-69: https://gist.githubusercontent.com/landbool/8515597333abeb9a56c7460ec29ca662/raw/4e58f4df7426e829c8bc95324c6f5421d97c9485/GKAZ59-69
+
+GKAZ49: https://gist.githubusercontent.com/landbool/04d5ea706c68ad541164d3c8bf755bea/raw/7bab4ffe1f1d4e6e14aa9e61d4d76e146ab00d19/GKAZ49
+
+GKAZ39: https://gist.githubusercontent.com/landbool/6f91e8617cb6724b179afa522bfc6fc8/raw/5133793c3b01c749805becf58859c88dc919b8ff/GKAZ39
+
+GKAF39-89: https://gist.githubusercontent.com/landbool/b4a8a26ce58aad087e1b2f550fadc412/raw/b2c1532d456b153807228bd01b004018245f4db0/GKAF39-89
+
+GKAF99-159: https://gist.githubusercontent.com/landbool/d54533cbaaa9ebe6747244bc8a175ec3/raw/92a749cfc3b15fb1d642b7403c0b6f905675e3bd/GKAF99-159
+
+GKA189: https://gist.githubusercontent.com/landbool/58c93034b2378d276235d17acc7fa5f0/raw/989fc880f79d6b7010e62d5b94fef458cb5cd81f/GKA189
+
+GSF109: https://gist.githubusercontent.com/landbool/930dcfc0c90310b098afbec8ce44553a/raw/d436e570bb37bab35e7b8db3d8cbd0e703a1b55b/GSF109
+
+GS109: https://gist.githubusercontent.com/landbool/4d6bad140ee8a8213b419a6d2df86c3e/raw/6e1884a893a1b8ccd9a96d8c52a41d57e0d58f81/GS109
+
+GR: https://gist.githubusercontent.com/landbool/1ece0e8ea202b912df8d34e68953585d/raw/af668be2f54303521c1f0d9de52c6aa74ef8e99d/GR
+
+GK: https://gist.githubusercontent.com/landbool/78017be6756fdedd61ccf5416616c04b/raw/ce5335f3bd582889a02483713fe4f0c83ce3dc74/GK
+
+GRF: https://gist.githubusercontent.com/landbool/00e2325b4325a2b1c203d0e2a8b41174/raw/11cd156bbb0dc4e2eae5aba9cf921f3846e7f79b/GRF
+
+GS49-99: https://gist.githubusercontent.com/landbool/b9902b8a2d1e590ec33d7b21731d1411/raw/d3faeacfd07eb0d633787dac9090b360fdb72550/GS49-99
+
+GS39: https://gist.githubusercontent.com/landbool/3f954fbf92ed6f9bfdccadd6f1bc84d5/raw/d9b8f5f0d2c5d9cb8e0a7d5bcd1b4fdb348de9d8/GS39
+
+GRXF109-139: https://gist.githubusercontent.com/landbool/937714762071e91fca146a672a830dcc/raw/b25b4976955e1185e0f4c4b46143fae0881613f1/GRXF109-139
+
+GRXF59-99: https://gist.githubusercontent.com/landbool/5ddf6d984dfd30602acbe42be6fcad73/raw/5d682fde83b8bc4b3496f6d7791608d2b6485e8b/GRXF59-99
+
+GRX: https://gist.githubusercontent.com/landbool/91c4fce5ad9628dc391c6a5c7ee3a730/raw/5cb0a90f20004aec7088e65e8d173f3c8cd42b84/GRX
+
+GK189: https://gist.githubusercontent.com/landbool/fc67862faf08eb875422c4a973634c06/raw/25d6cd21e1b9b01e83993359b49415f8126c2825/GK189
+
+GK169: https://gist.githubusercontent.com/landbool/9489d4ad83248fa83342294168780688/raw/571fb6805131decbbf07976575742e200c4ee714/GK169
+
+GKA39-109: https://gist.githubusercontent.com/landbool/28a4b31d5c8bf360afc862eae9717aea/raw/39a15817fb22da0d54ee873ac37d41515675b08d/GKA39-109
+
+GKAB49-109: https://gist.githubusercontent.com/landbool/772071dc8a8e99516e8fb4e68a99421b/raw/935a9099b689789c89e2d9f5b26fac2f947da598/GKAB49-109
+
+GKA129-159: https://gist.githubusercontent.com/landbool/eaf8b96aa95ed11f3071094d4c186f65/raw/4b92b63746d6e670a2314a4f2da2eea5d81f28d9/GKA129-159
+
+GKA169: https://gist.githubusercontent.com/landbool/086cd4743e081dace62b5a5cb6d3d788/raw/0d82c7a02b9ed2741a5f62d4dabcfad3578aafbf/GKA169
