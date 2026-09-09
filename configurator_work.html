@@ -7845,12 +7845,10 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                 if (prefix === 'GFF') { state.baseType = 'flange_b5'; }
                 else if (prefix === 'GFAF') { state.baseType = 'flange_b5'; state.shaftType = 'hollow'; }
                 else if (prefix === 'GFAZ') { state.baseType = 'flange_b14'; state.shaftType = 'hollow'; }
-                else if (prefix === 'GFA') { state.shaftType = 'hollow'; }
+                else if (prefix === 'GFA' || prefix === 'GFAT') { state.shaftType = 'hollow'; }
                 else if (prefix === 'GFHF') { state.baseType = 'flange_b5'; state.shaftType = 'hollow_disc'; }
                 else if (prefix === 'GFHZ') { state.baseType = 'flange_b14'; state.shaftType = 'hollow_disc'; }
-                else if (prefix === 'GFH') { state.shaftType = 'hollow_disc'; }
-                else if (prefix === 'GFAT') { state.shaftType = 'hollow_t'; }
-                else if (prefix === 'GFHT') { state.shaftType = 'hollow_disc_t'; }
+                else if (prefix === 'GFH' || prefix === 'GFHT') { state.shaftType = 'hollow_disc'; }
             }
             else if (gearType === 'GS') {
                 if (prefix === 'GSF') { state.baseType = 'flange_b5'; }
@@ -7913,7 +7911,15 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     shaftSelect.disabled = true; 
                     shaftSelect.style.cursor = "not-allowed"; 
                 }
-                else if (type === 'GF' || type === 'GS' || type === 'GK') { // ДОБАВИЛИ type === 'GF' СЮДА
+                else if (type === 'GF') {
+                    // Блокировка выборов GFAT и GFHT: GFAT отображается на чертеже GFA, а GFHT на чертеже GFH
+                    optionsHtml = `<option value="solid">Цилиндрический со шпонкой (цельный вал)</option><option value="hollow">Полый со шпоночным пазом (GFA)</option><option value="hollow_t" disabled class="text-slate-500">Полый со шпоночным пазом + Моментный рычаг (T) (GFAT — отображается на чертеже GFA)</option><option value="hollow_disc">Полый со стяжной муфтой (Shrink Disc) (GFH)</option><option value="hollow_disc_t" disabled class="text-slate-500">Полый со стяжной муфтой + Моментный рычаг (T) (GFHT — отображается на чертеже GFH)</option>`; 
+                    shaftSelect.disabled = false; 
+                    shaftSelect.style.cursor = "pointer"; 
+                    if (state.shaftType === 'hollow_t') state.shaftType = 'hollow';
+                    if (state.shaftType === 'hollow_disc_t') state.shaftType = 'hollow_disc';
+                }
+                else if (type === 'GS' || type === 'GK') {
                     optionsHtml = `<option value="solid">Цилиндрический со шпонкой (цельный вал)</option><option value="hollow">Полый со шпоночным пазом</option><option value="hollow_t">Полый со шпоночным пазом + Моментный рычаг (T)</option><option value="hollow_disc">Полый со стяжной муфтой (Shrink Disc)</option><option value="hollow_disc_t">Полый со стяжной муфтой + Моментный рычаг (T)</option>`; 
                     shaftSelect.disabled = false; 
                     shaftSelect.style.cursor = "pointer"; 
@@ -7923,7 +7929,11 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     shaftSelect.disabled = false; 
                     shaftSelect.style.cursor = "pointer"; 
                 }
-                shaftSelect.innerHTML = optionsHtml; if (!Array.from(shaftSelect.options).map(opt => opt.value).includes(state.shaftType)) { state.shaftType = 'solid'; } shaftSelect.value = state.shaftType;
+                shaftSelect.innerHTML = optionsHtml; 
+                if (!Array.from(shaftSelect.options).filter(opt => !opt.disabled).map(opt => opt.value).includes(state.shaftType)) { 
+                    state.shaftType = (state.shaftType === 'hollow_t') ? 'hollow' : ((state.shaftType === 'hollow_disc_t') ? 'hollow_disc' : 'solid'); 
+                } 
+                shaftSelect.value = state.shaftType;
             }
             ['GR', 'GF', 'GK', 'GS'].forEach(item => { const card = document.getElementById(`card-card-${item}`); if (card) { if (item === type) { card.classList.remove('border-slate-800', 'bg-slate-950'); card.classList.add('border-white', 'bg-black/85'); } else { card.classList.remove('border-white', 'bg-black/85'); card.classList.add('border-slate-800', 'bg-slate-950'); } } });
             syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations();
@@ -7987,6 +7997,8 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             let visibleCount = 3; if (state.gearType === 'GR') { if (b14Btn) b14Btn.style.display = 'none'; visibleCount = 2; }
             if (state.gearType === 'GS') { if (state.shaftType === 'solid') { if (b14Btn) { b14Btn.disabled = true; b14Btn.style.opacity = "0.3"; b14Btn.style.cursor = "not-allowed"; b14Btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition"; if (state.baseType === 'flange_b14') state.baseType = 'foot'; } } else if (state.shaftType.endsWith('_t')) { [footBtn, b5Btn, b14Btn].forEach(btn => { if (btn) { btn.disabled = true; btn.style.opacity = "0.3"; btn.style.cursor = "not-allowed"; btn.className = "relative z-10 text-xs py-2 px-2 rounded-lg text-slate-600 font-medium text-center transition-colors duration-200"; } }); } }
             if (state.gearType === 'GF') {
+                if (state.shaftType === 'hollow_t') state.shaftType = 'hollow';
+                if (state.shaftType === 'hollow_disc_t') state.shaftType = 'hollow_disc';
                 if (state.shaftType === 'solid') {
                     if (b14Btn) {
                         b14Btn.disabled = true;
@@ -7995,16 +8007,6 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                         b14Btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition";
                         if (state.baseType === 'flange_b14') state.baseType = 'foot';
                     }
-                } else if (state.shaftType.endsWith('_t')) {
-                    // ИСПРАВЛЕНИЕ: Если выбран моментный рычаг для GF, отключаем лапы и фланцы
-                    [footBtn, b5Btn, b14Btn].forEach(btn => {
-                        if (btn) {
-                            btn.disabled = true;
-                            btn.style.opacity = "0.3";
-                            btn.style.cursor = "not-allowed";
-                            btn.className = "relative z-10 text-xs py-2 px-2 rounded-lg text-slate-600 font-medium text-center transition-colors duration-200";
-                        }
-                    });
                 }
             }
             if (state.gearType === 'GK') { if (state.shaftType === 'solid') { if (b14Btn) { b14Btn.disabled = true; b14Btn.style.opacity = "0.3"; b14Btn.style.cursor = "not-allowed"; b14Btn.className = "text-xs p-2 rounded border border-slate-800 bg-slate-900 text-slate-600 font-medium text-center transition"; if (state.baseType === 'flange_b14') state.baseType = 'foot'; } } else if (state.shaftType === 'hollow' || state.shaftType === 'hollow_disc') { if (shaftBtn) shaftBtn.style.display = ''; visibleCount = 4; } else if (state.shaftType.endsWith('_t')) { [footBtn, b5Btn, b14Btn, shaftBtn].forEach(btn => { if (btn) { btn.disabled = true; btn.style.opacity = "0.3"; btn.style.cursor = "not-allowed"; btn.className = "relative z-10 text-xs py-2 px-2 rounded-lg text-slate-600 font-medium text-center transition-colors duration-200"; } }); } }
@@ -8282,10 +8284,8 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                 if (state.gearType === 'GR') { basePrefix = basePrefix.replace('F', ''); if (state.baseType === 'flange_b5') { if (basePrefix.startsWith('GRX')) basePrefix = 'GRXF'; else if (basePrefix.startsWith('GR')) basePrefix = 'GRF'; } designCode = ""; }
                 if (state.gearType === 'GF') {
                     if (state.shaftType === 'solid') { basePrefix = (state.baseType === 'flange_b5') ? "GFF" : "GF"; }
-                    else if (state.shaftType === 'hollow') { if (state.baseType === 'flange_b5') basePrefix = "GFAF"; else if (state.baseType === 'flange_b14') basePrefix = "GFAZ"; else basePrefix = "GFA"; }
-                    else if (state.shaftType === 'hollow_disc') { if (state.baseType === 'flange_b5') basePrefix = "GFHF"; else if (state.baseType === 'flange_b14') basePrefix = "GFHZ"; else basePrefix = "GFH"; }
-                    else if (state.shaftType === 'hollow_t') { basePrefix = "GFAT"; } 
-                    else if (state.shaftType === 'hollow_disc_t') { basePrefix = "GFHT"; }
+                    else if (state.shaftType === 'hollow' || state.shaftType === 'hollow_t') { if (state.baseType === 'flange_b5') basePrefix = "GFAF"; else if (state.baseType === 'flange_b14') basePrefix = "GFAZ"; else basePrefix = "GFA"; }
+                    else if (state.shaftType === 'hollow_disc' || state.shaftType === 'hollow_disc_t') { if (state.baseType === 'flange_b5') basePrefix = "GFHF"; else if (state.baseType === 'flange_b14') basePrefix = "GFHZ"; else basePrefix = "GFH"; }
                     designCode = "";
                 }
                 if (state.gearType === 'GS') {
@@ -8532,7 +8532,7 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                             } else if (currentFrame >= 99) {
                                 updateInteractiveSvgDrawing(targetModelCode, gfaf99_159SvgUrl, gfafModelDatabase, 'GFAF99_159');
                             }
-                        } else if (targetModelCode.startsWith('GFA') || state.shaftType.startsWith('hollow')) {
+                        } else if (targetModelCode.startsWith('GFA') || targetModelCode.startsWith('GFAT') || (state.gearType === 'GF' && (state.shaftType === 'hollow' || state.shaftType === 'hollow_t'))) {
                             updateInteractiveSvgDrawing(targetModelCode, gfaSvgUrl, gfaModelDatabase, 'GFA');
                         } else {
                             if (currentFrame === 39) {
