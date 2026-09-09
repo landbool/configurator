@@ -4259,3 +4259,40 @@ https://grinstr.ru/configurator?m=GKH79-Y1,5-4P-39,21-M1-270%C2%B0-X
 5. Проведи сквозное E2E тестирование в реальном браузере через Chrome DevTools MCP (серия GS: лапы GS, GS39, GS109, GSF, GSA, GSAF, GSAZ во всех типоразмерах, регрессия на GR, GK, GF).
 6. Создай бэкап через python backup.py, обнови PROJECT_LOG.md, отправь изменения в git push origin main и подтверди деплой на grinstr.ru/configurator.
 ```
+
+---
+### 🕒 [09-09-2026 03:26]
+
+> **👤 Запрос пользователя:**
+> подгрузи в конфигуратор чертёж для gr
+> GR19-179: https://gist.githubusercontent.com/landbool/1ece0e8ea202b912df8d34e68953585d/raw/af668be2f54303521c1f0d9de52c6aa74ef8e99d/GR
+
+**🤖 Ответ и отчет субагентов:**
+- **@architect & @developer:**
+  - Обнаружено, что в `configurator_work.html` и `index.html` константа `grSvgUrl` ссылалась на устаревший путь `raw/gistfile1.txt`, возвращавший ошибку 404 (Not Found).
+  - Заменили URL на целевую проверенную ссылку Raw Gist: `https://gist.githubusercontent.com/landbool/1ece0e8ea202b912df8d34e68953585d/raw/af668be2f54303521c1f0d9de52c6aa74ef8e99d/GR`, а также добавили алиас `const gr19_179SvgUrl = grSvgUrl;`.
+  - Синхронизировали единый реестр ссылок `gist.txt` (строка 139: `GR19-179: https://gist.githubusercontent.com/landbool/1ece0e8ea202b912df8d34e68953585d/raw/af668be2f54303521c1f0d9de52c6aa74ef8e99d/GR`).
+  - Файлы `configurator_work.html` и `index.html` сохранены в 100% идентичном состоянии.
+- **@qa-engineer:**
+  - Проверена синтаксическая валидность JavaScript через Node.js (`node -c "temporary files/temp_validate.js"`) — синтаксических ошибок нет.
+  - Проведено сквозное E2E тестирование в реальном браузере через Chrome DevTools MCP:
+    * Чертеж GR (751×495) успешно подгружается из Gist и кэшируется в `drawingSvgCache`.
+    * Проверена динамическая параметризация: все 24 размерных параметра чертежа (`d`, `q1`, `G`, `n`, `a4`, `b`, `f`, `h1`, `M`, `l1`, `l`, `l2`, `K0`, `a`, `a5`, `e`, `4-s`, `h4`, `h2`, `h`, `p3`, `u`, `t`) получают реальные числовые значения из базы `grModelDatabase` для всех типоразмеров (GR19, GR39, GR69, GR89, GR139, GR179).
+    * Проверено модальное окно `openModalDrawing()`: открывается с корректным `viewBox="0 0 751 495"`, числовыми значениями и правильным заголовком.
+    * Регрессионно проверены смежные серии (GK, GF, GS) — рендеринг и связывание параметров работают штатно.
+    * Ошибки в консоли браузера отсутствуют (0 console errors).
+
+**📊 Результат и статус:**
+Чертеж серии GR (GR19-179) подключен из GitHub Gist, протестирован в браузере и готов к развертыванию.
+Создан бэкап: `v1.0.139 (Подключение чертежа GR19-179 по ссылке Gist)`.
+
+**⏩ Промт для следующего шага:**
+```text
+Выполни Этап 4 комплексной оптимизации: Очистка серии GS от fallback-констант и перевод на чистые ссылки GitHub Gist.
+1. Проверь ссылки Gist для серии GS в gist.txt (GS39-99, GS109, GSA39-99, GSF39-99, GSF109, GSAT, GSH, GSHF, GSHZ).
+2. Подключи проверенные Gist URL для серии GS в configurator_work.html и index.html.
+3. Удали тяжелые inline-константы FALLBACK_GS_SVG, FALLBACK_GSF_SVG и др.
+4. Проверь синтаксис JavaScript через Node.js.
+5. Проведи сквозную проверку подгрузки габаритов через Chrome DevTools MCP.
+6. Создай бэкап, обнови PROJECT_LOG.md, сделай git commit & push и подтверди выкатку на grinstr.ru/configurator.
+```

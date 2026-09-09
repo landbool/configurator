@@ -136,7 +136,7 @@ GSF109: https://gist.githubusercontent.com/landbool/930dcfc0c90310b098afbec8ce44
 
 GS109: https://gist.githubusercontent.com/landbool/4d6bad140ee8a8213b419a6d2df86c3e/raw/6e1884a893a1b8ccd9a96d8c52a41d57e0d58f81/GS109
 
-GR: https://gist.githubusercontent.com/landbool/1ece0e8ea202b912df8d34e68953585d/raw/af668be2f54303521c1f0d9de52c6aa74ef8e99d/GR
+GR19-179: https://gist.githubusercontent.com/landbool/1ece0e8ea202b912df8d34e68953585d/raw/af668be2f54303521c1f0d9de52c6aa74ef8e99d/GR
 
 GK: https://gist.githubusercontent.com/landbool/78017be6756fdedd61ccf5416616c04b/raw/ce5335f3bd582889a02483713fe4f0c83ce3dc74/GK
 
