@@ -10,7 +10,7 @@ grx (grxSvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Dr
 grxf109_139 (grxf109SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GR/GRXF59-139%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/grxf109_139.svg
 grxf59_99 (grxf59SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GR/GRXF59-139%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/grxf59_99.svg
 
-## СЕРИЯ GF (21 чертежей)
+## СЕРИЯ GF (22 чертежа)
 GF109-159 (gf109_159SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF109-159.svg | Gist: https://gist.github.com/landbool/1b8c661ef40f75dabaa5986ae7e5bc91
 GF39 (gf39SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF39.svg | Gist: https://gist.github.com/landbool/3c213e798f0cb9bf96d53c161e8a6c1b
 GF49 (gf49SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF49.svg | Gist: https://gist.github.com/landbool/b489289cd5a4d859751aeaf4910ac49f
@@ -32,6 +32,7 @@ GFAZ89 (gfaz89SvgUrl): https://raw.githubusercontent.com/landbool/configurator/m
 GFAZ99 (gfaz99SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAZ99.svg
 GFF39-89 (gff39_89SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFF39-89.svg
 GFF99-159 (gff99_159SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFF99-159.svg
+GFH (gfhSvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFH39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFH.svg | Gist: https://gist.github.com/landbool/21ec6d676e52456e257587e31ce11e1b
 
 ## СЕРИЯ GK (41 чертежей)
 GK169 (gk169SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GK169-189%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GK169.svg
