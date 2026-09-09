@@ -5982,95 +5982,95 @@ let gkhzModelDatabase = {
         let grModelDatabase = FALLBACK_DATA.GR || {}, gkModelDatabase = FALLBACK_DATA.GK || {}, grfModelDatabase = FALLBACK_DATA.GRF || {}, gfModelDatabase = FALLBACK_DATA.GF || {}, gfaModelDatabase = {}, gsModelDatabase = FALLBACK_DATA.GS || {}, shaftsDatabase = FALLBACK_DATA.shafts || {}, grxModelDatabase = FALLBACK_DATA.GRX || {}, grxfModelDatabase = FALLBACK_DATA.GRXF || {};
 
         // Прямые ссылки на чертежи (Raw Gist без лимитов)
-        const grSvgUrl = 'https://gist.githubusercontent.com/landbool/1ece0e8ea202b912df8d34e68953585d/raw/GR';
+        const grSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GR/GR%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GR.svg';
         const gr19_179SvgUrl = grSvgUrl;
-        const gkSvgUrl = 'https://gist.githubusercontent.com/landbool/78017be6756fdedd61ccf5416616c04b/raw/GK';
-        const gk169SvgUrl = 'https://gist.githubusercontent.com/landbool/9489d4ad83248fa83342294168780688/raw/GK169';
-        const gk189SvgUrl = 'https://gist.githubusercontent.com/landbool/fc67862faf08eb875422c4a973634c06/raw/GK189';
-        const gkAdSvgUrl = 'https://gist.githubusercontent.com/landbool/2b4d9b4b0e527d2b4505c87e0988e001/raw/GK39-189AD';
-        const gka39SvgUrl = 'https://gist.githubusercontent.com/landbool/28a4b31d5c8bf360afc862eae9717aea/raw/GKA39-109';
-        const gka129SvgUrl = 'https://gist.githubusercontent.com/landbool/eaf8b96aa95ed11f3071094d4c186f65/raw/GKA129-159';
-        const gka169SvgUrl = 'https://gist.githubusercontent.com/landbool/086cd4743e081dace62b5a5cb6d3d788/raw/GKA169';
-        const gka189SvgUrl = 'https://gist.githubusercontent.com/landbool/58c93034b2378d276235d17acc7fa5f0/raw/GKA189';
+        const gkSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GK39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GK.svg';
+        const gk169SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GK169-189%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GK169.svg';
+        const gk189SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GK169-189%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GK189.svg';
+        const gkAdSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GK_AD/GK39-189AD%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GK39-189AD.svg';
+        const gka39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKA%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKA39-109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKA39-109.svg';
+        const gka129SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKA%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKA129-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKA129-159.svg';
+        const gka169SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKA%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKA169%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKA169.svg';
+        const gka189SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKA%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKA189%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKA189.svg';
         const gkaSheetsUrl = 'https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GKA39-109';
-        const gkabSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAB%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKAB49-109%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GKAB49-109.svg';
-        const gkaf39SvgUrl = 'https://gist.githubusercontent.com/landbool/b4a8a26ce58aad087e1b2f550fadc412/raw/GKAF39-89';
-        const gkaf99SvgUrl = 'https://gist.githubusercontent.com/landbool/d54533cbaaa9ebe6747244bc8a175ec3/raw/GKAF99-159';
-        const gkf39SvgUrl = 'https://gist.githubusercontent.com/landbool/37f56b64e4a2b9f459f460fe8bbba8db/raw/GKF39-89';
-        const gkf99SvgUrl = 'https://gist.githubusercontent.com/landbool/7e2f1d80d27d3d3ac07b5d095a78ab4c/raw/GKF99-159';
-        const gkh39SvgUrl = 'https://gist.githubusercontent.com/landbool/ad7fe5819851dee5ef49238edbbe11ca/raw/GKH39-109';
-        const gkh129SvgUrl = 'https://gist.githubusercontent.com/landbool/6f9909115ef24c960e17c93bd3653a25/raw/GKH129-159';
-        const gkh159SvgUrl = 'https://gist.githubusercontent.com/landbool/9c2bd78dd7597eb785eabc687baed97c/raw/GKH159-189';
-        const gkhb49SvgUrl = 'https://gist.githubusercontent.com/landbool/770ea01a9e22ba68e7a7b4163085a2d8/raw/GKHB49-109';
-        const gkhf39SvgUrl = 'https://gist.githubusercontent.com/landbool/cb4c5a16eb3f67c64179815a4f06fc23/raw/GKHF39-89';
-        const gkhf99SvgUrl = 'https://gist.githubusercontent.com/landbool/e493a6b3acd1421d183248da58db0071/raw/GKHF99-159';
-        const gkat39SvgUrl = 'https://gist.githubusercontent.com/landbool/05c1351f8a1e6e0da7a9c7e5dfa47cc1/raw/GKAT39-109';
-        const gkat129SvgUrl = 'https://gist.githubusercontent.com/landbool/225ab6d300cf0876b1d322fb4291f7bb/raw/GKAT129-159';
-        const gkht39SvgUrl = 'https://gist.githubusercontent.com/landbool/44efb2b8105d223dfbaf8cb420918810/raw/GKHT39-109';
-        const gkht129SvgUrl = 'https://gist.githubusercontent.com/landbool/c0d3fa0149b2cca7281b41d98039e716/raw/GKHT129-159';
-        const gkaz39SvgUrl = 'https://gist.githubusercontent.com/landbool/6f91e8617cb6724b179afa522bfc6fc8/raw/GKAZ39';
-        const gkaz49SvgUrl = 'https://gist.githubusercontent.com/landbool/04d5ea706c68ad541164d3c8bf755bea/raw/GKAZ49';
-        const gkaz59SvgUrl = 'https://gist.githubusercontent.com/landbool/8515597333abeb9a56c7460ec29ca662/raw/GKAZ59-69';
-        const gkaz79SvgUrl = 'https://gist.githubusercontent.com/landbool/e9cced58e5bbd3c8a60dc6baee906f43/raw/GKAZ79';
-        const gkaz89SvgUrl = 'https://gist.githubusercontent.com/landbool/e6fca0519644eff59c5f14ef4369feb3/raw/GKAZ89';
-        const gkaz99SvgUrl = 'https://gist.githubusercontent.com/landbool/0835162de7d7effb8839e8801983fb3a/raw/GKAZ99';
-        const gkaz109SvgUrl = 'https://gist.githubusercontent.com/landbool/e3717b4b830d121fc50bc9b2b9c66acc/raw/GKAZ109';
-        const gkaz129SvgUrl = 'https://gist.githubusercontent.com/landbool/f5954015215df9a3a79360a9658dff28/raw/GKAZ129';
-        const gkaz159SvgUrl = 'https://gist.githubusercontent.com/landbool/a9fd64283227506f8d8c0857dd1c6fe4/raw/GKAZ159';
-        const gkhz39SvgUrl = 'https://gist.githubusercontent.com/landbool/cfc7c8f44fc25920f4a9ed33a86ba135/raw/GKHZ39';
-        const gkhz49SvgUrl = 'https://gist.githubusercontent.com/landbool/a2125ef74bccf5d766a01d7a27a09453/raw/GKHZ49';
-        const gkhz59SvgUrl = 'https://gist.githubusercontent.com/landbool/6bdde094c7a95dce9b875cd5609e6c75/raw/GKHZ59-69';
-        const gkhz79SvgUrl = 'https://gist.githubusercontent.com/landbool/d9c4da8d26026eac6dd473254c5967d6/raw/GKHZ79';
-        const gkhz89SvgUrl = 'https://gist.githubusercontent.com/landbool/5d784772b16e54f9e4d86f14a2040867/raw/GKHZ89';
-        const gkhz99SvgUrl = 'https://gist.githubusercontent.com/landbool/40a793ff9f9be1511a3458f36fc064e4/raw/GKHZ99';
-        const gkhz109SvgUrl = 'https://gist.githubusercontent.com/landbool/d3b7fa840dbf556793f25b7df32b456d/raw/GKHZ109';
-        const gkhz129SvgUrl = 'https://gist.githubusercontent.com/landbool/6b3c7035e4245f5de911acf2f231e5ae/raw/GKHZ129';
-        const gkhz159SvgUrl = 'https://gist.githubusercontent.com/landbool/0b23c2b08cf8e46483d263e1be83705c/raw/GKHZ159';
-        const grfSvgUrl = 'https://gist.githubusercontent.com/landbool/00e2325b4325a2b1c203d0e2a8b41174/raw/GRF';
-        const gf39SvgUrl = 'https://gist.githubusercontent.com/landbool/814237b19f66bfeab4c0a58073bb0c86/raw/GF39';
-        const gf49SvgUrl = 'https://gist.githubusercontent.com/landbool/34f4fcf5d7476067e0aae551eb31edf3/raw/GF49';
-        const gf59_69SvgUrl = 'https://gist.githubusercontent.com/landbool/283cd1d7fdbbd69f9a3981180b7f8d02/raw/GF59-69';
-        const gf79SvgUrl = 'https://gist.githubusercontent.com/landbool/0e04eaf833ec1ef3667a15aab0332568/raw/GF79';
-        const gf89SvgUrl = 'https://gist.githubusercontent.com/landbool/380a120e1b0ae904ff6a3849e8b67884/raw/GF89';
-        const gf99SvgUrl = 'https://gist.githubusercontent.com/landbool/e08ac63b31017fbcf7c88383d057ff70/raw/GF99';
-        const gf109_159SvgUrl = 'https://gist.githubusercontent.com/landbool/d1a820421b0279add89d02ab38c42c7a/raw/GF109-159';
-        const gfaSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFA39-159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GFA.svg';
-        const gsSvgUrl = 'https://gist.githubusercontent.com/landbool/b9902b8a2d1e590ec33d7b21731d1411/raw/GS49-99';
-        const gs39SvgUrl = 'https://gist.githubusercontent.com/landbool/3f954fbf92ed6f9bfdccadd6f1bc84d5/raw/GS39';
-        const gs109SvgUrl = 'https://gist.githubusercontent.com/landbool/4d6bad140ee8a8213b419a6d2df86c3e/raw/GS109';
-        const gsf109SvgUrl = 'https://gist.githubusercontent.com/landbool/930dcfc0c90310b098afbec8ce44553a/raw/GSF109';
-        const gsf39_89SvgUrl = 'https://gist.githubusercontent.com/landbool/7476ca99e3e0f194accffb252c8def44/raw/GSF39-89';
+        const gkabSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAB%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAB49-109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAB49-109.svg';
+        const gkaf39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAF%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAF39-89%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAF39-89.svg';
+        const gkaf99SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAF%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAF99-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAF99-159.svg';
+        const gkf39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKF%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKF39-89%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKF39-89.svg';
+        const gkf99SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKF%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKF99-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKF99-159.svg';
+        const gkh39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKH%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKH39-109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKH39-109.svg';
+        const gkh129SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKH%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKH129-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKH129-159.svg';
+        const gkh159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKH%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKH159-189%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKH159-189.svg';
+        const gkhb49SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHB%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHB49-109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHB49-109.svg';
+        const gkhf39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHF%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHF39-89%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHF39-89.svg';
+        const gkhf99SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHF%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHF99-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHF99-159.svg';
+        const gkat39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAT%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAT39-109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAT39-109.svg';
+        const gkat129SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAT%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAT129-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAT129-159.svg';
+        const gkht39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHT%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHT39-109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHT39-109.svg';
+        const gkht129SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHT%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHT129-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHT129-159.svg';
+        const gkaz39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ39%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ39.svg';
+        const gkaz49SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ49%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ49.svg';
+        const gkaz59SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ59-69%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ59-69.svg';
+        const gkaz79SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ79%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ79.svg';
+        const gkaz89SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ89%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ89.svg';
+        const gkaz99SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ99.svg';
+        const gkaz109SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ109.svg';
+        const gkaz129SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ129%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ129.svg';
+        const gkaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKAZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKAZ159.svg';
+        const gkhz39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ39%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ39.svg';
+        const gkhz49SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ49%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ49.svg';
+        const gkhz59SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ59-69%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ59-69.svg';
+        const gkhz79SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ79%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ79.svg';
+        const gkhz89SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ89%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ89.svg';
+        const gkhz99SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ99.svg';
+        const gkhz109SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ109.svg';
+        const gkhz129SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ129%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ129.svg';
+        const gkhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GKHZ%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GKHZ159.svg';
+        const grfSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GR/GRF%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GRF.svg';
+        const gf39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF39.svg';
+        const gf49SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF49.svg';
+        const gf59_69SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF59-69.svg';
+        const gf79SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF79.svg';
+        const gf89SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF89.svg';
+        const gf99SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF99.svg';
+        const gf109_159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF109-159.svg';
+        const gfaSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFA39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFA.svg';
+        const gsSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GS49-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GS49-99.svg';
+        const gs39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GS39%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GS39.svg';
+        const gs109SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GS109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GS109.svg';
+        const gsf109SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSF109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSF109.svg';
+        const gsf39_89SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSF39-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSF39-89.svg';
         const gsf39SvgUrl = gsf39_89SvgUrl;
-        const gsf99SvgUrl = 'https://gist.githubusercontent.com/landbool/8baaafeefeed8933bd2dfa38e3cbc16f/raw/GSF99';
-        const gsa39SvgUrl = 'https://gist.githubusercontent.com/landbool/d1b13ff5115490aeb621ab44bc8bedfa/raw/GSA39';
-        const gsa59SvgUrl = 'https://gist.githubusercontent.com/landbool/3960c9f5b38c3522f9a4baa90b86c90c/raw/GSA59';
-        const gsa49_69SvgUrl = 'https://gist.githubusercontent.com/landbool/16fb32cd86b9a951896b1f17169863a6/raw/GSA49,69';
-        const gsa79_99SvgUrl = 'https://gist.githubusercontent.com/landbool/61c720626a8d8981e5fbb9d38300931e/raw/GSA79,89,99';
-        const gsa109SvgUrl = 'https://gist.githubusercontent.com/landbool/66831e49c1087884288147c188cb3a2b/raw/GSA109';
-        const gsaf39_89SvgUrl = 'https://gist.githubusercontent.com/landbool/812ada79d73156f558b1dc61d6f68d23/raw/GSAF39-89';
-        const gsaf99SvgUrl = 'https://gist.githubusercontent.com/landbool/17aa62698a58a488f95ba2e18ef48724/raw/GSAF99';
-        const gsaf109SvgUrl = 'https://gist.githubusercontent.com/landbool/8b8464b9d82e1df2dc7e813a245dc3b7/raw/GSAF109';
-        const gsaz49_69SvgUrl = 'https://gist.githubusercontent.com/landbool/7d18b3e4b616adb06bb9a51e36b026ea/raw/GSAZ49,69';
-        const gsaz59SvgUrl = 'https://gist.githubusercontent.com/landbool/39ec8eb5925c585297ad7071394a5295/raw/GSAZ59';
-        const gsaz79_99SvgUrl = 'https://gist.githubusercontent.com/landbool/7d64c9168f2614330d292efe0c75ba80/raw/GSAZ79,89,99';
-const gff39_89SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFF39-159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GFF39-89.svg';
-const gff99_159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFF39-159%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GFF99-159.svg';
-const gfaf39_89SvgUrl = 'https://gist.githubusercontent.com/landbool/e3f1d29a8102230a70c21ac6988c9c02/raw/GFAF39-89';
-const gfaf99_159SvgUrl = 'https://gist.githubusercontent.com/landbool/8554c46f190534d769cf403e7e18c6c3/raw/GFAF99-159';
-const gfaz39SvgUrl = 'https://gist.githubusercontent.com/landbool/30b525d325772940d8a6f70754e137f9/raw/GFAZ39';
-const gfaz49SvgUrl = 'https://gist.githubusercontent.com/landbool/df8fbace2bf17003d03777a52e92c716/raw/GFAZ49';
-const gfaz59_69SvgUrl = 'https://gist.githubusercontent.com/landbool/a7d1c4acb740b109e64fa0cd82c0ab62/raw/GFAZ59-69';
-const gfaz79SvgUrl = 'https://gist.githubusercontent.com/landbool/be477a7b2d5f82b1ddb6acc200a08e13/raw/GFAZ79';
-const gfaz89SvgUrl = 'https://gist.githubusercontent.com/landbool/f9f1aca028b63d9454ffc5eb4a511220/raw/GFAZ89';
-const gfaz99SvgUrl = 'https://gist.githubusercontent.com/landbool/4afe6cfeecdca6b1c8e67d53d5907dea/raw/GFAZ99';
-const gfaz109SvgUrl = 'https://gist.githubusercontent.com/landbool/02d264661cff585c561a16396219fde1/raw/GFAZ109';
-const gfaz129SvgUrl = 'https://gist.githubusercontent.com/landbool/f480ee9503a9f91bef2cce4fc34a18d5/raw/GFAZ129';
-const gfaz159SvgUrl = 'https://gist.githubusercontent.com/landbool/823d311b6e7361707eca186c9bc99fd9/raw/GFAZ159';
-        const grAdSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GR/GR_AD/GR29-179AD%20(%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE)/GR29-179AD.svg';
-        const grxSvgUrl = 'https://gist.githubusercontent.com/landbool/91c4fce5ad9628dc391c6a5c7ee3a730/raw/GRX';
+        const gsf99SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSF39-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSF99.svg';
+        const gsa39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSA39%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSA39.svg';
+        const gsa59SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSA39-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSA59.svg';
+        const gsa49_69SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSA39-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSA49%2C%2069.svg';
+        const gsa79_99SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSA39-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSA79%2C%2089%2C%2099.svg';
+        const gsa109SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSA109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSA109.svg';
+        const gsaf39_89SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSAF39-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSAF39-89.svg';
+        const gsaf99SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSAF39-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSAF99.svg';
+        const gsaf109SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSAF109%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSAF109.svg';
+        const gsaz49_69SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSAZ49-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSAZ49%2C69.svg';
+        const gsaz59SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSAZ49-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSAZ59.svg';
+        const gsaz79_99SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSAZ49-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSAZ79%2C89%2C99.svg';
+const gff39_89SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFF39-89.svg';
+const gff99_159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFF99-159.svg';
+const gfaf39_89SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAF39-89.svg';
+const gfaf99_159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAF99-159.svg';
+const gfaz39SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAZ39.svg';
+const gfaz49SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAZ49.svg';
+const gfaz59_69SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAZ59-69.svg';
+const gfaz79SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAZ79.svg';
+const gfaz89SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAZ89.svg';
+const gfaz99SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAZ99.svg';
+const gfaz109SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAZ109.svg';
+const gfaz129SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAZ129.svg';
+const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFAZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFAZ159.svg';
+        const grAdSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GR/GR_AD/GR29-179AD%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GR29-179AD.svg';
+        const grxSvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GR/GRX59-139%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/grx.svg';
         const grxSheetsUrl = '';
-        const grxf59SvgUrl = 'https://gist.githubusercontent.com/landbool/5ddf6d984dfd30602acbe42be6fcad73/raw/GRXF59-99';
-        const grxf109SvgUrl = 'https://gist.githubusercontent.com/landbool/937714762071e91fca146a672a830dcc/raw/GRXF109-139';
+        const grxf59SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GR/GRXF59-139%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/grxf59_99.svg';
+        const grxf109SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GR/GRXF59-139%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/grxf109_139.svg';
         const grxfSheetsUrl = '';
         const GKAZ_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GKAZ39-159';
         const GKA129_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1HhgyEjFA4WvfpVTErI-YcNp9aEby91HY3Zy45rWqSgE/gviz/tq?tqx=out:csv&sheet=GKA129-159';
@@ -6212,12 +6212,16 @@ const gfaz159SvgUrl = 'https://gist.githubusercontent.com/landbool/823d311b6e736
             if (!url) return fallbackCode;
             if (drawingSvgCache[url]) return drawingSvgCache[url];
             try {
-                let text = await fetchSafeText(url);
-                if (!text && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
-                    const localPath = url.replace('https://raw.githubusercontent.com/landbool/configurator/main/', './');
+                let text = '';
+                if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+                    let localPath = url.replace('https://raw.githubusercontent.com/landbool/configurator/main/', './');
                     if (localPath !== url) {
+                        try { localPath = decodeURIComponent(localPath); } catch (err) {}
                         text = await fetchSafeText(localPath);
                     }
+                }
+                if (!text) {
+                    text = await fetchSafeText(url);
                 }
                 if (text && (text.includes('<svg') || text.includes('data-param='))) {
                     drawingSvgCache[url] = text;
@@ -6955,9 +6959,10 @@ const gfaz159SvgUrl = 'https://gist.githubusercontent.com/landbool/823d311b6e736
                 }
             };
 
-            const isBlankOrDash = (v) => {
+            const isBlankOrDash = (v, paramName = '') => {
                 if (v === undefined || v === null) return true;
                 const s = String(v).trim();
+                if (paramName && s.toLowerCase() === paramName.toLowerCase()) return true;
                 return s === '' || s === '-' || s === '—' || s === '–' || s === '−' || /^[\s\-\u2013\u2014\u2212]+$/.test(s);
             };
 
@@ -6976,7 +6981,7 @@ const gfaz159SvgUrl = 'https://gist.githubusercontent.com/landbool/823d311b6e736
                 if (!modelData) { el.textContent = param; return; }
                 if (param === 'M-8.8') {
                     const mVal = modelData['M'];
-                    if (isBlankOrDash(mVal)) {
+                    if (isBlankOrDash(mVal, 'M') || isBlankOrDash(mVal, param)) {
                         el.textContent = "";
                     } else {
                         const mStr = String(mVal).trim();
@@ -6985,7 +6990,7 @@ const gfaz159SvgUrl = 'https://gist.githubusercontent.com/landbool/823d311b6e736
                     }
                 } else if (param === '4-s') {
                     const sValue = modelData['s'];
-                    if (isBlankOrDash(sValue)) {
+                    if (isBlankOrDash(sValue, 's') || isBlankOrDash(sValue, param)) {
                         el.textContent = "";
                     } else {
                         const sStr = String(sValue).trim();
@@ -6999,7 +7004,7 @@ const gfaz159SvgUrl = 'https://gist.githubusercontent.com/landbool/823d311b6e736
                     }
                 } else if (param === '8-s') {
                     const sValue = modelData['s'];
-                    if (isBlankOrDash(sValue)) {
+                    if (isBlankOrDash(sValue, 's') || isBlankOrDash(sValue, param)) {
                         el.textContent = "";
                     } else {
                         const sStr = String(sValue).trim();
@@ -7014,11 +7019,11 @@ const gfaz159SvgUrl = 'https://gist.githubusercontent.com/landbool/823d311b6e736
                 } else if (param === 'n-s') {
                     const nVal = modelData['n'];
                     const sVal = modelData['s'];
-                    if (isBlankOrDash(nVal) && isBlankOrDash(sVal)) {
+                    if (isBlankOrDash(nVal, 'n') && isBlankOrDash(sVal, 's')) {
                         el.textContent = "";
-                    } else if (isBlankOrDash(nVal)) {
+                    } else if (isBlankOrDash(nVal, 'n')) {
                         el.textContent = String(sVal).trim();
-                    } else if (isBlankOrDash(sVal)) {
+                    } else if (isBlankOrDash(sVal, 's')) {
                         el.textContent = String(nVal).trim();
                     } else {
                         el.textContent = `${String(nVal).trim()}-${String(sVal).trim()}`;
@@ -7036,7 +7041,7 @@ const gfaz159SvgUrl = 'https://gist.githubusercontent.com/landbool/823d311b6e736
                         rawVal = modelData[param.toUpperCase()];
                     }
 
-                    if (isBlankOrDash(rawVal)) {
+                    if (isBlankOrDash(rawVal, param)) {
                         el.textContent = "";
                         return;
                     }
