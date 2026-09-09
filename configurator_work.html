@@ -7912,8 +7912,8 @@ const gfaz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     shaftSelect.style.cursor = "not-allowed"; 
                 }
                 else if (type === 'GF') {
-                    // Блокировка выборов GFAT и GFHT: GFAT отображается на чертеже GFA, а GFHT на чертеже GFH
-                    optionsHtml = `<option value="solid">Цилиндрический со шпонкой (цельный вал)</option><option value="hollow">Полый со шпоночным пазом (GFA)</option><option value="hollow_t" disabled class="text-slate-500">Полый со шпоночным пазом + Моментный рычаг (T) (GFAT — отображается на чертеже GFA)</option><option value="hollow_disc">Полый со стяжной муфтой (Shrink Disc) (GFH)</option><option value="hollow_disc_t" disabled class="text-slate-500">Полый со стяжной муфтой + Моментный рычаг (T) (GFHT — отображается на чертеже GFH)</option>`; 
+                    // Для серии GF опции с моментным рычагом (GFAT и GFHT) скрыты: GFAT отображается на чертеже GFA, а GFHT на чертеже GFH
+                    optionsHtml = `<option value="solid">Цилиндрический со шпонкой (цельный вал)</option><option value="hollow">Полый со шпоночным пазом</option><option value="hollow_disc">Полый со стяжной муфтой (Shrink Disc)</option>`; 
                     shaftSelect.disabled = false; 
                     shaftSelect.style.cursor = "pointer"; 
                     if (state.shaftType === 'hollow_t') state.shaftType = 'hollow';
