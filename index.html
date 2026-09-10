@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Интерактивный Конфигуратор Guomao G-Серии по реальной таблице</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -9707,32 +9710,108 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
         }
 
         async function sendRequest() {
-            const name = document.getElementById('user-name').value.trim(); const phone = document.getElementById('user-phone').value.trim(); const email = document.getElementById('user-email').value.trim(); const comment = document.getElementById('user-comment').value.trim();
-            if (!name || !phone || !email) { showToast("Заполните Имя, Телефон и Email!", true); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast("Введите корректный E-mail адрес (например, name@mail.ru)!", true); return; }
-            if (phone.replace(/\D/g, '').length < 11) { showToast("Номер телефона введен не полностью!", true); return; }
-            const currentMarking = document.getElementById('result-marking').textContent.trim(); const botToken = "8849979630:AAH7owb4Wf__LEBTgTnqWtwH6zeaguuzVdE"; const chatId = "-1004486251333";
-            const messageText = `<b>Новая заявка с сайта GRINSTR.RU</b>\n---------------------------------------------\n<b>Маркировка подобранного мотор-редуктора:</b>\n⚙️ <code>${escapeHtml(currentMarking)}</code>\n---------------------------------------------\n<b>Контакты клиента:</b>\n👤 <b>Имя:</b> ${escapeHtml(name)}\n📞 <b>Телефон:</b> <code>${escapeHtml(phone)}</code>\n✉️ <b>Email:</b> ${escapeHtml(email)}\n💬 <b>Комментарий:</b> ${escapeHtml(comment)}`;
-            showToast("Отправка запроса...");
-            try {
-            const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: chatId, text: messageText, parse_mode: 'HTML' }) });
-            if (response.ok) { 
-                showToast("Заявка успешно отправлена!"); 
-                document.getElementById('user-name').value = ''; 
-                document.getElementById('user-phone').value = ''; 
-                document.getElementById('user-email').value = ''; 
-                document.getElementById('user-comment').value = ''; 
-                closeRequestModal();
-            } else { 
-                // Если Telegram ответил, но с ошибкой (например, неверный токен или ID чата)
-                const errData = await response.json().catch(() => ({}));
-                console.error("Ошибка ответа Telegram API:", errData);
-                throw new Error(); 
+            const name = document.getElementById('user-name').value.trim();
+            const phone = document.getElementById('user-phone').value.trim();
+            const email = document.getElementById('user-email').value.trim();
+            const comment = document.getElementById('user-comment').value.trim();
+
+            if (!name || !phone || !email) {
+                showToast("Заполните Имя, Телефон и Email!", true);
+                return;
             }
-            } catch (error) {
-                // ВЫВОДИМ ОШИБКУ В КОНСОЛЬ (Нажмите F12 на проблемном ПК, чтобы прочитать её)
-                console.error("Критическая ошибка сети / блокировка запроса:", error); 
-                showToast("Ошибка отправки! Попробуйте еще раз.", true); 
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showToast("Введите корректный E-mail адрес (например, name@mail.ru)!", true);
+                return;
+            }
+            if (phone.replace(/\D/g, '').length < 11) {
+                showToast("Номер телефона введен не полностью!", true);
+                return;
+            }
+
+            const currentMarking = document.getElementById('result-marking').textContent.trim();
+            const botToken = "8849979630:AAH7owb4Wf__LEBTgTnqWtwH6zeaguuzVdE";
+            const chatId = "-1004486251333";
+
+            const messageText = `<b>Новая заявка с сайта GRINSTR.RU</b>\n---------------------------------------------\n<b>Маркировка подобранного мотор-редуктора:</b>\n⚙️ <code>${escapeHtml(currentMarking)}</code>\n---------------------------------------------\n<b>Контакты клиента:</b>\n👤 <b>Имя:</b> ${escapeHtml(name)}\n📞 <b>Телефон:</b> <code>${escapeHtml(phone)}</code>\n✉️ <b>Email:</b> ${escapeHtml(email)}\n💬 <b>Комментарий:</b> ${escapeHtml(comment)}`;
+
+            showToast("Отправка запроса...");
+
+            const postParams = new URLSearchParams();
+            postParams.append('chat_id', chatId);
+            postParams.append('text', messageText);
+            postParams.append('parse_mode', 'HTML');
+
+            let isSuccess = false;
+
+            // Уровень 1: Simple CORS POST via URLSearchParams (без OPTIONS preflight)
+            try {
+                const r1 = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    body: postParams
+                });
+                if (r1 && r1.ok) {
+                    const data = await r1.json().catch(() => ({}));
+                    if (data && data.ok) isSuccess = true;
+                }
+            } catch (e1) {
+                console.warn("Telegram API: Уровень 1 (POST URLSearchParams) не прошел:", e1);
+            }
+
+            // Уровень 2: GET-запрос (обходит строгие междоменные блокировки POST)
+            if (!isSuccess) {
+                try {
+                    const r2 = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?${postParams.toString()}`, {
+                        method: 'GET'
+                    });
+                    if (r2 && r2.ok) {
+                        const data = await r2.json().catch(() => ({}));
+                        if (data && data.ok) isSuccess = true;
+                    }
+                } catch (e2) {
+                    console.warn("Telegram API: Уровень 2 (GET) не прошел:", e2);
+                }
+            }
+
+            // Уровень 3: Стандартный JSON POST
+            if (!isSuccess) {
+                try {
+                    const r3 = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ chat_id: chatId, text: messageText, parse_mode: 'HTML' })
+                    });
+                    if (r3 && r3.ok) {
+                        const data = await r3.json().catch(() => ({}));
+                        if (data && data.ok) isSuccess = true;
+                    }
+                } catch (e3) {
+                    console.warn("Telegram API: Уровень 3 (JSON POST) не прошел:", e3);
+                }
+            }
+
+            if (isSuccess) {
+                showToast("Заявка успешно отправлена!");
+                document.getElementById('user-name').value = '';
+                document.getElementById('user-phone').value = '';
+                document.getElementById('user-email').value = '';
+                document.getElementById('user-comment').value = '';
+                closeRequestModal();
+            } else {
+                // Страховка от потери лида: автоматическое копирование в буфер обмена
+                try {
+                    const fallbackText = `Запрос ТКП с сайта GRINSTR.RU:\nМотор-редуктор: ${currentMarking}\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\nКомментарий: ${comment}`;
+                    const ta = document.createElement("textarea");
+                    ta.value = fallbackText;
+                    ta.style.position = "fixed";
+                    ta.style.opacity = "0";
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                } catch (errCopy) {}
+
+                console.error("Критическая ошибка сети / блокировка запроса к Telegram API");
+                showToast("Сбой сети Telegram! Заявка скопирована в буфер обмена. Нажмите Ctrl+F5.", true);
             }
         }
 
