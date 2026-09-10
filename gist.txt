@@ -10,7 +10,7 @@ grx (grxSvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Dr
 grxf109_139 (grxf109SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GR/GRXF59-139%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/grxf109_139.svg
 grxf59_99 (grxf59SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GR/GRXF59-139%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/grxf59_99.svg
 
-## СЕРИЯ GF (22 чертежа)
+## СЕРИЯ GF (33 чертежа)
 GF109-159 (gf109_159SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF109-159.svg | Gist: https://gist.github.com/landbool/1b8c661ef40f75dabaa5986ae7e5bc91
 GF39 (gf39SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF39.svg | Gist: https://gist.github.com/landbool/3c213e798f0cb9bf96d53c161e8a6c1b
 GF49 (gf49SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GF49.svg | Gist: https://gist.github.com/landbool/b489289cd5a4d859751aeaf4910ac49f
@@ -33,6 +33,17 @@ GFAZ99 (gfaz99SvgUrl): https://raw.githubusercontent.com/landbool/configurator/m
 GFF39-89 (gff39_89SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFF39-89.svg
 GFF99-159 (gff99_159SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFF99-159.svg
 GFH (gfhSvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFH39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFH.svg | Gist: https://gist.github.com/landbool/21ec6d676e52456e257587e31ce11e1b
+GFHF39-89 (gfhf39_89SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHF39-89.svg | Gist: https://gist.github.com/landbool/0dde9f34f2e205cbb9a8396026c38de1
+GFHF99-159 (gfhf99_159SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHF99-159.svg | Gist: https://gist.github.com/landbool/c9dbd334718f1e32302ee1eeb9f83d84
+GFHZ39 (gfhz39SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHZ39.svg | Gist: https://gist.github.com/landbool/108b925beaef3f6a8c2030b064c75455
+GFHZ49 (gfhz49SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHZ49.svg | Gist: https://gist.github.com/landbool/9e57e65123bff03119b66c5f80f9b831
+GFHZ59-69 (gfhz59_69SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHZ59-69.svg | Gist: https://gist.github.com/landbool/ba76c2602a4517e9ae6aef1e8a59001f
+GFHZ79 (gfhz79SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHZ79.svg | Gist: https://gist.github.com/landbool/26c320045204052db5839acc94e8c3a6
+GFHZ89 (gfhz89SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHZ89.svg | Gist: https://gist.github.com/landbool/2f9e07a8915152cae11edc76ff88f3b5
+GFHZ99 (gfhz99SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHZ99.svg | Gist: https://gist.github.com/landbool/2b087094e346af90fa76a1e8bf4c6068
+GFHZ109 (gfhz109SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHZ109.svg | Gist: https://gist.github.com/landbool/41e84140a824cf4f5d086d74a17f2ccf
+GFHZ129 (gfhz129SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHZ129.svg | Gist: https://gist.github.com/landbool/075a9a11210c9f2a308f418a714aa5b9
+GFHZ159 (gfhz159SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHZ39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHZ159.svg | Gist: https://gist.github.com/landbool/0aedbab42912273ef09e42e4ef2f191f
 
 ## СЕРИЯ GK (41 чертежей)
 GK169 (gk169SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GK/GK169-189%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GK169.svg
@@ -96,6 +107,3 @@ GSF109 (gsf109SvgUrl): https://raw.githubusercontent.com/landbool/configurator/m
 GSF39-89 (gsf39_89SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSF39-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSF39-89.svg
 GSF99 (gsf99SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GS/GSF39-99%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GSF99.svg
 
-## GF (2 чертежа)
-GFHF39-89 (gfhf39_89SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHF39-89.svg
-GFHF99-159 (gfhf99_159SvgUrl): https://raw.githubusercontent.com/landbool/configurator/main/Drawing/GF/GFHF39-159%20%28%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BE%29/GFHF99-159.svg
