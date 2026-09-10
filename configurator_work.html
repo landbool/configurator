@@ -9711,7 +9711,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             if (!name || !phone || !email) { showToast("Заполните Имя, Телефон и Email!", true); return; }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast("Введите корректный E-mail адрес (например, name@mail.ru)!", true); return; }
             if (phone.replace(/\D/g, '').length < 11) { showToast("Номер телефона введен не полностью!", true); return; }
-            const currentMarking = document.getElementById('result-marking').textContent.trim(); const botToken = "8849979630:AAEu3fxJpTuoMcPd5xQmJr0cOSQTowvwqSU"; const chatId = "-1004486251333";
+            const currentMarking = document.getElementById('result-marking').textContent.trim(); const botToken = "8849979630:AAH7owb4Wf__LEBTgTnqWtwH6zeaguuzVdE"; const chatId = "-1004486251333";
             const messageText = `<b>Новая заявка с сайта GRINSTR.RU</b>\n---------------------------------------------\n<b>Маркировка подобранного мотор-редуктора:</b>\n⚙️ <code>${escapeHtml(currentMarking)}</code>\n---------------------------------------------\n<b>Контакты клиента:</b>\n👤 <b>Имя:</b> ${escapeHtml(name)}\n📞 <b>Телефон:</b> <code>${escapeHtml(phone)}</code>\n✉️ <b>Email:</b> ${escapeHtml(email)}\n💬 <b>Комментарий:</b> ${escapeHtml(comment)}`;
             showToast("Отправка запроса...");
             try {
