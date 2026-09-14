@@ -8155,27 +8155,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                         if (param === 'M') { setElOffset(el, 5, 0); }
                     }
 
-                    if (seriesPrefix === 'GF') {
-                        el.removeAttribute('font-weight');
-                        el.removeAttribute('stroke');
-                        el.removeAttribute('stroke-width');
-                        el.setAttribute('font-family', 'Noto Sans JP');
-                        el.style.fontFamily = 'Noto Sans JP';
-                        el.style.fontWeight = 'normal';
-                        el.style.fill = '#000000';
-                        el.style.stroke = 'none';
-                        el.style.strokeWidth = '0';
-                        el.style.paintOrder = 'normal';
-                        el.style.fontSize = '16px';
-
-                        if (param === 't') { setElOffset(el, 30, 0); }
-                        if ((param === 't2' || param === 'd') && val.length > 4) { el.style.fontSize = '13px'; }
-                        else if ((param === 't2' || param === 'd') && val.length > 1) { el.style.fontSize = '14px'; }
-                        if (['M', 'q', 'k3', 'l2', 'a'].includes(param) && val.length > 2) { el.style.fontSize = '14px'; }
-                        if (param === 't2') { setElOffset(el, 1, 0); }
-                        if (['h1'].includes(param) && val.length > 2) { el.style.fontSize = '12px'; }
-                        if (param === 'a') { setElOffset(el, 0, -5); }
-                    }
+                    // Калибровка серии GF выполняется в специализированном блоке после обхода всех параметров
                     
                     // КАЛИБРОВКА ДЛЯ GFA (ТОЧНО КАК В СЕРИИ GR):
                     if (seriesPrefix === 'GFA') {
@@ -8253,6 +8233,58 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     } // <-- Скобка закрывает серию GS
                 } // <-- Скобка закрывает проверку параметров таблицы
             }); // <-- Скобка закрывает перебор paramElements.forEach
+
+            /* GF series adaptive font enforcement inside updateInteractiveSvgDrawing */
+            const isBaseGF = (seriesPrefix === 'GF' || seriesPrefix.startsWith('GF')) && 
+                             !seriesPrefix.startsWith('GFAF') && 
+                             !seriesPrefix.startsWith('GFAZ') && 
+                             !seriesPrefix.startsWith('GFF') && 
+                             !seriesPrefix.startsWith('GFH') && 
+                             !seriesPrefix.startsWith('GFA');
+            if (isBaseGF) {
+                container.querySelectorAll('text[data-param]').forEach(text => {
+                    text.removeAttribute('font-weight');
+                    text.removeAttribute('stroke');
+                    text.removeAttribute('stroke-width');
+                    text.setAttribute('font-family', 'Noto Sans JP');
+                    text.style.fontFamily = 'Noto Sans JP';
+                    text.style.fontWeight = 'bold';
+                    text.setAttribute('font-weight', 'bold');
+                    text.style.fill = '#000000';
+                    text.style.stroke = 'none';
+                    text.style.strokeWidth = '0';
+                    text.style.paintOrder = 'normal';
+                    text.setAttribute('text-anchor', 'middle');
+                    text.style.textAnchor = 'middle';
+
+                    const param = text.getAttribute('data-param');
+                    const val = (text.textContent || '').trim();
+                    let sz = 40;
+
+                    // 1. Ample space: overall height and length boundaries (p3, q1, AD, a2, L1)
+                    if (['p3', 'AD', 'a2', 'L1', 'q1'].includes(param)) {
+                        sz = (val.length > 5) ? 40 : 46;
+                    } 
+                    // 2. Main housing dimensions (p2, p1, k0, a, e, h)
+                    else if (['p2', 'p1', 'k0', 'a', 'e', 'h'].includes(param)) {
+                        sz = (val.length > 4) ? 38 : 42;
+                    } 
+                    // 3. Medium dimensions, flanges and step offsets
+                    else if (['k3', 'k4', 'q', 'h1', 'AC', 'G', 'l', 'l2', 'S2', 'S1'].includes(param)) {
+                        sz = (val.length > 4) ? 34 : 38;
+                    } 
+                    // 4. Detailed shaft features and taps (d, t, t1, t2, u, l1, M)
+                    else if (['d', 't', 't1', 't2', 'u', 'l1', 'M'].includes(param)) {
+                        sz = 34;
+                        if (param === 'd' && val.length > 5) sz = 30;
+                        if (param === 'M' && val.length > 3) sz = 31;
+                        if (param === 't' && val.length > 3) sz = 31;
+                    }
+
+                    text.style.fontSize = sz + 'px';
+                    text.setAttribute('font-size', sz + 'px');
+                });
+            }
 
             /* GFAF & GFAZ adaptive font enforcement inside updateInteractiveSvgDrawing */
             if (seriesPrefix.startsWith('GFAF') || seriesPrefix.startsWith('GFAZ') || seriesPrefix.startsWith('GFF')) {
