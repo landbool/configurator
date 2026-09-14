@@ -7952,12 +7952,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                         el.textContent = "";
                     } else {
                         const sStr = String(sValue).trim();
-                        if (sStr.startsWith('Φ') || sStr.startsWith('Ø')) {
-                            const numOnly = sStr.replace(/^[^0-9.]*/, '');
-                            el.textContent = `4-${numOnly || sStr}`;
-                        } else {
-                            el.textContent = `4-${sStr}`;
-                        }
+                        el.textContent = sStr.startsWith('4-') ? sStr : `4-${sStr}`;
                         if (sStr.length > 2) el.style.fontSize = "14px";
                     }
                 } else if (param === '8-s') {
@@ -7966,12 +7961,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                         el.textContent = "";
                     } else {
                         const sStr = String(sValue).trim();
-                        if (sStr.startsWith('Φ') || sStr.startsWith('Ø')) {
-                            const numOnly = sStr.replace(/^[^0-9.]*/, '');
-                            el.textContent = `8-${numOnly || sStr}`;
-                        } else {
-                            el.textContent = `8-${sStr}`;
-                        }
+                        el.textContent = sStr.startsWith('8-') ? sStr : `8-${sStr}`;
                         if (sStr.length > 2) el.style.fontSize = "14px";
                     }
                 } else if (param === 'n-s') {
