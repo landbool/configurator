@@ -67,34 +67,34 @@
 </defs>
 
 <g id="parameters">
-  <text x="429.5" y="724.5" data-param="S2" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">S2</text>
-  <text x="522.5" y="880.5" data-param="t2" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">t2</text>
-  <text x="696.5" y="837.5" data-param="u" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">u</text>
-  <text x="760.5" y="744.0" data-param="l1" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">l1</text>
-  <text x="749.5" y="898.0" data-param="M" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">M</text>
-  <text x="852.5" y="742.0" data-param="l2" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">l2</text>
-  <text x="846.5" y="679.0" data-param="l" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">l</text>
-  <text x="958.5" y="741.0" data-param="d" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">d</text>
-  <text x="1062.0" y="835.5" data-param="t" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">t</text>
-  <text x="694.0" y="665.5" data-param="e" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">e</text>
-  <text x="815.0" y="562.5" data-param="h" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">h</text>
-  <text x="718.0" y="432.0" data-param="h1" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">h1</text>
-  <text x="1068.5" y="337.5" data-param="AC" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">AC</text>
-  <text x="1133.5" y="341.5" data-param="G" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">G</text>
-  <text x="692.5" y="176.0" data-param="a" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">a</text>
-  <text x="581.5" y="176.0" data-param="q" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">q</text>
-  <text x="648.5" y="91.0" data-param="q1" font-family="Arial, sans-serif" font-size="46" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">q1</text>
-  <text x="906.5" y="87.5" data-param="L1" font-family="Arial, sans-serif" font-size="46" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">L1</text>
-  <text x="116.5" y="86.5" data-param="AD" font-family="Arial, sans-serif" font-size="46" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">AD</text>
-  <text x="115.5" y="173.5" data-param="a2" font-family="Arial, sans-serif" font-size="46" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">a2</text>
-  <text x="1252.5" y="417.0" data-param="p3" font-family="Arial, sans-serif" font-size="46" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">p3</text>
-  <text x="1335.5" y="474.0" data-param="p2" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">p2</text>
-  <text x="1404.5" y="474.0" data-param="p1" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">p1</text>
-  <text x="1466.0" y="550.5" data-param="k3" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">k3</text>
-  <text x="1466.0" y="300.5" data-param="k4" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">k4</text>
-  <text x="1602.0" y="174.0" data-param="k0" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">k0</text>
-  <text x="1714.0" y="81.0" data-param="AD" font-family="Arial, sans-serif" font-size="46" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">AD</text>
-  <text x="1708.0" y="887.0" data-param="S1" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">S1</text>
-  <text x="1783.0" y="802.5" data-param="t1" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="central">t1</text>
+  <text x="429.5" y="724.5" data-param="S2" font-family="Noto Sans JP" font-size="34" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 429.5 724.5)">S2</text>
+  <text x="522.5" y="880.5" data-param="t2" font-family="Noto Sans JP" font-size="34" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">t2</text>
+  <text x="696.5" y="837.5" data-param="u" font-family="Noto Sans JP" font-size="34" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">u</text>
+  <text x="760.5" y="744.0" data-param="l1" font-family="Noto Sans JP" font-size="34" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">l1</text>
+  <text x="749.5" y="898.0" data-param="M" font-family="Noto Sans JP" font-size="34" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">M</text>
+  <text x="852.5" y="742.0" data-param="l2" font-family="Noto Sans JP" font-size="38" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">l2</text>
+  <text x="846.5" y="679.0" data-param="l" font-family="Noto Sans JP" font-size="38" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">l</text>
+  <text x="958.5" y="741.0" data-param="d" font-family="Noto Sans JP" font-size="34" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">d</text>
+  <text x="1062.0" y="835.5" data-param="t" font-family="Noto Sans JP" font-size="34" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">t</text>
+  <text x="694.0" y="665.5" data-param="e" font-family="Noto Sans JP" font-size="42" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">e</text>
+  <text x="815.0" y="562.5" data-param="h" font-family="Noto Sans JP" font-size="42" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">h</text>
+  <text x="718.0" y="432.0" data-param="h1" font-family="Noto Sans JP" font-size="38" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 718.0 432.0)">h1</text>
+  <text x="1068.5" y="337.5" data-param="AC" font-family="Noto Sans JP" font-size="38" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 1068.5 337.5)">AC</text>
+  <text x="1133.5" y="341.5" data-param="G" font-family="Noto Sans JP" font-size="38" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 1133.5 341.5)">G</text>
+  <text x="692.5" y="176.0" data-param="a" font-family="Noto Sans JP" font-size="42" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">a</text>
+  <text x="581.5" y="176.0" data-param="q" font-family="Noto Sans JP" font-size="38" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">q</text>
+  <text x="648.5" y="91.0" data-param="q1" font-family="Noto Sans JP" font-size="46" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">q1</text>
+  <text x="906.5" y="87.5" data-param="L1" font-family="Noto Sans JP" font-size="46" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">L1</text>
+  <text x="116.5" y="86.5" data-param="AD" font-family="Noto Sans JP" font-size="46" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">AD</text>
+  <text x="115.5" y="173.5" data-param="a2" font-family="Noto Sans JP" font-size="46" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">a2</text>
+  <text x="1252.5" y="417.0" data-param="p3" font-family="Noto Sans JP" font-size="46" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 1252.5 417.0)">p3</text>
+  <text x="1335.5" y="474.0" data-param="p2" font-family="Noto Sans JP" font-size="42" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 1335.5 474.0)">p2</text>
+  <text x="1404.5" y="474.0" data-param="p1" font-family="Noto Sans JP" font-size="42" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 1404.5 474.0)">p1</text>
+  <text x="1466.0" y="550.5" data-param="k3" font-family="Noto Sans JP" font-size="38" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 1466.0 550.5)">k3</text>
+  <text x="1466.0" y="300.5" data-param="k4" font-family="Noto Sans JP" font-size="38" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 1466.0 300.5)">k4</text>
+  <text x="1602.0" y="174.0" data-param="k0" font-family="Noto Sans JP" font-size="42" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">k0</text>
+  <text x="1714.0" y="81.0" data-param="AD" font-family="Noto Sans JP" font-size="46" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">AD</text>
+  <text x="1708.0" y="887.0" data-param="S1" font-family="Noto Sans JP" font-size="34" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 1708.0 887.0)">S1</text>
+  <text x="1783.0" y="802.5" data-param="t1" font-family="Noto Sans JP" font-size="34" font-weight="normal" fill="#000000" text-anchor="middle" dominant-baseline="central">t1</text>
 </g>
 </svg>

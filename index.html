@@ -8242,14 +8242,14 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                              !seriesPrefix.startsWith('GFH') && 
                              !seriesPrefix.startsWith('GFA');
             if (isBaseGF) {
+                const ROTATED_PARAMS = ['p3', 'p2', 'p1', 'k3', 'k4', 'h1', 'AC', 'G', 'S2', 'S1'];
                 container.querySelectorAll('text[data-param]').forEach(text => {
                     text.removeAttribute('font-weight');
                     text.removeAttribute('stroke');
                     text.removeAttribute('stroke-width');
                     text.setAttribute('font-family', 'Noto Sans JP');
                     text.style.fontFamily = 'Noto Sans JP';
-                    text.style.fontWeight = 'bold';
-                    text.setAttribute('font-weight', 'bold');
+                    text.style.fontWeight = 'normal';
                     text.style.fill = '#000000';
                     text.style.stroke = 'none';
                     text.style.strokeWidth = '0';
@@ -8259,11 +8259,23 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
 
                     const param = text.getAttribute('data-param');
                     const val = (text.textContent || '').trim();
-                    let sz = 40;
+
+                    // Apply -90deg rotation to vertical parameters
+                    if (ROTATED_PARAMS.includes(param)) {
+                        const x = text.getAttribute('x');
+                        const y = text.getAttribute('y');
+                        if (x && y) {
+                            const rot = `rotate(-90 ${x} ${y})`;
+                            text.setAttribute('transform', rot);
+                            text.setAttribute('data-base-transform', rot);
+                        }
+                    }
+
+                    let sz = 38;
 
                     // 1. Ample space: overall height and length boundaries (p3, q1, AD, a2, L1)
                     if (['p3', 'AD', 'a2', 'L1', 'q1'].includes(param)) {
-                        sz = (val.length > 5) ? 40 : 46;
+                        sz = (val.length > 4) ? 42 : 46;
                     } 
                     // 2. Main housing dimensions (p2, p1, k0, a, e, h)
                     else if (['p2', 'p1', 'k0', 'a', 'e', 'h'].includes(param)) {
@@ -8271,12 +8283,18 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     } 
                     // 3. Medium dimensions, flanges and step offsets
                     else if (['k3', 'k4', 'q', 'h1', 'AC', 'G', 'l', 'l2', 'S2', 'S1'].includes(param)) {
-                        sz = (val.length > 4) ? 34 : 38;
+                        if (param === 'h1' && val.length > 3) {
+                            sz = 30;
+                        } else if (param === 'S1' || param === 'S2') {
+                            sz = 34;
+                        } else {
+                            sz = (val.length > 3) ? 34 : 38;
+                        }
                     } 
                     // 4. Detailed shaft features and taps (d, t, t1, t2, u, l1, M)
                     else if (['d', 't', 't1', 't2', 'u', 'l1', 'M'].includes(param)) {
                         sz = 34;
-                        if (param === 'd' && val.length > 5) sz = 30;
+                        if (param === 'd' && val.length > 4) sz = 30;
                         if (param === 'M' && val.length > 3) sz = 31;
                         if (param === 't' && val.length > 3) sz = 31;
                     }
