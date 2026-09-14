@@ -47,17 +47,103 @@
         text[data-param]:hover { fill: var(--svg-dimensions-hover); font-weight: bold; cursor: help; }
         #svgContainer svg { width: 100% !important; height: 100% !important; max-width: 100% !important; max-height: 100% !important; display: block; }
         #modalContentContainer svg { width: 100% !important; height: auto !important; max-width: 100% !important; max-height: 440px !important; display: block; margin: auto; object-fit: contain; }
-        /* === Drawing Loader Animation === */
-        @keyframes gear-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes ripple-pulse { 0% { transform: scale(0.8); opacity: 0.5; } 50% { transform: scale(1.3); opacity: 0; } 100% { transform: scale(0.8); opacity: 0; } }
-        @keyframes loader-text-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-        .drawing-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; position: absolute; inset: 0; background: #0f172a; border-radius: 8px; z-index: 10; transition: opacity 0.3s ease; }
-        .drawing-loader .gear-icon { width: 48px; height: 48px; color: #2dd4bf; animation: gear-spin 3s linear infinite; filter: drop-shadow(0 0 10px rgba(45, 212, 191, 0.4)); position: relative; z-index: 2; }
-        .drawing-loader .ripple-ring { position: absolute; border: 2px solid rgba(45, 212, 191, 0.25); border-radius: 50%; animation: ripple-pulse 2.5s ease-out infinite; }
-        .drawing-loader .ripple-ring:nth-child(1) { width: 72px; height: 72px; }
-        .drawing-loader .ripple-ring:nth-child(2) { width: 96px; height: 96px; animation-delay: 0.6s; }
-        .drawing-loader .ripple-ring:nth-child(3) { width: 120px; height: 120px; animation-delay: 1.2s; }
-        .drawing-loader .loader-text { font-size: 11px; color: #94a3b8; font-weight: 500; letter-spacing: 0.06em; animation: loader-text-pulse 2s ease-in-out infinite; text-transform: uppercase; }
+        /* === Modern Minimalist CAD Blueprint Loader (Linear / Aceternity / OriginUI style) === */
+        @keyframes linear-beam {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+            100% { transform: translateX(100%); }
+        }
+        @keyframes shimmer-sweep {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        @keyframes cad-fade {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.85; }
+        }
+        .drawing-loader {
+            position: absolute;
+            inset: 0;
+            background-color: #ffffff;
+            background-image: radial-gradient(circle, #e2e8f0 1.2px, transparent 1.2px);
+            background-size: 16px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: opacity 0.25s ease;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+        .cad-top-beam {
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: #f1f5f9;
+            overflow: hidden;
+            z-index: 5;
+        }
+        .cad-top-beam::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, #10b981, #06b6d4, transparent);
+            animation: linear-beam 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        .cad-skeleton-svg {
+            position: absolute;
+            width: 82%;
+            max-width: 440px;
+            height: auto;
+            opacity: 0.65;
+            animation: cad-fade 2.4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .cad-shimmer-layer {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.65) 50%, transparent 100%);
+            animation: shimmer-sweep 2.2s infinite ease-in-out;
+            pointer-events: none;
+        }
+        .cad-badge {
+            position: relative;
+            z-index: 4;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+        }
+        .cad-spinner {
+            width: 15px;
+            height: 15px;
+            animation: spin 0.85s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .cad-badge-text {
+            font-size: 11.5px;
+            font-weight: 500;
+            color: #475569;
+            letter-spacing: -0.01em;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        .cad-corner {
+            position: absolute;
+            font-family: ui-monospace, monospace;
+            font-size: 10px;
+            color: #cbd5e1;
+            user-select: none;
+            line-height: 1;
+        }
         .tooltip-container { position: relative; display: inline-flex; align-items: center; margin-left: 6px; cursor: help; vertical-align: middle; }
         .tooltip-container .tooltip-text { visibility: hidden; opacity: 0; width: 220px; background-color: #0f172a; color: #cbd5e1; text-transform: none; font-size: 10px; font-weight: normal; font-family: 'Inter', sans-serif; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 50; bottom: 125%; left: 50%; transform: translateX(-50%); transition: opacity 0.2s, visibility 0.2s; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); border: 1px solid #1e293b; pointer-events: none; }
         .tooltip-container .tooltip-text::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #1e293b transparent transparent transparent; }
@@ -292,7 +378,45 @@
                         <div class="w-full h-80 flex items-center justify-center bg-white rounded p-2 border border-slate-200 relative group overflow-hidden">
                             <img id="series-preview-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Мотор-редуктор" class="object-contain max-h-full max-w-full transition-transform duration-300 group-hover:scale-102 hidden">
                             <div id="preview-fallback" class="absolute inset-0 flex items-center justify-center text-slate-400 bg-white rounded"><i data-lucide="image" class="w-10 h-10"></i></div>
-                            <div id="drawingLoader" class="drawing-loader" style="display:none"><div style="position:relative;display:flex;align-items:center;justify-content:center"><div class="ripple-ring"></div><div class="ripple-ring"></div><div class="ripple-ring"></div><svg class="gear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div><span class="loader-text">Загрузка чертежа...</span></div>
+                            <div id="drawingLoader" class="drawing-loader" style="display:none">
+                                <div class="cad-top-beam"></div>
+                                <span class="cad-corner top-2 left-2.5">+</span>
+                                <span class="cad-corner top-2 right-2.5">+</span>
+                                <span class="cad-corner bottom-2 left-2.5">+</span>
+                                <span class="cad-corner bottom-2 right-2.5">+</span>
+                                <svg class="cad-skeleton-svg" viewBox="0 0 380 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <line x1="20" y1="100" x2="360" y2="100" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="8 4 2 4" stroke-opacity="0.4"/>
+                                    <line x1="150" y1="20" x2="150" y2="180" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="8 4 2 4" stroke-opacity="0.4"/>
+                                    <line x1="260" y1="35" x2="260" y2="165" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="8 4 2 4" stroke-opacity="0.4"/>
+                                    <rect x="80" y="45" width="140" height="110" rx="6" stroke="#64748b" stroke-width="1.3"/>
+                                    <rect x="70" y="145" width="160" height="16" rx="3" stroke="#64748b" stroke-width="1.3"/>
+                                    <rect x="40" y="85" width="40" height="30" rx="2" stroke="#64748b" stroke-width="1.3"/>
+                                    <rect x="220" y="55" width="45" height="90" rx="4" stroke="#64748b" stroke-width="1.3"/>
+                                    <rect x="265" y="65" width="75" height="70" rx="5" stroke="#94a3b8" stroke-width="1.1"/>
+                                    <line x1="280" y1="65" x2="280" y2="135" stroke="#cbd5e1" stroke-width="0.9"/>
+                                    <line x1="295" y1="65" x2="295" y2="135" stroke="#cbd5e1" stroke-width="0.9"/>
+                                    <line x1="310" y1="65" x2="310" y2="135" stroke="#cbd5e1" stroke-width="0.9"/>
+                                    <line x1="325" y1="65" x2="325" y2="135" stroke="#cbd5e1" stroke-width="0.9"/>
+                                    <g stroke="#94a3b8" stroke-width="0.8" opacity="0.55">
+                                        <line x1="40" y1="28" x2="340" y2="28"/>
+                                        <line x1="40" y1="22" x2="40" y2="34"/>
+                                        <line x1="340" y1="22" x2="340" y2="34"/>
+                                        <line x1="40" y1="34" x2="40" y2="85" stroke-dasharray="2 2"/>
+                                        <line x1="340" y1="34" x2="340" y2="65" stroke-dasharray="2 2"/>
+                                        <line x1="362" y1="45" x2="362" y2="161"/>
+                                        <line x1="356" y1="45" x2="368" y2="45"/>
+                                        <line x1="356" y1="161" x2="368" y2="161"/>
+                                    </g>
+                                </svg>
+                                <div class="cad-shimmer-layer"></div>
+                                <div class="cad-badge">
+                                    <svg class="cad-spinner" viewBox="0 0 24 24" fill="none">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="#64748b" stroke-width="2.5"></circle>
+                                        <path class="opacity-95" fill="#0d9488" d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z"></path>
+                                    </svg>
+                                    <span class="cad-badge-text">Загрузка чертежа и габаритов...</span>
+                                </div>
+                            </div>
                             <div id="svgContainer" class="absolute inset-0 flex items-center justify-center bg-white p-4 overflow-hidden hidden"><p class="status-message text-slate-400 text-xs font-bold" id="grStatusLabel">Синхронизация схем...</p></div>
                         </div>
                         <div class="mt-2 flex justify-end gap-2">
