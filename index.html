@@ -8304,6 +8304,69 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                 });
             }
 
+            /* GFH series adaptive font and rotation enforcement inside updateInteractiveSvgDrawing */
+            if (seriesPrefix === 'GFH' || seriesPrefix.startsWith('GFH')) {
+                const ROTATED_GFH_PARAMS = ['h6', 'h7', 'h1', 'd2', 'h', 'AC', 'G', 'p3', 'd1', 'd', 'd3', 's1', 's2'];
+                container.querySelectorAll('text[data-param]').forEach(text => {
+                    text.removeAttribute('font-weight');
+                    text.removeAttribute('stroke');
+                    text.removeAttribute('stroke-width');
+                    text.setAttribute('font-family', 'Noto Sans JP');
+                    text.style.fontFamily = 'Noto Sans JP';
+                    text.style.fontWeight = 'normal';
+                    text.style.fill = '#000000';
+                    text.style.stroke = 'none';
+                    text.style.strokeWidth = '0';
+                    text.style.paintOrder = 'normal';
+                    text.setAttribute('text-anchor', 'middle');
+                    text.style.textAnchor = 'middle';
+
+                    const param = text.getAttribute('data-param');
+                    const val = (text.textContent || '').trim();
+
+                    // Apply -90deg rotation to vertical parameters
+                    if (ROTATED_GFH_PARAMS.includes(param)) {
+                        const x = text.getAttribute('x');
+                        const y = text.getAttribute('y');
+                        if (x && y) {
+                            const rot = `rotate(-90 ${x} ${y})`;
+                            text.setAttribute('transform', rot);
+                            text.setAttribute('data-base-transform', rot);
+                        }
+                    }
+
+                    let sz = 38;
+
+                    // 1. Large dimensions with ample space (p3, q1, L1, AD, K0, w, w1)
+                    if (['p3', 'q1', 'L1', 'AD', 'K0'].includes(param)) {
+                        sz = (val.length > 4) ? 42 : 46;
+                    } else if (['w', 'w1'].includes(param)) {
+                        sz = (val.length > 4) ? 40 : 44;
+                    } else if (param === 'h7') {
+                        sz = (val.length > 3) ? 38 : 42;
+                    }
+                    // 2. Medium housing and motor dimensions (h, d2, AC, G, h6, h1, a2, a3, A, q, a, s, a1)
+                    else if (['h', 'd2', 'AC', 'G'].includes(param)) {
+                        sz = (val.length > 4) ? 36 : 40;
+                    } else if (param === 'h1') {
+                        sz = (val.length > 4) ? 32 : 38;
+                    } else if (['h6', 'a2', 'a3', 'A', 'q', 'a', 's', 'a1'].includes(param)) {
+                        sz = (val.length > 3) ? 34 : 38;
+                    }
+                    // 3. Shaft, collar steps and fastener detail (d1, d, d3, c1..c4, k, w2, a7, s1, s2)
+                    else if (['c1', 'c2', 'c3', 'c4', 'k', 'w2', 'a7', 's1', 'd1'].includes(param)) {
+                        sz = (val.length > 3) ? 32 : 36;
+                    } else if (['d', 'd3'].includes(param)) {
+                        sz = (val.length > 5) ? 28 : (val.length > 3 ? 30 : 34);
+                    } else if (param === 's2') {
+                        sz = (val.length > 5) ? 26 : 30;
+                    }
+
+                    text.style.fontSize = sz + 'px';
+                    text.setAttribute('font-size', sz + 'px');
+                });
+            }
+
             /* GFAF & GFAZ adaptive font enforcement inside updateInteractiveSvgDrawing */
             if (seriesPrefix.startsWith('GFAF') || seriesPrefix.startsWith('GFAZ') || seriesPrefix.startsWith('GFF')) {
                 container.querySelectorAll('text').forEach(text => {
