@@ -7171,7 +7171,8 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
         async function fetchSafeText(url) {
             if (!url) return '';
             try {
-                const res = await fetch(url);
+                const fetchOpts = (typeof location !== 'undefined' && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')) ? { cache: 'no-cache' } : {};
+                const res = await fetch(url, fetchOpts);
                 if (!res.ok) return '';
                 return await res.text();
             } catch (e) {
@@ -7887,7 +7888,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                             text.style.textAnchor = 'middle';
                         });
                     }
-                    else if (seriesPrefix === 'GFH' || seriesPrefix.startsWith('GFH')) {
+                    else if (seriesPrefix === 'GFH' || (seriesPrefix.startsWith('GFH') && !seriesPrefix.startsWith('GFHF'))) {
                         svgEl.setAttribute('viewBox', '0 0 2362 1498');
                         container.querySelectorAll('text').forEach(text => {
                             text.removeAttribute('font-weight');
@@ -8297,6 +8298,71 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                         if (param === 'd' && val.length > 4) sz = 30;
                         if (param === 'M' && val.length > 3) sz = 31;
                         if (param === 't' && val.length > 3) sz = 31;
+                    }
+
+                    text.style.fontSize = sz + 'px';
+                    text.setAttribute('font-size', sz + 'px');
+                });
+            }
+
+            /* GFHF series adaptive font and rotation enforcement inside updateInteractiveSvgDrawing */
+            if (seriesPrefix === 'GFHF39_89' || seriesPrefix === 'GFHF99_159' || seriesPrefix.startsWith('GFHF')) {
+                const ROTATED_GFHF_PARAMS = ['d', 'd1', 'd3', 'AC', 'G', 'd2', 'h1', 'D1', 'D2', 'h', 'p3'];
+                container.querySelectorAll('text[data-param]').forEach(text => {
+                    text.removeAttribute('font-weight');
+                    text.removeAttribute('stroke');
+                    text.removeAttribute('stroke-width');
+                    text.setAttribute('font-family', 'Noto Sans JP');
+                    text.style.fontFamily = 'Noto Sans JP';
+                    text.style.fontWeight = 'normal';
+                    text.style.fill = '#000000';
+                    text.style.stroke = 'none';
+                    text.style.strokeWidth = '0';
+                    text.style.paintOrder = 'normal';
+                    text.setAttribute('text-anchor', 'middle');
+                    text.style.textAnchor = 'middle';
+
+                    const param = text.getAttribute('data-param');
+                    const val = (text.textContent || '').trim();
+
+                    // Apply -90deg rotation to vertical parameters
+                    if (ROTATED_GFHF_PARAMS.includes(param)) {
+                        const x = text.getAttribute('x');
+                        const y = text.getAttribute('y');
+                        if (x && y) {
+                            const rot = `rotate(-90 ${x} ${y})`;
+                            text.setAttribute('transform', rot);
+                            text.setAttribute('data-base-transform', rot);
+                        }
+                    }
+
+                    let sz = 38;
+
+                    // 1. Large dimensions with ample space (p3, q1, L1, AD, K0, w, w1)
+                    if (['p3', 'q1', 'L1', 'AD', 'K0'].includes(param)) {
+                        sz = (val.length > 4) ? 42 : 46;
+                    } else if (['w', 'w1'].includes(param)) {
+                        sz = (val.length > 4) ? 40 : 44;
+                    }
+                    // 2. Medium flange and housing dimensions (D2, D1, D, G, AC, d2, h, h1)
+                    else if (['D2', 'D1', 'D', 'G', 'AC'].includes(param)) {
+                        sz = (val.length > 5) ? 36 : 40;
+                    } else if (['d2', 'h'].includes(param)) {
+                        sz = (val.length > 4) ? 36 : 38;
+                    } else if (param === 'h1') {
+                        sz = (val.length > 4) ? 32 : 36;
+                    }
+                    // 3. Compact steps and flange holes (c1..c4, o1, o2, n, a2, 4-s, 8-s)
+                    else if (['c1', 'c2', 'c3', 'c4', 'o1', 'o2', 'n', 'a2'].includes(param)) {
+                        sz = (val.length > 3) ? 34 : 38;
+                    } else if (['4-s', '8-s'].includes(param)) {
+                        sz = (val.length > 6) ? 32 : 36;
+                    }
+                    // 4. Shaft diameter details (d1, d, d3)
+                    else if (param === 'd1') {
+                        sz = (val.length > 4) ? 32 : 34;
+                    } else if (['d', 'd3'].includes(param)) {
+                        sz = (val.length > 5) ? 30 : (val.length > 3 ? 32 : 34);
                     }
 
                     text.style.fontSize = sz + 'px';
