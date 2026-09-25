@@ -292,30 +292,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-slate-900">
-                        <div>
-                            <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Тип электродвигателя</label>
-                            <select id="motor-type" onchange="handleParamChange()" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-xs text-white focus:outline-none focus:border-emerald-500 cursor-pointer">
-                                <option value="Y" selected>Y — асинхронный электродвигатель (стандарт)</option><option value="YEJ">YEJ — с электромагнитным тормозом</option><option value="YB">YB — взрывозащищённый электродвигатель</option><option value="YVP">YVP — с принудительным охлаждением</option><option value="YPEJ">YPEJ — с принудительным охлаждением и тормозом</option><option value="AD">AD — входящий цельный вал (без электродвигателя)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Сторона выхода кабеля</label>
-                            <div id="cable-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 overflow-hidden font-sans">
-                                <div id="cable-indicator" class="absolute bg-emerald-500/20 border border-emerald-500/70 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
-                                <button type="button" onclick="setCableOutlet('X')" id="cable-X" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/X.png" alt="X" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">X</span></button>
-                                <button type="button" onclick="setCableOutlet('1')" id="cable-1" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/1.png" alt="1" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">1</span></button>
-                                <button type="button" onclick="setCableOutlet('2')" id="cable-2" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/2.png" alt="2" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">2</span></button>
-                                <button type="button" onclick="setCableOutlet('3')" id="cable-3" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/3.png" alt="3" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">3</span></button>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-slate-900 items-stretch font-sans">
+                        <!-- LEFT COLUMN: Motor Type + Mounting Position + Tall Scheme -->
+                        <div class="flex flex-col justify-between h-full space-y-3">
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Тип электродвигателя</label>
+                                <select id="motor-type" onchange="handleParamChange()" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-xs text-white focus:outline-none focus:border-emerald-500 cursor-pointer">
+                                    <option value="Y" selected>Y — асинхронный электродвигатель (стандарт)</option><option value="YEJ">YEJ — с электромагнитным тормозом</option><option value="YB">YB — взрывозащищённый электродвигатель</option><option value="YVP">YVP — с принудительным охлаждением</option><option value="YPEJ">YPEJ — с принудительным охлаждением и тормозом</option><option value="AD">AD — входящий цельный вал (без электродвигателя)</option>
+                                </select>
                             </div>
-                            <div id="cable-scheme-container" class="mt-2.5 p-2.5 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-center transition-all duration-200">
-                                <img src="cable%20outlet%20side/cable%20outlet%20side.jpg" onerror="this.src='https://landbool.github.io/configurator/cable%20outlet%20side/cable%20outlet%20side.jpg'" alt="Схема стороны выхода кабеля (1, 2, 3, X)" class="w-full max-h-48 md:max-h-52 object-contain rounded-lg">
-                                <span class="text-[9px] font-semibold text-slate-500 mt-1.5 tracking-wider uppercase">Схема положений выхода кабеля (1, 2, 3, X)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-slate-900 items-stretch">
-                        <div class="flex flex-col justify-between h-full">
                             <div>
                                 <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Монтажное положение<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Ориентация редуктора в пространстве. Влияет на уровень масла и расположение сапуна. М1 - стандартное горизонтальное.</span></span></label>
                                 <div id="mount-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-6 gap-1 overflow-hidden font-mono">
@@ -328,15 +313,33 @@
                                     <button type="button" onclick="setMountingPosition('M6')" id="mount-M6" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M6</button>
                                 </div>
                             </div>
-                            <div id="mount-scheme-container" class="mt-2.5 p-2.5 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 min-h-[220px] transition-all duration-200">
+                            <div id="mount-scheme-container" class="mt-2 p-2.5 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 min-h-[380px] md:min-h-[420px] transition-all duration-200">
                                 <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
-                                    <img id="mount-scheme-img" src="Mounting%20position/GR.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/Mounting%20position/GR.jpg'" alt="Схема монтажных положений (M1 - M6)" class="w-full max-h-48 md:max-h-52 object-contain rounded-lg">
+                                    <img id="mount-scheme-img" src="Mounting%20position/GR.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/Mounting%20position/GR.jpg'" alt="Схема монтажных положений (M1 - M6)" class="w-full max-h-[360px] md:max-h-[400px] object-contain rounded-lg">
                                 </div>
                                 <span class="text-[9px] font-semibold text-slate-500 mt-1.5 tracking-wider uppercase text-center">Схема монтажных положений (M1 - M6)</span>
                             </div>
                         </div>
-                        <div class="flex flex-col justify-between h-full">
-                            <div>
+
+                        <!-- RIGHT COLUMN: Cable Outlet + Compact Scheme & Cable Entry + Compact Scheme -->
+                        <div class="flex flex-col justify-between h-full space-y-3">
+                            <div class="flex flex-col flex-1">
+                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Сторона выхода кабеля</label>
+                                <div id="cable-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 overflow-hidden font-sans">
+                                    <div id="cable-indicator" class="absolute bg-emerald-500/20 border border-emerald-500/70 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                    <button type="button" onclick="setCableOutlet('X')" id="cable-X" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/X.png" alt="X" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">X</span></button>
+                                    <button type="button" onclick="setCableOutlet('1')" id="cable-1" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/1.png" alt="1" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">1</span></button>
+                                    <button type="button" onclick="setCableOutlet('2')" id="cable-2" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/2.png" alt="2" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">2</span></button>
+                                    <button type="button" onclick="setCableOutlet('3')" id="cable-3" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/3.png" alt="3" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">3</span></button>
+                                </div>
+                                <div id="cable-scheme-container" class="mt-2 p-2 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 transition-all duration-200">
+                                    <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
+                                        <img src="cable%20outlet%20side/cable%20outlet%20side.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/cable%20outlet%20side/cable%20outlet%20side.jpg'" alt="Схема стороны выхода кабеля (1, 2, 3, X)" class="w-full max-h-32 md:max-h-36 object-contain rounded-lg">
+                                    </div>
+                                    <span class="text-[9px] font-semibold text-slate-500 mt-1 tracking-wider uppercase text-center">Схема положений выхода кабеля (1, 2, 3, X)</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col flex-1 pt-2 border-t border-slate-900">
                                 <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Положение ввода кабеля коробки<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Направление ввода кабеля питания относительно двигателя. По умолчанию 0°.</span></span></label>
                                 <div id="angle-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 overflow-hidden font-mono">
                                     <div id="angle-indicator" class="absolute bg-emerald-500/20 border border-emerald-500/70 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
@@ -345,15 +348,14 @@
                                     <button type="button" onclick="setBoxAngle('180')" id="angle-180" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/180.png" alt="180" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">180°</span></button>
                                     <button type="button" onclick="setBoxAngle('270')" id="angle-270" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/270.png" alt="270" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">270°</span></button>
                                 </div>
-                            </div>
-                            <div id="angle-scheme-container" class="mt-2.5 p-2.5 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 min-h-[220px] transition-all duration-200">
-                                <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
-                                    <img id="angle-scheme-img" src="Box%20cable%20entry%20position/GR.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/Box%20cable%20entry%20position/GR.jpg'" alt="Схема положения ввода кабеля (0°, 90°, 180°, 270°)" class="w-full max-h-48 md:max-h-52 object-contain rounded-lg">
+                                <div id="angle-scheme-container" class="mt-2 p-2 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 transition-all duration-200">
+                                    <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
+                                        <img id="angle-scheme-img" src="Box%20cable%20entry%20position/GR.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/Box%20cable%20entry%20position/GR.jpg'" alt="Схема положения ввода кабеля (0°, 90°, 180°, 270°)" class="w-full max-h-32 md:max-h-36 object-contain rounded-lg">
+                                    </div>
+                                    <span class="text-[9px] font-semibold text-slate-500 mt-1 tracking-wider uppercase text-center">Схема положения ввода кабеля (0°, 90°, 180°, 270°)</span>
                                 </div>
-                                <span class="text-[9px] font-semibold text-slate-500 mt-1.5 tracking-wider uppercase text-center">Схема положения ввода кабеля (0°, 90°, 180°, 270°)</span>
                             </div>
-                        </div>
-                    </div>
+                        </div>                    </div>
                 </div>
             </div>
 
