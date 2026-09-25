@@ -308,6 +308,10 @@
                                 <button type="button" onclick="setCableOutlet('2')" id="cable-2" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/2.png" alt="2" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">2</span></button>
                                 <button type="button" onclick="setCableOutlet('3')" id="cable-3" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/3.png" alt="3" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">3</span></button>
                             </div>
+                            <div id="cable-scheme-container" class="mt-2.5 p-2.5 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-center transition-all duration-200">
+                                <img src="cable%20outlet%20side/cable%20outlet%20side.jpg" onerror="this.src='https://landbool.github.io/configurator/cable%20outlet%20side/cable%20outlet%20side.jpg'" alt="Схема стороны выхода кабеля (1, 2, 3, X)" class="w-full max-h-48 md:max-h-52 object-contain rounded-lg">
+                                <span class="text-[9px] font-semibold text-slate-500 mt-1.5 tracking-wider uppercase">Схема положений выхода кабеля (1, 2, 3, X)</span>
+                            </div>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-slate-900">
@@ -9327,7 +9331,12 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                 }
             }
             // УМНАЯ БЛОКИРОВКА КАБЕЛЯ И КОРОБКИ ДЛЯ ИСПОЛНЕНИЯ AD
+            const cableScheme = document.getElementById('cable-scheme-container');
             if (state.motorType === 'AD') {
+                if (cableScheme) {
+                    cableScheme.style.opacity = "0.3";
+                    cableScheme.style.pointerEvents = "none";
+                }
                 ['X', '1', '2', '3'].forEach(item => {
                     const btn = document.getElementById(`cable-${item}`);
                     if (btn) { 
@@ -9369,6 +9378,10 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                         }
                     }
                 });
+                if (cableScheme) {
+                    cableScheme.style.opacity = "1";
+                    cableScheme.style.pointerEvents = "auto";
+                }
             }
             syncAllSegmentedIndicators();
         }
