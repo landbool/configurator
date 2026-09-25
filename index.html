@@ -10038,24 +10038,61 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
         function setFSColorClass(element, fs) { if (fs < 1.0) element.className = "text-xs font-bold text-red-500 font-mono"; else if (fs < 1.4) element.className = "text-xs font-bold text-yellow-500 font-mono"; else element.className = "text-xs font-bold text-emerald-400 font-mono"; }
 
         function renderAlternatives() {
-            const container = document.getElementById('alternatives-container'); container.innerHTML = ""; let titles = ["", "Повышенная надежность (+1 габарит редуктора)", "Альтернативная скорость (Быстрее)", "Альтернативная скорость (Медленнее)"]; let icons = ["", "shield", "trending-up", "trending-down"]; let colors = ["", "text-sky-400", "text-amber-400", "text-purple-400"];
-            if (state.desiredShaft > 0) { titles = ["", "Увеличенный габарит (Корпус больше)", "Уменьшенный габарит (Корпус меньше)", "Альтернативное передаточное отношение"]; icons = ["", "shield-alert", "shield-check", "shuffle"]; colors = ["", "text-amber-400", "text-sky-400", "text-purple-400"]; }
+            const container = document.getElementById('alternatives-container');
+            if (!container) return;
+            container.innerHTML = "";
+
+            let titles = ["", "Повышенная надежность", "Скорость: Быстрее", "Тяга: Больше момент"];
+            let icons = ["", "zap", "gauge", "cog"];
+            let badgeStyles = [
+                "",
+                "bg-sky-500/10 text-sky-400 border-sky-500/30",
+                "bg-amber-500/10 text-amber-400 border-amber-500/30",
+                "bg-teal-500/10 text-teal-400 border-teal-500/30"
+            ];
+            let titleStyles = ["", "text-sky-300", "text-amber-300", "text-teal-300"];
+
+            if (state.desiredShaft > 0) {
+                titles = ["", "Увеличенный габарит (Корпус больше)", "Уменьшенный габарит (Корпус меньше)", "Альтернативное передаточное"];
+                icons = ["", "zap", "shield-check", "cog"];
+                badgeStyles = [
+                    "",
+                    "bg-sky-500/10 text-sky-400 border-sky-500/30",
+                    "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
+                    "bg-teal-500/10 text-teal-400 border-teal-500/30"
+                ];
+                titleStyles = ["", "text-sky-300", "text-emerald-300", "text-teal-300"];
+            }
+
             for (let i = 1; i <= 3; i++) {
-                const opt = state.options[i]; if (!opt) continue; if (i === 1 && opt.frame === state.options[0].frame) continue;
+                const opt = state.options[i];
+                if (!opt) continue;
+                if (i === 1 && opt.frame === state.options[0].frame) continue;
+
                 const cardHtml = `
-                    <div onclick="applyAlternative(${i})" class="cursor-pointer bg-slate-900/60 hover:bg-slate-900 border border-slate-850 p-3 rounded transition flex items-start gap-3 group font-sans">
-                        <div class="bg-slate-950 p-2 rounded mt-0.5 group-hover:scale-102 transition ${colors[i]} border border-slate-850"><i data-lucide="${icons[i]}" class="w-3.5 h-3.5"></i></div>
+                    <div onclick="applyAlternative(${i})" class="cursor-pointer bg-slate-900/60 hover:bg-slate-900 border border-slate-850 p-3 rounded-xl transition flex items-start gap-3 group font-sans">
+                        <div class="p-2 rounded-lg mt-0.5 border shrink-0 transition-transform group-hover:scale-105 ${badgeStyles[i]}">
+                            <i data-lucide="${icons[i]}" class="w-4 h-4"></i>
+                        </div>
                         <div class="flex-1 min-w-0">
-                            <div class="flex justify-between items-center"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-wide truncate pr-2">${titles[i]}</span><span class="text-[9px] text-slate-500 font-mono shrink-0">${opt.frame} габарит</span></div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[10px] font-bold uppercase tracking-wide truncate pr-2 ${titleStyles[i]}">${titles[i]}</span>
+                                <span class="text-[9px] text-slate-500 font-mono shrink-0">${opt.frame} габарит</span>
+                            </div>
                             <div class="text-xs font-mono font-bold text-emerald-400 mt-1 truncate">${opt.marking}</div>
                             <div class="grid grid-cols-2 gap-x-2 gap-y-1 mt-2 text-[10px] text-slate-400 border-t border-slate-850 pt-1.5 font-sans">
-                                <div>Выходная скорость: <strong class="text-white">${opt.speed} об/мин</strong></div><div>Крутящий Момент: <strong class="text-white">${opt.torque} Нм</strong></div><div>Диаметр вала: <strong class="text-white">Ø ${opt.actualShaft} мм</strong></div><div>Sf: <strong class="${parseFloat(opt.fs) >= 1.4 ? 'text-emerald-400' : 'text-yellow-500'} font-mono">${parseFloat(opt.fs).toFixed(2)}</strong></div>
+                                <div>Выходная скорость: <strong class="text-white">${opt.speed} об/мин</strong></div>
+                                <div>Крутящий Момент: <strong class="text-white">${opt.torque} Нм</strong></div>
+                                <div>Диаметр вала: <strong class="text-white">Ø ${opt.actualShaft} мм</strong></div>
+                                <div>Sf: <strong class="${parseFloat(opt.fs) >= 1.4 ? 'text-emerald-400' : 'text-yellow-500'} font-mono">${parseFloat(opt.fs).toFixed(2)}</strong></div>
                             </div>
                         </div>
                     </div>`;
                 container.insertAdjacentHTML('beforeend', cardHtml);
             }
-            lucide.createIcons();
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
         }
 
         function applyAlternative(index) { const opt = state.options[index]; if (!opt) return; document.getElementById('power-input').value = opt.power; document.getElementById('speed-input').value = opt.speed; document.getElementById('speed-slider').value = opt.speed; state.power = opt.power; state.speed = opt.speed; if (state.desiredShaft > 0 && opt.actualShaft) { const shaftInput = document.getElementById('shaft-diam-input'); if (shaftInput) { shaftInput.value = opt.actualShaft; } state.desiredShaft = opt.actualShaft; } updateCalculations(); }
