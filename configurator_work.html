@@ -160,6 +160,9 @@
         }
     
         /* 21st.dev Spring Transition for Segmented Controls */
+                .step-section {
+            scroll-margin-top: 80px;
+        }
         .segmented-spring {
             transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
                         top 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -172,15 +175,40 @@
 <body class="bg-transparent text-slate-100 min-h-0 p-0 m-0">
     <div id="main-configurator-container" class="w-full md:w-[90%] lg:w-[80%] mx-auto bg-slate-900 rounded-xl overflow-hidden font-sans relative">
         <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+        <!-- Mobile Sticky Stepper (visible only < lg) -->
+        <div id="mobile-stepper" class="block lg:hidden sticky top-0 z-30 bg-slate-900/95 backdrop-blur-md border-b border-slate-800/80 px-3 py-2.5 transition-all">
+            <div class="flex items-center justify-between mb-1.5">
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Шаг <span id="mobile-step-num">1</span> из 5</span>
+                    <span class="text-[10px] text-slate-500">•</span>
+                    <span id="mobile-step-title" class="text-[11px] font-semibold text-slate-200 truncate max-w-[200px]">Тип редуктора</span>
+                </div>
+                <div class="text-[10px] font-mono font-bold text-slate-400" id="mobile-step-percent">20%</div>
+            </div>
+            <!-- Progress bar -->
+            <div class="w-full h-1 bg-slate-800 rounded-full overflow-hidden mb-2">
+                <div id="mobile-progress-bar" class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-300" style="width: 20%;"></div>
+            </div>
+            <!-- 5 Step Pills -->
+            <div class="grid grid-cols-5 gap-1 text-center font-sans">
+                <button type="button" onclick="goToMobileStep(1)" id="step-pill-1" class="py-1 px-0.5 rounded text-[10px] font-bold transition-all border border-emerald-500/50 bg-emerald-500/20 text-emerald-300 shadow-sm cursor-pointer">1. Тип</button>
+                <button type="button" onclick="goToMobileStep(2)" id="step-pill-2" class="py-1 px-0.5 rounded text-[10px] font-medium transition-all border border-slate-800/80 bg-slate-950 text-slate-500 cursor-pointer opacity-60">2. Парам</button>
+                <button type="button" onclick="goToMobileStep(3)" id="step-pill-3" class="py-1 px-0.5 rounded text-[10px] font-medium transition-all border border-slate-800/80 bg-slate-950 text-slate-500 cursor-pointer opacity-60">3. Монтаж</button>
+                <button type="button" onclick="goToMobileStep(4)" id="step-pill-4" class="py-1 px-0.5 rounded text-[10px] font-medium transition-all border border-slate-800/80 bg-slate-950 text-slate-500 cursor-pointer opacity-60">4. Ввод</button>
+                <button type="button" onclick="goToMobileStep(5)" id="step-pill-5" class="py-1 px-0.5 rounded text-[10px] font-medium transition-all border border-slate-800/80 bg-slate-950 text-slate-500 cursor-pointer opacity-60">5. Итог</button>
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 lg:grid-cols-12 relative z-10">
             <div class="lg:col-span-7 p-4 md:p-6 space-y-6 border-r border-slate-800 font-sans">
-                <div>
+                <!-- STEP 1: Gearbox Type -->
+                <div id="step-section-1" class="step-section">
                     <div class="flex items-center gap-2.5 mb-4">
                         <span class="w-5 h-5 rounded bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs font-bold font-mono">01</span>
                         <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Выберите тип передачи редуктора</h2>
                     </div>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        <div onclick="selectGearType('GR')" id="card-card-GR" class="cursor-pointer bg-slate-950 border border-slate-800 hover:border-emerald-500/30 p-2 rounded transition text-center flex flex-col items-center group">
+                        <div onclick="handleGearCardClick('GR')" id="card-card-GR" class="cursor-pointer bg-slate-950 border border-slate-800 hover:border-emerald-500/30 p-2 rounded transition text-center flex flex-col items-center group">
                             <div class="w-full h-24 bg-slate-900/40 rounded overflow-hidden flex items-center justify-center mb-2 relative border border-slate-900 p-1">
                                 <img id="img-GR" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Серия GR" class="object-contain max-h-full max-w-full group-hover:scale-105 transition duration-300 hidden">
                                 <div id="fallback-GR" class="absolute inset-0 flex items-center justify-center text-emerald-500/40 bg-emerald-500/5 rounded"><i data-lucide="axis-3d" class="w-7 h-7"></i></div>
@@ -188,7 +216,7 @@
                             <span class="text-xs font-bold text-white block uppercase tracking-wide">Серия GR</span>
                             <span class="text-[9px] text-slate-500 block mt-0.5 leading-tight">Соосно-цилиндрический</span>
                         </div>
-                        <div onclick="selectGearType('GF')" id="card-card-GF" class="cursor-pointer bg-slate-950 border border-slate-800 hover:border-emerald-500/30 p-2 rounded transition text-center flex flex-col items-center group font-sans">
+                        <div onclick="handleGearCardClick('GF')" id="card-card-GF" class="cursor-pointer bg-slate-950 border border-slate-800 hover:border-emerald-500/30 p-2 rounded transition text-center flex flex-col items-center group font-sans">
                             <div class="w-full h-24 bg-slate-900/40 rounded overflow-hidden flex items-center justify-center mb-2 relative border border-slate-900 p-1">
                                 <img id="img-GF" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Серия GF" class="object-contain max-h-full max-w-full group-hover:scale-105 transition duration-300 hidden">
                                 <div id="fallback-GF" class="absolute inset-0 flex items-center justify-center text-emerald-500/40 bg-emerald-500/5 rounded"><i data-lucide="layers" class="w-7 h-7"></i></div>
@@ -196,7 +224,7 @@
                             <span class="text-xs font-bold text-white block uppercase tracking-wide">Серия GF</span>
                             <span class="text-[9px] text-slate-500 block mt-0.5 leading-tight">Плоский (параллельный)</span>
                         </div>
-                        <div onclick="selectGearType('GK')" id="card-card-GK" class="cursor-pointer bg-slate-950 border border-slate-800 hover:border-emerald-500/30 p-2 rounded transition text-center flex flex-col items-center group font-sans">
+                        <div onclick="handleGearCardClick('GK')" id="card-card-GK" class="cursor-pointer bg-slate-950 border border-slate-800 hover:border-emerald-500/30 p-2 rounded transition text-center flex flex-col items-center group font-sans">
                             <div class="w-full h-24 bg-slate-900/40 rounded overflow-hidden flex items-center justify-center mb-2 relative border border-slate-900 p-1">
                                 <img id="img-GK" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Серия GK" class="object-contain max-h-full max-w-full group-hover:scale-105 transition duration-300 hidden">
                                 <div id="fallback-GK" class="absolute inset-0 flex items-center justify-center text-emerald-400 bg-emerald-500/5 rounded"><i data-lucide="corner-down-right" class="w-7 h-7"></i></div>
@@ -204,7 +232,7 @@
                             <span class="text-xs font-bold text-white block uppercase tracking-wide">Серия GK</span>
                             <span class="text-[9px] text-slate-500 block mt-0.5 leading-tight">Коническо-цилиндрический</span>
                         </div>
-                        <div onclick="selectGearType('GS')" id="card-card-GS" class="cursor-pointer bg-slate-950 border border-slate-800 hover:border-emerald-500/30 p-2 rounded transition text-center flex flex-col items-center group font-sans">
+                        <div onclick="handleGearCardClick('GS')" id="card-card-GS" class="cursor-pointer bg-slate-950 border border-slate-800 hover:border-emerald-500/30 p-2 rounded transition text-center flex flex-col items-center group font-sans">
                             <div class="w-full h-24 bg-slate-900/40 rounded overflow-hidden flex items-center justify-center mb-2 relative border border-slate-900 p-1">
                                 <img id="img-GS" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Серия GS" class="object-contain max-h-full max-w-full group-hover:scale-105 transition duration-300 hidden">
                                 <div id="fallback-GS" class="absolute inset-0 flex items-center justify-center text-emerald-400 bg-emerald-500/5 rounded"><i data-lucide="refresh-cw" class="w-7 h-7"></i></div>
@@ -213,153 +241,199 @@
                             <span class="text-[9px] text-slate-500 block mt-0.5 leading-tight">Червячно-цилиндрический</span>
                         </div>
                     </div>
+                    <!-- Mobile Next Button to Step 2 -->
+                    <div class="block lg:hidden pt-3">
+                        <button type="button" onclick="goToMobileStep(2)" class="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center gap-2 border border-slate-700 uppercase tracking-wider transition cursor-pointer">
+                            <span>Далее: Параметры редуктора</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <div>
-                    <div class="flex items-center gap-2.5 mb-4 font-sans">
-                        <span class="w-5 h-5 rounded bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs font-bold font-mono">02</span>
-                        <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Задайте базовые технические требования</h2>
+                <!-- STEP 2: Parameters + Execution (Shaft, Base, Motor) -->
+                <div id="step-section-2" class="step-section space-y-6">
+                    <div>
+                        <div class="flex items-center gap-2.5 mb-4 font-sans">
+                            <span class="w-5 h-5 rounded bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs font-bold font-mono">02</span>
+                            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Задайте базовые технические требования</h2>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Мощность двигателя</label>
+                                    <div class="relative">
+                                        <select id="power-input" onchange="handleParamChange()" class="w-full bg-slate-900 border border-slate-800 rounded px-3 py-2 text-xs text-white font-bold focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer">
+                                            <option value="0.12">0.12 кВт</option><option value="0.18">0.18 кВт</option><option value="0.25">0.25 кВт</option><option value="0.37">0.37 кВт</option><option value="0.55">0.55 кВт</option><option value="0.75">0.75 кВт</option><option value="1.1">1.1 кВт</option><option value="1.5" selected>1.5 кВт</option><option value="2.2">2.2 кВт</option><option value="3.0">3.0 кВт</option><option value="4.0">4.0 кВт</option><option value="5.5">5.5 кВт</option><option value="7.5">7.5 кВт</option><option value="11">11 кВт</option><option value="15">15 кВт</option><option value="18.5">18.5 кВт</option><option value="22">22 кВт</option><option value="30">30 кВт</option><option value="37">37 кВт</option><option value="45">45 кВт</option><option value="55">55 кВт</option><option value="75">75 кВт</option><option value="90">90 кВт</option><option value="110">110 кВт</option><option value="132">132 кВт</option><option value="160">160 кВт</option><option value="200">200 кВт</option><option value="250">250 кВт</option><option value="315">315 кВт</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500"><i data-lucide="chevron-down" class="w-3.5 h-3.5"></i></div>
+                                    </div>
+                                </div>
+                                <div class="text-[10px] text-slate-500 mt-2">Ряд мощностей (кВт)</div>
+                            </div>
+                            <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Диаметр вала (мм)</label>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <input id="shaft-diam-input" type="number" min="0" placeholder="Например 70" oninput="handleParamChange()" class="bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white font-semibold w-full focus:outline-none focus:border-emerald-500">
+                                    </div>
+                                </div>
+                                <div class="text-[10px] text-slate-500 mt-1">0 или пусто — без учета вала</div>
+                            </div>
+                            <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-400 block mb-1 uppercase tracking-wide">Обороты на выходе</label>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <input id="speed-input" type="number" value="10" oninput="handleParamChange()" class="bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white font-semibold w-24 focus:outline-none focus:border-emerald-500">
+                                        <span class="text-[11px] text-slate-500">об/мин</span>
+                                    </div>
+                                    <input id="speed-slider" type="range" min="1" max="1150" value="35" oninput="syncSliderToInput(this.value)" class="w-full accent-emerald-500 cursor-pointer">
+                                    <div class="flex justify-between text-[9px] text-slate-600 mt-1 font-mono"><span>1</span><span>1150 об/мин</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Сервис-фактор (Sf)<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Коэффициент запаса прочности. 1.0 — для легких условий, 1.2 — средних, 1.5+ — для тяжелых режимов с ударами.</span></span></label>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <input id="fs-min-input" type="number" step="0.1" min="0.5" max="4.0" value="1.0" oninput="handleParamChange()" class="bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white font-semibold w-20 focus:outline-none focus:border-emerald-500">
+                                        <span class="text-[11px] text-slate-500 whitespace-nowrap">минимум</span>
+                                    </div>
+                                    <div id="fs-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 mt-2 font-sans text-[10px] overflow-hidden">
+                                        <div id="fs-indicator" class="absolute bg-emerald-500 rounded-lg shadow-md shadow-emerald-500/25 segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                        <button type="button" onclick="setMinFs(1.0)" id="fs-1.0" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.0</button>
+                                        <button type="button" onclick="setMinFs(1.2)" id="fs-1.2" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.2</button>
+                                        <button type="button" onclick="setMinFs(1.5)" id="fs-1.5" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.5</button>
+                                        <button type="button" onclick="setMinFs(1.8)" id="fs-1.8" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.8</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
-                            <div>
-                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Мощность двигателя</label>
-                                <div class="relative">
-                                    <select id="power-input" onchange="handleParamChange()" class="w-full bg-slate-900 border border-slate-800 rounded px-3 py-2 text-xs text-white font-bold focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer">
-                                        <option value="0.12">0.12 кВт</option><option value="0.18">0.18 кВт</option><option value="0.25">0.25 кВт</option><option value="0.37">0.37 кВт</option><option value="0.55">0.55 кВт</option><option value="0.75">0.75 кВт</option><option value="1.1">1.1 кВт</option><option value="1.5" selected>1.5 кВт</option><option value="2.2">2.2 кВт</option><option value="3.0">3.0 кВт</option><option value="4.0">4.0 кВт</option><option value="5.5">5.5 кВт</option><option value="7.5">7.5 кВт</option><option value="11">11 кВт</option><option value="15">15 кВт</option><option value="18.5">18.5 кВт</option><option value="22">22 кВт</option><option value="30">30 кВт</option><option value="37">37 кВт</option><option value="45">45 кВт</option><option value="55">55 кВт</option><option value="75">75 кВт</option><option value="90">90 кВт</option><option value="110">110 кВт</option><option value="132">132 кВт</option><option value="160">160 кВт</option><option value="200">200 кВт</option><option value="250">250 кВт</option><option value="315">315 кВт</option>
-                                    </select>
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500"><i data-lucide="chevron-down" class="w-3.5 h-3.5"></i></div>
-                                </div>
-                            </div>
-                            <div class="text-[10px] text-slate-500 mt-2">Ряд мощностей (кВт)</div>
-                        </div>
-                        <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
-                            <div>
-                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Диаметр вала (мм)</label>
-                                <div class="flex items-center gap-2 mb-2">
-                                    <input id="shaft-diam-input" type="number" min="0" placeholder="Например 70" oninput="handleParamChange()" class="bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white font-semibold w-full focus:outline-none focus:border-emerald-500">
-                                </div>
-                            </div>
-                            <div class="text-[10px] text-slate-500 mt-1">0 или пусто — без учета вала</div>
-                        </div>
-                        <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
-                            <div>
-                                <label class="text-[10px] font-bold text-slate-400 block mb-1 uppercase tracking-wide">Обороты на выходе</label>
-                                <div class="flex items-center gap-2 mb-2">
-                                    <input id="speed-input" type="number" value="10" oninput="handleParamChange()" class="bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white font-semibold w-24 focus:outline-none focus:border-emerald-500">
-                                    <span class="text-[11px] text-slate-500">об/мин</span>
-                                </div>
-                                <input id="speed-slider" type="range" min="1" max="1150" value="35" oninput="syncSliderToInput(this.value)" class="w-full accent-emerald-500 cursor-pointer">
-                                <div class="flex justify-between text-[9px] text-slate-600 mt-1 font-mono"><span>1</span><span>1150 об/мин</span></div>
-                            </div>
-                        </div>
-                        <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
-                            <div>
-                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Сервис-фактор (Sf)<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Коэффициент запаса прочности. 1.0 — для легких условий, 1.2 — средних, 1.5+ — для тяжелых режимов с ударами.</span></span></label>
-                                <div class="flex items-center gap-2 mb-2">
-                                    <input id="fs-min-input" type="number" step="0.1" min="0.5" max="4.0" value="1.0" oninput="handleParamChange()" class="bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white font-semibold w-20 focus:outline-none focus:border-emerald-500">
-                                    <span class="text-[11px] text-slate-500 whitespace-nowrap">минимум</span>
-                                </div>
-                                <div id="fs-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 mt-2 font-sans text-[10px] overflow-hidden">
-                                    <div id="fs-indicator" class="absolute bg-emerald-500 rounded-lg shadow-md shadow-emerald-500/25 segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
-                                    <button type="button" onclick="setMinFs(1.0)" id="fs-1.0" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.0</button>
-                                    <button type="button" onclick="setMinFs(1.2)" id="fs-1.2" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.2</button>
-                                    <button type="button" onclick="setMinFs(1.5)" id="fs-1.5" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.5</button>
-                                    <button type="button" onclick="setMinFs(1.8)" id="fs-1.8" class="relative z-10 py-1.5 rounded-lg text-slate-400 hover:text-white text-center font-bold transition-colors duration-200 cursor-pointer">1.8</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
 
-                <div class="bg-slate-950 p-4 rounded border border-slate-850 space-y-4 font-sans">
-                    <h3 class="text-xs font-bold text-white border-b border-slate-900 pb-2 flex items-center gap-2 uppercase tracking-wider"><i data-lucide="settings-2" class="w-3.5 h-3.5 text-emerald-400"></i>Исполнение корпуса, двигателя и способ монтажа</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Тип вала редуктора<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Определяет, как редуктор соединяется с механизмом: сплошной вал со шпонкой, полый вал (надевается на вал машины) или стяжная муфта (без шпонки).</span></span></label>
-                            <select id="shaft-type" onchange="handleParamChange()" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-xs text-white focus:outline-none focus:border-emerald-500 cursor-pointer">
-                                <option value="solid">Цилиндрический со шпонкой (цельный вал)</option><option value="hollow">Полый со шпоночным пазом</option><option value="hollow_t">Полый со шпоночным пазом + Моментный рычаг (T)</option><option value="hollow_disc">Полый со стяжной муфтой (Shrink Disc)</option><option value="hollow_disc_t">Полый со стяжной муфтой + Моментный рычаг (T)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Способ крепления корпуса</label>
-                            <div id="base-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-3 gap-1 overflow-hidden font-sans">
-                                <div id="base-indicator" class="absolute bg-emerald-500 rounded-lg shadow-md shadow-emerald-500/25 segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
-                                <button type="button" onclick="setBaseType('foot')" id="base-foot" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer">На лапах</button>
-                                <button type="button" onclick="setBaseType('flange_b5')" id="base-flange_b5" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer">Фланец B5</button>
-                                <button type="button" onclick="setBaseType('flange_b14')" id="base-flange_b14" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer">Фланец B14</button>
-                                <button type="button" onclick="setBaseType('shaft')" id="base-shaft" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer" style="display: none;">На валу</button>
+                    <!-- Исполнение корпуса, двигателя и способ монтажа -->
+                    <div class="bg-slate-950 p-4 rounded border border-slate-850 space-y-4 font-sans">
+                        <h3 class="text-xs font-bold text-white border-b border-slate-900 pb-2 flex items-center gap-2 uppercase tracking-wider"><i data-lucide="settings-2" class="w-3.5 h-3.5 text-emerald-400"></i>Исполнение корпуса, двигателя и способ монтажа</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Тип вала редуктора<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Определяет, как редуктор соединяется с механизмом: сплошной вал со шпонкой, полый вал (надевается на вал машины) или стяжная муфта (без шпонки).</span></span></label>
+                                <select id="shaft-type" onchange="handleParamChange()" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-xs text-white focus:outline-none focus:border-emerald-500 cursor-pointer">
+                                    <option value="solid">Цилиндрический со шпонкой (цельный вал)</option><option value="hollow">Полый со шпоночным пазом</option><option value="hollow_t">Полый со шпоночным пазом + Моментный рычаг (T)</option><option value="hollow_disc">Полый со стяжной муфтой (Shrink Disc)</option><option value="hollow_disc_t">Полый со стяжной муфтой + Моментный рычаг (T)</option>
+                                </select>
                             </div>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-slate-900 items-stretch font-sans">
-                        <!-- LEFT COLUMN: Motor Type + Mounting Position + Tall Scheme -->
-                        <div class="flex flex-col justify-between h-full space-y-3">
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Способ крепления корпуса</label>
+                                <div id="base-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-3 gap-1 overflow-hidden font-sans">
+                                    <div id="base-indicator" class="absolute bg-emerald-500 rounded-lg shadow-md shadow-emerald-500/25 segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                    <button type="button" onclick="setBaseType('foot')" id="base-foot" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer">На лапах</button>
+                                    <button type="button" onclick="setBaseType('flange_b5')" id="base-flange_b5" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer">Фланец B5</button>
+                                    <button type="button" onclick="setBaseType('flange_b14')" id="base-flange_b14" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer">Фланец B14</button>
+                                    <button type="button" onclick="setBaseType('shaft')" id="base-shaft" class="relative z-10 text-xs py-2 px-2 rounded-lg text-slate-400 hover:text-white font-medium text-center transition-colors duration-200 cursor-pointer" style="display: none;">На валу</button>
+                                </div>
+                            </div>
                             <div>
                                 <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Тип электродвигателя</label>
                                 <select id="motor-type" onchange="handleParamChange()" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-xs text-white focus:outline-none focus:border-emerald-500 cursor-pointer">
                                     <option value="Y" selected>Y — асинхронный электродвигатель (стандарт)</option><option value="YEJ">YEJ — с электромагнитным тормозом</option><option value="YB">YB — взрывозащищённый электродвигатель</option><option value="YVP">YVP — с принудительным охлаждением</option><option value="YPEJ">YPEJ — с принудительным охлаждением и тормозом</option><option value="AD">AD — входящий цельный вал (без электродвигателя)</option>
                                 </select>
                             </div>
-                            <div>
-                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Монтажное положение<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Ориентация редуктора в пространстве. Влияет на уровень масла и расположение сапуна. М1 - стандартное горизонтальное.</span></span></label>
-                                <div id="mount-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-6 gap-1 overflow-hidden font-mono">
-                                    <div id="mount-indicator" class="absolute bg-emerald-500 rounded-lg shadow-md shadow-emerald-500/25 segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
-                                    <button type="button" onclick="setMountingPosition('M1')" id="mount-M1" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M1</button>
-                                    <button type="button" onclick="setMountingPosition('M2')" id="mount-M2" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M2</button>
-                                    <button type="button" onclick="setMountingPosition('M3')" id="mount-M3" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M3</button>
-                                    <button type="button" onclick="setMountingPosition('M4')" id="mount-M4" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M4</button>
-                                    <button type="button" onclick="setMountingPosition('M5')" id="mount-M5" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M5</button>
-                                    <button type="button" onclick="setMountingPosition('M6')" id="mount-M6" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M6</button>
-                                </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Next Button to Step 3 -->
+                    <div class="block lg:hidden pt-2">
+                        <button type="button" onclick="goToMobileStep(3)" class="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 uppercase tracking-wider transition cursor-pointer">
+                            <span>Далее: Монтажное положение</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEPS 3 & 4: Mounting Position & Cable (Side-by-side on desktop, distinct steps on mobile) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch font-sans">
+                    <!-- STEP 3: Mounting Position -->
+                    <div id="step-section-3" class="step-section bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between space-y-3 font-sans">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2 pb-2 border-b border-slate-900">
+                                <span class="w-5 h-5 rounded bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs font-bold font-mono">03</span>
+                                <label class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center">
+                                    Монтажное положение
+                                    <span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Ориентация редуктора в пространстве. Влияет на уровень масла и расположение сапуна. М1 - стандартное горизонтальное.</span></span>
+                                </label>
                             </div>
-                            <div id="mount-scheme-container" class="mt-2 p-2.5 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 min-h-[380px] md:min-h-[420px] transition-all duration-200">
-                                <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
-                                    <img id="mount-scheme-img" src="Mounting%20position/GR.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/Mounting%20position/GR.jpg'" alt="Схема монтажных положений (M1 - M6)" class="w-full max-h-[360px] md:max-h-[400px] object-contain rounded-lg">
-                                </div>
-                                <span class="text-[9px] font-semibold text-slate-500 mt-1.5 tracking-wider uppercase text-center">Схема монтажных положений (M1 - M6)</span>
+                            <div id="mount-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-6 gap-1 overflow-hidden font-mono mt-2">
+                                <div id="mount-indicator" class="absolute bg-emerald-500 rounded-lg shadow-md shadow-emerald-500/25 segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                <button type="button" onclick="setMountingPosition('M1')" id="mount-M1" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M1</button>
+                                <button type="button" onclick="setMountingPosition('M2')" id="mount-M2" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M2</button>
+                                <button type="button" onclick="setMountingPosition('M3')" id="mount-M3" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M3</button>
+                                <button type="button" onclick="setMountingPosition('M4')" id="mount-M4" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M4</button>
+                                <button type="button" onclick="setMountingPosition('M5')" id="mount-M5" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M5</button>
+                                <button type="button" onclick="setMountingPosition('M6')" id="mount-M6" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M6</button>
                             </div>
                         </div>
+                        <div id="mount-scheme-container" class="mt-2 p-2.5 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 min-h-[220px] md:min-h-[380px] lg:min-h-[420px] transition-all duration-200">
+                            <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
+                                <img id="mount-scheme-img" src="Mounting%20position/GR.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/Mounting%20position/GR.jpg'" alt="Схема монтажных положений (M1 - M6)" class="w-full max-h-[220px] md:max-h-[360px] lg:max-h-[400px] object-contain rounded-lg">
+                            </div>
+                            <span class="text-[9px] font-semibold text-slate-500 mt-1.5 tracking-wider uppercase text-center">Схема монтажных положений (M1 - M6)</span>
+                        </div>
+                        <!-- Mobile Next Button to Step 4 -->
+                        <div class="block lg:hidden pt-2">
+                            <button type="button" onclick="goToMobileStep(4)" class="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 uppercase tracking-wider transition cursor-pointer">
+                                <span>Далее: Ввод кабеля</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
 
-                        <!-- RIGHT COLUMN: Cable Outlet + Compact Scheme & Cable Entry + Compact Scheme -->
-                        <div class="flex flex-col justify-between h-full space-y-3">
-                            <div class="flex flex-col flex-1">
-                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Сторона выхода кабеля</label>
-                                <div id="cable-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 overflow-hidden font-sans">
-                                    <div id="cable-indicator" class="absolute bg-emerald-500/20 border border-emerald-500/70 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
-                                    <button type="button" onclick="setCableOutlet('X')" id="cable-X" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/X.png" alt="X" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">X</span></button>
-                                    <button type="button" onclick="setCableOutlet('1')" id="cable-1" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/1.png" alt="1" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">1</span></button>
-                                    <button type="button" onclick="setCableOutlet('2')" id="cable-2" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/2.png" alt="2" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">2</span></button>
-                                    <button type="button" onclick="setCableOutlet('3')" id="cable-3" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/3.png" alt="3" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">3</span></button>
-                                </div>
-                                <div id="cable-scheme-container" class="mt-2 p-2 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 transition-all duration-200">
-                                    <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
-                                        <img src="cable%20outlet%20side/cable%20outlet%20side.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/cable%20outlet%20side/cable%20outlet%20side.jpg'" alt="Схема стороны выхода кабеля (1, 2, 3, X)" class="w-full max-h-32 md:max-h-36 object-contain rounded-lg">
-                                    </div>
-                                    <span class="text-[9px] font-semibold text-slate-500 mt-1 tracking-wider uppercase text-center">Схема положений выхода кабеля (1, 2, 3, X)</span>
-                                </div>
+                    <!-- STEP 4: Cable Outlet Side & Entry Position -->
+                    <div id="step-section-4" class="step-section bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between space-y-3 font-sans">
+                        <div class="flex flex-col flex-1">
+                            <div class="flex items-center gap-2 mb-2 pb-2 border-b border-slate-900">
+                                <span class="w-5 h-5 rounded bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs font-bold font-mono">04</span>
+                                <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Сторона выхода кабеля</label>
                             </div>
-                            <div class="flex flex-col flex-1 pt-2 border-t border-slate-900">
-                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Положение ввода кабеля коробки<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Направление ввода кабеля питания относительно двигателя. По умолчанию 0°.</span></span></label>
-                                <div id="angle-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 overflow-hidden font-mono">
-                                    <div id="angle-indicator" class="absolute bg-emerald-500/20 border border-emerald-500/70 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
-                                    <button type="button" onclick="setBoxAngle('0')" id="angle-0" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/0.png" alt="0" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">0°</span></button>
-                                    <button type="button" onclick="setBoxAngle('90')" id="angle-90" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/90.png" alt="90" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">90°</span></button>
-                                    <button type="button" onclick="setBoxAngle('180')" id="angle-180" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/180.png" alt="180" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">180°</span></button>
-                                    <button type="button" onclick="setBoxAngle('270')" id="angle-270" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/270.png" alt="270" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">270°</span></button>
-                                </div>
-                                <div id="angle-scheme-container" class="mt-2 p-2 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 transition-all duration-200">
-                                    <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
-                                        <img id="angle-scheme-img" src="Box%20cable%20entry%20position/GR.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/Box%20cable%20entry%20position/GR.jpg'" alt="Схема положения ввода кабеля (0°, 90°, 180°, 270°)" class="w-full max-h-32 md:max-h-36 object-contain rounded-lg">
-                                    </div>
-                                    <span class="text-[9px] font-semibold text-slate-500 mt-1 tracking-wider uppercase text-center">Схема положения ввода кабеля (0°, 90°, 180°, 270°)</span>
-                                </div>
+                            <div id="cable-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 overflow-hidden font-sans">
+                                <div id="cable-indicator" class="absolute bg-emerald-500/20 border border-emerald-500/70 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                <button type="button" onclick="setCableOutlet('X')" id="cable-X" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/X.png" alt="X" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">X</span></button>
+                                <button type="button" onclick="setCableOutlet('1')" id="cable-1" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/1.png" alt="1" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">1</span></button>
+                                <button type="button" onclick="setCableOutlet('2')" id="cable-2" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/2.png" alt="2" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">2</span></button>
+                                <button type="button" onclick="setCableOutlet('3')" id="cable-3" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/cable%20outlet%20side/3.png" alt="3" class="w-10 h-10 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">3</span></button>
                             </div>
-                        </div>                    </div>
+                            <div id="cable-scheme-container" class="mt-2 p-2 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 transition-all duration-200">
+                                <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
+                                    <img src="cable%20outlet%20side/cable%20outlet%20side.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/cable%20outlet%20side/cable%20outlet%20side.jpg'" alt="Схема стороны выхода кабеля (1, 2, 3, X)" class="w-full max-h-32 md:max-h-36 object-contain rounded-lg">
+                                </div>
+                                <span class="text-[9px] font-semibold text-slate-500 mt-1 tracking-wider uppercase text-center">Схема положений выхода кабеля (1, 2, 3, X)</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col flex-1 pt-2 border-t border-slate-900">
+                            <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Положение ввода кабеля коробки<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Направление ввода кабеля питания относительно двигателя. По умолчанию 0°.</span></span></label>
+                            <div id="angle-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 overflow-hidden font-mono">
+                                <div id="angle-indicator" class="absolute bg-emerald-500/20 border border-emerald-500/70 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                <button type="button" onclick="setBoxAngle('0')" id="angle-0" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/0.png" alt="0" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">0°</span></button>
+                                <button type="button" onclick="setBoxAngle('90')" id="angle-90" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/90.png" alt="90" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">90°</span></button>
+                                <button type="button" onclick="setBoxAngle('180')" id="angle-180" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/180.png" alt="180" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">180°</span></button>
+                                <button type="button" onclick="setBoxAngle('270')" id="angle-270" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/270.png" alt="270" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">270°</span></button>
+                            </div>
+                            <div id="angle-scheme-container" class="mt-2 p-2 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 transition-all duration-200">
+                                <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
+                                    <img id="angle-scheme-img" src="Box%20cable%20entry%20position/GR.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/Box%20cable%20entry%20position/GR.jpg'" alt="Схема положения ввода кабеля (0°, 90°, 180°, 270°)" class="w-full max-h-32 md:max-h-36 object-contain rounded-lg">
+                                </div>
+                                <span class="text-[9px] font-semibold text-slate-500 mt-1 tracking-wider uppercase text-center">Схема положения ввода кабеля (0°, 90°, 180°, 270°)</span>
+                            </div>
+                        </div>
+                        <!-- Mobile Next Button to Step 5 -->
+                        <div class="block lg:hidden pt-2">
+                            <button type="button" onclick="goToMobileStep(5)" class="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 uppercase tracking-wider transition cursor-pointer">
+                                <span>Показать результат подбора</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="lg:col-span-5 bg-slate-950 p-4 md:p-6 space-y-6 flex flex-col justify-between">
+            <!-- STEP 5: Right Column (Marking, Specs, Compact Drawing Card on Mobile / Inline CAD on Desktop, Alternatives, CTAs) -->
+            <div id="step-section-5" class="step-section lg:col-span-5 bg-slate-950 p-4 md:p-6 space-y-6 flex flex-col justify-between">
                 <div class="space-y-5">
                     <div class="bg-slate-900 rounded border border-slate-800 p-4">
                         <div class="flex justify-between items-center mb-2 font-sans">
@@ -368,11 +442,16 @@
                         </div>
                         <div id="result-marking" class="text-lg md:text-xl font-black text-white font-mono tracking-wider break-all select-all">--</div>
                         <div class="grid grid-cols-2 md:grid-cols-5 gap-2 mt-4 text-center font-mono">
-                            <div class="bg-slate-950 p-2 rounded border border-slate-850"><span class="text-[9px] text-slate-500 block uppercase tracking-wide">Мощность</span><span id="best-power" class="text-xs font-bold text-white">--</span></div><div class="bg-slate-950 p-2 rounded border border-slate-850"><span class="text-[9px] text-slate-500 block uppercase tracking-wide">Обороты</span><span id="best-speed" class="text-xs font-bold text-emerald-400">--</span></div><div class="bg-slate-950 p-2 rounded border border-slate-850"><span class="text-[9px] text-slate-500 block uppercase tracking-wide">Момент</span><span id="best-torque" class="text-xs font-bold text-white">--</span></div><div class="bg-slate-950 p-2 rounded border border-slate-850"><span class="text-[9px] text-slate-500 block uppercase tracking-wide">Sf фактор</span><span id="best-fs" class="text-xs font-bold">--</span></div><div class="bg-slate-950 p-2 rounded border border-slate-850 col-span-2 md:col-span-1"><span class="text-[9px] text-slate-500 block uppercase tracking-wide">Вал редук.</span><span id="best-shaft-val" class="text-xs font-bold text-sky-400">--</span></div>
+                            <div class="bg-slate-950 p-2 rounded border border-slate-850"><span class="text-[9px] text-slate-500 block uppercase tracking-wide">Мощность</span><span id="best-power" class="text-xs font-bold text-white">--</span></div>
+                            <div class="bg-slate-950 p-2 rounded border border-slate-850"><span class="text-[9px] text-slate-500 block uppercase tracking-wide">Обороты</span><span id="best-speed" class="text-xs font-bold text-emerald-400">--</span></div>
+                            <div class="bg-slate-950 p-2 rounded border border-slate-850"><span class="text-[9px] text-slate-500 block uppercase tracking-wide">Момент</span><span id="best-torque" class="text-xs font-bold text-white">--</span></div>
+                            <div class="bg-slate-950 p-2 rounded border border-slate-850"><span class="text-[9px] text-slate-500 block uppercase tracking-wide">Sf фактор</span><span id="best-fs" class="text-xs font-bold">--</span></div>
+                            <div class="bg-slate-950 p-2 rounded border border-slate-850 col-span-2 md:col-span-1"><span class="text-[9px] text-slate-500 block uppercase tracking-wide">Вал редук.</span><span id="best-shaft-val" class="text-xs font-bold text-sky-400">--</span></div>
                         </div>
                     </div>
 
-                    <div class="bg-slate-900 rounded p-3 border border-slate-850 text-center relative overflow-hidden">
+                    <!-- Desktop inline CAD drawing (hidden on mobile) -->
+                    <div id="desktop-drawing-card" class="bg-slate-900 rounded p-3 border border-slate-850 text-center relative overflow-hidden hidden lg:block">
                         <div class="w-full h-80 flex items-center justify-center bg-white rounded p-2 border border-slate-200 relative group overflow-hidden">
                             <img id="series-preview-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Мотор-редуктор" class="object-contain max-h-full max-w-full transition-transform duration-300 group-hover:scale-102 hidden">
                             <div id="preview-fallback" class="absolute inset-0 flex items-center justify-center text-slate-400 bg-white rounded"><i data-lucide="image" class="w-10 h-10"></i></div>
@@ -393,8 +472,33 @@
                             <div id="svgContainer" class="absolute inset-0 flex items-center justify-center bg-white p-4 overflow-hidden hidden"><p class="status-message text-slate-400 text-xs font-bold" id="grStatusLabel">Синхронизация схем...</p></div>
                         </div>
                         <div class="mt-2 flex justify-end gap-2">
-                            <button onclick="openModalDrawing()" class="bg-slate-950 hover:bg-slate-800 text-slate-300 font-semibold px-3 py-1.5 rounded text-xs inline-flex items-center gap-1.5 border border-slate-800 transition"><i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>ОТКРЫТЬ ЧЕРТЁЖ</button>
-                            <button onclick="downloadDrawingAsPdf()" class="bg-slate-950 hover:bg-slate-800 text-slate-300 font-semibold px-3 py-1.5 rounded text-xs inline-flex items-center gap-1.5 border border-slate-800 transition"><i data-lucide="download" class="w-3.5 h-3.5"></i>СКАЧАТЬ ЧЕРТЁЖ (PDF)</button>
+                            <button onclick="openModalDrawing()" class="bg-slate-950 hover:bg-slate-800 text-slate-300 font-semibold px-3 py-1.5 rounded text-xs inline-flex items-center gap-1.5 border border-slate-800 transition cursor-pointer"><i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>ОТКРЫТЬ ЧЕРТЁЖ</button>
+                            <button onclick="downloadDrawingAsPdf()" class="bg-slate-950 hover:bg-slate-800 text-slate-300 font-semibold px-3 py-1.5 rounded text-xs inline-flex items-center gap-1.5 border border-slate-800 transition cursor-pointer"><i data-lucide="download" class="w-3.5 h-3.5"></i>СКАЧАТЬ ЧЕРТЁЖ (PDF)</button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile compact drawing trigger card (visible only < lg) -->
+                    <div id="mobile-drawing-card" class="block lg:hidden bg-slate-900 border border-slate-800/90 rounded-xl p-3.5 shadow-sm">
+                        <div class="flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20 shrink-0">
+                                    <i data-lucide="compass" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-white uppercase tracking-wider">Интерактивный чертёж</div>
+                                    <div class="text-[10px] text-slate-400">Габариты и схема редуктора</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0">
+                                <button type="button" onclick="openModalDrawing()" class="px-3 py-2 bg-emerald-500 text-slate-950 hover:bg-emerald-400 rounded-lg text-xs font-bold inline-flex items-center gap-1.5 transition shadow-sm cursor-pointer">
+                                    <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>
+                                    <span>Чертёж</span>
+                                </button>
+                                <button type="button" onclick="downloadDrawingAsPdf()" class="px-2.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-bold inline-flex items-center gap-1 transition cursor-pointer">
+                                    <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                                    <span>PDF</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -422,6 +526,13 @@
                         <button onclick="copyConfigLink()" class="bg-slate-950/80 hover:bg-slate-800 text-slate-300 hover:text-white font-semibold px-3 py-2.5 rounded-xl text-[11px] flex items-center justify-center gap-2 border border-slate-800/80 hover:border-slate-700 transition uppercase tracking-wide cursor-pointer shadow-sm">
                             <i data-lucide="share-2" class="w-3.5 h-3.5 text-teal-400"></i>
                             <span>Скопировать ссылку</span>
+                        </button>
+                    </div>
+                    <!-- Mobile Restart / Change Params button -->
+                    <div class="block lg:hidden pt-2">
+                        <button type="button" onclick="goToMobileStep(2)" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 text-xs font-semibold flex items-center justify-center gap-2 transition uppercase tracking-wider cursor-pointer">
+                            <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            <span>Изменить параметры подбора</span>
                         </button>
                     </div>
                 </div>
@@ -9148,7 +9259,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     shaftSelect.value = state.shaftType;
                 }
             }
-            initImageSources(); lucide.createIcons(); selectGearType(state.gearType); setMountingPosition(state.mountingPosition); setBoxAngle(state.boxAngle); setBaseType(state.baseType); setCableOutlet(state.cableOutlet); syncUIConstraints(); updateSchemeImages(); fetchExternalCatalog(DEFAULT_CATALOG_URL); initInteractiveDrawingsCore(); setTimeout(syncAllSegmentedIndicators, 50); setTimeout(syncAllSegmentedIndicators, 300);
+            initImageSources(); lucide.createIcons(); selectGearType(state.gearType); applyStepVisibility(); setMountingPosition(state.mountingPosition); setBoxAngle(state.boxAngle); setBaseType(state.baseType); setCableOutlet(state.cableOutlet); syncUIConstraints(); updateSchemeImages(); fetchExternalCatalog(DEFAULT_CATALOG_URL); initInteractiveDrawingsCore(); setTimeout(syncAllSegmentedIndicators, 50); setTimeout(syncAllSegmentedIndicators, 300);
         };
 
         function parseMarkingToState(marking) {
@@ -10280,26 +10391,127 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             }
         });
 
+                // ==========================================
+        // ПОШАГОВЫЙ ВИЗАРД ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+        // ==========================================
+        let mobileCurrentStep = 1;
+        let mobileMaxUnlockedStep = 1;
+        const mobileStepTitles = {
+            1: 'Тип редуктора',
+            2: 'Параметры и двигатель',
+            3: 'Монтажное положение',
+            4: 'Сторона и ввод кабеля',
+            5: 'Результат подбора'
+        };
+
+        function isMobileView() {
+            return window.innerWidth < 1024;
+        }
+
+        function updateMobileStepper(step) {
+            const numEl = document.getElementById('mobile-step-num');
+            const titleEl = document.getElementById('mobile-step-title');
+            const barEl = document.getElementById('mobile-progress-bar');
+            const pctEl = document.getElementById('mobile-step-percent');
+            if (numEl) numEl.textContent = step;
+            if (titleEl) titleEl.textContent = mobileStepTitles[step] || '';
+            const pct = Math.round((step / 5) * 100);
+            if (barEl) barEl.style.width = pct + '%';
+            if (pctEl) pctEl.textContent = pct + '%';
+
+            for (let i = 1; i <= 5; i++) {
+                const pill = document.getElementById('step-pill-' + i);
+                if (!pill) continue;
+                if (i === step) {
+                    pill.className = 'py-1 px-0.5 rounded text-[10px] font-bold transition-all border border-emerald-500/60 bg-emerald-500/20 text-emerald-300 shadow-sm cursor-pointer';
+                } else if (i <= mobileMaxUnlockedStep) {
+                    pill.className = 'py-1 px-0.5 rounded text-[10px] font-semibold transition-all border border-slate-700 bg-slate-900 text-slate-300 hover:text-emerald-400 cursor-pointer';
+                } else {
+                    pill.className = 'py-1 px-0.5 rounded text-[10px] font-medium transition-all border border-slate-800/80 bg-slate-950 text-slate-500 cursor-pointer opacity-60';
+                }
+            }
+        }
+
+        function applyStepVisibility() {
+            const isMobile = isMobileView();
+            for (let i = 1; i <= 5; i++) {
+                const el = document.getElementById('step-section-' + i);
+                if (!el) continue;
+                if (!isMobile) {
+                    el.classList.remove('hidden');
+                } else {
+                    if (i <= mobileCurrentStep) {
+                        el.classList.remove('hidden');
+                    } else {
+                        el.classList.add('hidden');
+                    }
+                }
+            }
+            updateMobileStepper(mobileCurrentStep);
+            if (window.reportHeight) window.reportHeight();
+            if (window.lucide) lucide.createIcons();
+            setTimeout(syncAllSegmentedIndicators, 60);
+        }
+
+        function goToMobileStep(step, options = {}) {
+            const shouldScroll = options.scroll !== false;
+            mobileCurrentStep = Math.max(1, Math.min(5, step));
+            if (mobileCurrentStep > mobileMaxUnlockedStep) {
+                mobileMaxUnlockedStep = mobileCurrentStep;
+            }
+            applyStepVisibility();
+
+            if (shouldScroll && isMobileView()) {
+                setTimeout(() => {
+                    const targetEl = document.getElementById('step-section-' + mobileCurrentStep);
+                    if (targetEl) {
+                        const stepper = document.getElementById('mobile-stepper');
+                        const offset = stepper ? stepper.offsetHeight + 12 : 70;
+                        const rect = targetEl.getBoundingClientRect();
+                        const targetY = window.pageYOffset + rect.top - offset;
+                        window.scrollTo({
+                            top: Math.max(0, targetY),
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 60);
+            }
+        }
+
+        function handleGearCardClick(type) {
+            selectGearType(type);
+            if (isMobileView()) {
+                goToMobileStep(2);
+            }
+        }
+
+        function handleResizeWizard() {
+            applyStepVisibility();
+        }
+
+        window.addEventListener('resize', handleResizeWizard);
+        window.addEventListener('orientationchange', handleResizeWizard);
+
         // Оповещение родительского окна (Тильды) о точной высоте контента
-        if (window.parent && window.parent !== window) {
-            let lastSentHeight = 0;
-            const reportHeight = () => {
+        let lastSentHeight = 0;
+        window.reportHeight = function() {
+            if (window.parent && window.parent !== window) {
                 const container = document.getElementById('main-configurator-container');
                 if (!container) return;
                 const height = Math.ceil(container.getBoundingClientRect().height) + 16;
-                if (height > 300 && Math.abs(height - lastSentHeight) > 4) {
+                if (height > 150 && Math.abs(height - lastSentHeight) > 4) {
                     lastSentHeight = height;
                     window.parent.postMessage({ type: 'grinstr_resize', height: height }, '*');
                 }
-            };
-            window.addEventListener('load', reportHeight);
-            window.addEventListener('resize', reportHeight);
-            if (window.ResizeObserver) {
-                const container = document.getElementById('main-configurator-container');
-                if (container) new ResizeObserver(reportHeight).observe(container);
             }
-            setInterval(reportHeight, 2000);
+        };
+        window.addEventListener('load', window.reportHeight);
+        window.addEventListener('resize', window.reportHeight);
+        if (window.ResizeObserver) {
+            const container = document.getElementById('main-configurator-container');
+            if (container) new ResizeObserver(window.reportHeight).observe(container);
         }
+        setInterval(window.reportHeight, 2000);
     </script>
 </body>
 </html>

@@ -27,7 +27,7 @@
     iframe.id = 'grinstr-configurator-iframe';
     iframe.src = 'https://landbool.github.io/configurator/index.html?v=' + Date.now();
     iframe.style.width = '100%';
-    iframe.style.height = '980px';
+    iframe.style.height = (window.innerWidth < 1024 ? '420px' : '980px');
     iframe.style.border = 'none';
     iframe.style.overflow = 'hidden';
     iframe.style.display = 'block';
