@@ -314,27 +314,43 @@
                             </div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-slate-900">
-                        <div>
-                            <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Монтажное положение<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Ориентация редуктора в пространстве. Влияет на уровень масла и расположение сапуна. М1 - стандартное горизонтальное.</span></span></label>
-                            <div id="mount-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-6 gap-1 overflow-hidden font-mono">
-                                <div id="mount-indicator" class="absolute bg-emerald-500 rounded-lg shadow-md shadow-emerald-500/25 segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
-                                <button type="button" onclick="setMountingPosition('M1')" id="mount-M1" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M1</button>
-                                <button type="button" onclick="setMountingPosition('M2')" id="mount-M2" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M2</button>
-                                <button type="button" onclick="setMountingPosition('M3')" id="mount-M3" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M3</button>
-                                <button type="button" onclick="setMountingPosition('M4')" id="mount-M4" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M4</button>
-                                <button type="button" onclick="setMountingPosition('M5')" id="mount-M5" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M5</button>
-                                <button type="button" onclick="setMountingPosition('M6')" id="mount-M6" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M6</button>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-slate-900 items-stretch">
+                        <div class="flex flex-col justify-between h-full">
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Монтажное положение<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Ориентация редуктора в пространстве. Влияет на уровень масла и расположение сапуна. М1 - стандартное горизонтальное.</span></span></label>
+                                <div id="mount-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-6 gap-1 overflow-hidden font-mono">
+                                    <div id="mount-indicator" class="absolute bg-emerald-500 rounded-lg shadow-md shadow-emerald-500/25 segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                    <button type="button" onclick="setMountingPosition('M1')" id="mount-M1" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M1</button>
+                                    <button type="button" onclick="setMountingPosition('M2')" id="mount-M2" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M2</button>
+                                    <button type="button" onclick="setMountingPosition('M3')" id="mount-M3" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M3</button>
+                                    <button type="button" onclick="setMountingPosition('M4')" id="mount-M4" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M4</button>
+                                    <button type="button" onclick="setMountingPosition('M5')" id="mount-M5" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M5</button>
+                                    <button type="button" onclick="setMountingPosition('M6')" id="mount-M6" class="relative z-10 text-[10px] font-bold py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition-colors duration-200 cursor-pointer">M6</button>
+                                </div>
+                            </div>
+                            <div id="mount-scheme-container" class="mt-2.5 p-2.5 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 min-h-[220px] transition-all duration-200">
+                                <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
+                                    <img id="mount-scheme-img" src="Mounting%20position/GR.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/Mounting%20position/GR.jpg'" alt="Схема монтажных положений (M1 - M6)" class="w-full max-h-48 md:max-h-52 object-contain rounded-lg">
+                                </div>
+                                <span class="text-[9px] font-semibold text-slate-500 mt-1.5 tracking-wider uppercase text-center">Схема монтажных положений (M1 - M6)</span>
                             </div>
                         </div>
-                        <div>
-                            <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Положение ввода кабеля коробки<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Направление ввода кабеля питания относительно двигателя. По умолчанию 0°.</span></span></label>
-                            <div id="angle-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 overflow-hidden font-mono">
-                                <div id="angle-indicator" class="absolute bg-emerald-500/20 border border-emerald-500/70 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
-                                <button type="button" onclick="setBoxAngle('0')" id="angle-0" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/0.png" alt="0" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">0°</span></button>
-                                <button type="button" onclick="setBoxAngle('90')" id="angle-90" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/90.png" alt="90" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">90°</span></button>
-                                <button type="button" onclick="setBoxAngle('180')" id="angle-180" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/180.png" alt="180" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">180°</span></button>
-                                <button type="button" onclick="setBoxAngle('270')" id="angle-270" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/270.png" alt="270" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">270°</span></button>
+                        <div class="flex flex-col justify-between h-full">
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Положение ввода кабеля коробки<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Направление ввода кабеля питания относительно двигателя. По умолчанию 0°.</span></span></label>
+                                <div id="angle-buttons-container" class="relative p-1 bg-slate-900/90 border border-slate-800/80 rounded-xl grid grid-cols-4 gap-1 overflow-hidden font-mono">
+                                    <div id="angle-indicator" class="absolute bg-emerald-500/20 border border-emerald-500/70 rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] segmented-spring pointer-events-none z-0" style="opacity: 0;"></div>
+                                    <button type="button" onclick="setBoxAngle('0')" id="angle-0" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/0.png" alt="0" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">0°</span></button>
+                                    <button type="button" onclick="setBoxAngle('90')" id="angle-90" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/90.png" alt="90" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">90°</span></button>
+                                    <button type="button" onclick="setBoxAngle('180')" id="angle-180" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/180.png" alt="180" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">180°</span></button>
+                                    <button type="button" onclick="setBoxAngle('270')" id="angle-270" class="relative z-10 flex flex-col items-center justify-center gap-1.5 p-1.5 rounded-lg text-slate-400 hover:text-white transition-all duration-200 group [&>img]:opacity-70 hover:[&>img]:opacity-100 cursor-pointer"><img src="https://landbool.github.io/configurator/Box%20cable%20entry%20position/270.png" alt="270" class="w-8 h-8 object-contain transition group-hover:scale-105"><span class="text-[10px] font-bold">270°</span></button>
+                                </div>
+                            </div>
+                            <div id="angle-scheme-container" class="mt-2.5 p-2.5 bg-white rounded-xl border border-slate-800 shadow-sm flex flex-col items-center justify-between flex-1 min-h-[220px] transition-all duration-200">
+                                <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
+                                    <img id="angle-scheme-img" src="Box%20cable%20entry%20position/GR.jpg" onerror="this.onerror=null; this.src='https://landbool.github.io/configurator/Box%20cable%20entry%20position/GR.jpg'" alt="Схема положения ввода кабеля (0°, 90°, 180°, 270°)" class="w-full max-h-48 md:max-h-52 object-contain rounded-lg">
+                                </div>
+                                <span class="text-[9px] font-semibold text-slate-500 mt-1.5 tracking-wider uppercase text-center">Схема положения ввода кабеля (0°, 90°, 180°, 270°)</span>
                             </div>
                         </div>
                     </div>
@@ -9130,7 +9146,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     shaftSelect.value = state.shaftType;
                 }
             }
-            initImageSources(); lucide.createIcons(); selectGearType(state.gearType); setMountingPosition(state.mountingPosition); setBoxAngle(state.boxAngle); setBaseType(state.baseType); setCableOutlet(state.cableOutlet); syncUIConstraints(); fetchExternalCatalog(DEFAULT_CATALOG_URL); initInteractiveDrawingsCore(); setTimeout(syncAllSegmentedIndicators, 50); setTimeout(syncAllSegmentedIndicators, 300);
+            initImageSources(); lucide.createIcons(); selectGearType(state.gearType); setMountingPosition(state.mountingPosition); setBoxAngle(state.boxAngle); setBaseType(state.baseType); setCableOutlet(state.cableOutlet); syncUIConstraints(); updateSchemeImages(); fetchExternalCatalog(DEFAULT_CATALOG_URL); initInteractiveDrawingsCore(); setTimeout(syncAllSegmentedIndicators, 50); setTimeout(syncAllSegmentedIndicators, 300);
         };
 
         function parseMarkingToState(marking) {
@@ -9206,6 +9222,30 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             }
         }
 
+        function updateSchemeImages() {
+            const series = state.gearType || 'GR';
+            const mountImg = document.getElementById('mount-scheme-img');
+            const angleImg = document.getElementById('angle-scheme-img');
+            if (mountImg) {
+                const mountSrc = `Mounting%20position/${series}.jpg`;
+                mountImg.src = mountSrc;
+                mountImg.onerror = function() {
+                    this.onerror = null;
+                    this.src = `https://landbool.github.io/configurator/Mounting%20position/${series}.jpg`;
+                };
+                mountImg.alt = `Схема монтажных положений для серии ${series}`;
+            }
+            if (angleImg) {
+                const angleSrc = `Box%20cable%20entry%20position/${series}.jpg`;
+                angleImg.src = angleSrc;
+                angleImg.onerror = function() {
+                    this.onerror = null;
+                    this.src = `https://landbool.github.io/configurator/Box%20cable%20entry%20position/${series}.jpg`;
+                };
+                angleImg.alt = `Схема положения ввода кабеля для серии ${series}`;
+            }
+        }
+
         function selectGearType(type) {
             state.gearType = type; const shaftSelect = document.getElementById('shaft-type');
             if (shaftSelect) {
@@ -9241,7 +9281,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                 shaftSelect.value = state.shaftType;
             }
             ['GR', 'GF', 'GK', 'GS'].forEach(item => { const card = document.getElementById(`card-card-${item}`); if (card) { if (item === type) { card.classList.remove('border-slate-800', 'bg-slate-950'); card.classList.add('border-white', 'bg-black/85'); } else { card.classList.remove('border-white', 'bg-black/85'); card.classList.add('border-slate-800', 'bg-slate-950'); } } });
-            syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations();
+            syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations(); updateSchemeImages();
         }
 
         function setPower(val) { stateFsFix(val, 'power-input'); state.power = parseFloat(val); updateCalculations(); }
@@ -9332,10 +9372,15 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             }
             // УМНАЯ БЛОКИРОВКА КАБЕЛЯ И КОРОБКИ ДЛЯ ИСПОЛНЕНИЯ AD
             const cableScheme = document.getElementById('cable-scheme-container');
+            const angleScheme = document.getElementById('angle-scheme-container');
             if (state.motorType === 'AD') {
                 if (cableScheme) {
                     cableScheme.style.opacity = "0.3";
                     cableScheme.style.pointerEvents = "none";
+                }
+                if (angleScheme) {
+                    angleScheme.style.opacity = "0.3";
+                    angleScheme.style.pointerEvents = "none";
                 }
                 ['X', '1', '2', '3'].forEach(item => {
                     const btn = document.getElementById(`cable-${item}`);
@@ -9382,11 +9427,15 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     cableScheme.style.opacity = "1";
                     cableScheme.style.pointerEvents = "auto";
                 }
+                if (angleScheme) {
+                    angleScheme.style.opacity = "1";
+                    angleScheme.style.pointerEvents = "auto";
+                }
             }
             syncAllSegmentedIndicators();
         }
 
-        function handleParamChange() { state.power = parseFloat(document.getElementById('power-input').value) || 0.12; state.speed = parseFloat(document.getElementById('speed-input').value) || 35; state.minFs = parseFloat(document.getElementById('fs-min-input').value) || 1.0; state.shaftType = document.getElementById('shaft-type').value; state.motorType = document.getElementById('motor-type').value; state.desiredShaft = parseFloat(document.getElementById('shaft-diam-input')?.value) || 0; syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations(); }
+        function handleParamChange() { state.power = parseFloat(document.getElementById('power-input').value) || 0.12; state.speed = parseFloat(document.getElementById('speed-input').value) || 35; state.minFs = parseFloat(document.getElementById('fs-min-input').value) || 1.0; state.shaftType = document.getElementById('shaft-type').value; state.motorType = document.getElementById('motor-type').value; state.desiredShaft = parseFloat(document.getElementById('shaft-diam-input')?.value) || 0; syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations(); updateSchemeImages(); }
         function setBaseType(type) { 
             state.baseType = type; 
             syncUIConstraints(); 
@@ -9978,6 +10027,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             const shaftEl = document.getElementById('visualizer-shaft'); if (shaftEl) shaftEl.textContent = bestConfig.shaft;
             renderAlternatives();
             
+            updateSchemeImages();
             const urlParams = new URLSearchParams();
             urlParams.set('m', bestConfig.marking);
             window.history.replaceState(null, '', window.location.pathname + '?' + urlParams.toString());
