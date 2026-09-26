@@ -9819,33 +9819,35 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             let bestConfig = null;
             // ПОДБОР ПО КРУТЯЩЕМУ МОМЕНТУ
             if (state.desiredTorque > 0) {
-                // Фильтруем каталог: момент >= требуемого пользователем
+                // Фильтруем каталог: момент >= порога пользователя (момент — это фильтр, не критерий сортировки)
                 let torqueMatches = filteredRows.filter(row => row.torque >= state.desiredTorque);
                 if (torqueMatches.length === 0) {
                     // Нет подходящих — берём с максимальным доступным моментом
                     torqueMatches = [...filteredRows].sort((a, b) => b.torque - a.torque);
                 }
-                let allConfigs = torqueMatches.map(row => formatMarkingAndParams(row)).filter(c => c !== null);
+                // Из отфильтрованных по моменту — ищем ближайшую мощность
+                const closestPowerT = torqueMatches.reduce((best, row) => Math.abs(row.power - state.power) < Math.abs(best - state.power) ? row.power : best, torqueMatches[0].power);
+                let powerRowsT = torqueMatches.filter(row => row.power === closestPowerT);
+                let allConfigs = powerRowsT.map(row => formatMarkingAndParams(row)).filter(c => c !== null);
                 if (window.forceFrame) {
                     const exactConfigs = allConfigs.filter(c => c.frame === window.forceFrame);
                     if (exactConfigs.length > 0) allConfigs = exactConfigs;
                     window.forceFrame = null;
                 }
-                // Сортировка: наименьший момент ≥ требуемого (самый подходящий без лишнего запаса) → ближайшая мощность → ближайшая скорость
+                // Сортировка: ближайшая скорость → ближайшая мощность (момент уже отфильтрован)
                 allConfigs.sort((a, b) => {
-                    if (a.torque !== b.torque) return a.torque - b.torque;
-                    const powerDiffA = Math.abs(a.power - state.power);
-                    const powerDiffB = Math.abs(b.power - state.power);
-                    if (powerDiffA !== powerDiffB) return powerDiffA - powerDiffB;
-                    return Math.abs(a.speed - state.speed) - Math.abs(b.speed - state.speed);
+                    const speedDiffA = Math.abs(a.speed - state.speed);
+                    const speedDiffB = Math.abs(b.speed - state.speed);
+                    if (speedDiffA !== speedDiffB) return speedDiffA - speedDiffB;
+                    return Math.abs(a.power - state.power) - Math.abs(b.power - state.power);
                 });
                 bestConfig = allConfigs[0];
                 if (bestConfig) {
-                    // Альтернативы: с бо́льшим запасом по моменту, быстрее, медленнее
-                    const largerTorque = allConfigs.filter(c => c.torque > bestConfig.torque && c.frame > bestConfig.frame);
+                    // Альтернативы: больший габарит (запас), быстрее, медленнее
+                    const largerFrame = allConfigs.filter(c => c.frame > bestConfig.frame && c.marking !== bestConfig.marking);
                     const fasterSpeed = allConfigs.filter(c => c.speed > bestConfig.speed && c.marking !== bestConfig.marking);
                     const slowerSpeed = allConfigs.filter(c => c.speed < bestConfig.speed && c.marking !== bestConfig.marking);
-                    state.options = [bestConfig, largerTorque[0] || null, fasterSpeed[0] || null, slowerSpeed[0] || null];
+                    state.options = [bestConfig, largerFrame[0] || null, fasterSpeed[0] || null, slowerSpeed[0] || null];
                 }
             }
             
