@@ -47,6 +47,12 @@
     window.addEventListener('message', function(e) {
         if (!e.data) return;
         
+        if (e.data.type === 'grinstr_scroll_top') {
+            const offset = 70;
+            const y = iframe.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        }
+
         // Dynamic iframe height
         if (e.data.type === 'grinstr_resize' && typeof e.data.height === 'number') {
             iframe.style.height = e.data.height + 'px';
@@ -92,4 +98,17 @@
 
     container.innerHTML = '';
     container.appendChild(iframe);
+    
+    // Fix Tilda top padding on mobile: walk up DOM and zero all padding-top on Tilda wrappers
+    if (window.innerWidth < 1024) {
+        let el = container;
+        while (el && el !== document.body) {
+            const cs = getComputedStyle(el);
+            const pt = parseInt(cs.paddingTop, 10) || 0;
+            const mt = parseInt(cs.marginTop, 10) || 0;
+            if (pt > 20) el.style.paddingTop = '0px';
+            if (mt > 20) el.style.marginTop = '0px';
+            el = el.parentElement;
+        }
+    }
 })();

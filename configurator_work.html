@@ -200,7 +200,7 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 relative z-10">
-            <div class="lg:col-span-7 p-4 md:p-6 space-y-6 border-r border-slate-800 font-sans">
+            <div id="left-column-wrapper" class="lg:col-span-7 p-4 md:p-6 space-y-6 border-r border-slate-800 font-sans">
                 <!-- STEP 1: Gearbox Type -->
                 <div id="step-section-1" class="step-section">
                     <div class="flex items-center gap-2.5 mb-4">
@@ -348,7 +348,7 @@
                 </div>
 
                 <!-- STEPS 3 & 4: Mounting Position & Cable (Side-by-side on desktop, distinct steps on mobile) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch font-sans">
+                <div id="steps-34-wrapper" class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch font-sans">
                     <!-- STEP 3: Mounting Position -->
                     <div id="step-section-3" class="step-section bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between space-y-3 font-sans">
                         <div>
@@ -10434,19 +10434,51 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
 
         function applyStepVisibility() {
             const isMobile = isMobileView();
+            const wrapper34 = document.getElementById('steps-34-wrapper');
+            
             for (let i = 1; i <= 5; i++) {
                 const el = document.getElementById('step-section-' + i);
                 if (!el) continue;
                 if (!isMobile) {
+                    // Desktop: show everything
                     el.classList.remove('hidden');
                 } else {
-                    if (i <= mobileCurrentStep) {
+                    // Mobile: show ONLY current step
+                    if (i === mobileCurrentStep) {
                         el.classList.remove('hidden');
                     } else {
                         el.classList.add('hidden');
                     }
                 }
             }
+            
+            // Handle the steps 3-4 wrapper: on mobile, hide it unless step 3 or 4 is active
+            if (wrapper34) {
+                if (!isMobile) {
+                    wrapper34.classList.remove('hidden');
+                } else {
+                    if (mobileCurrentStep === 3 || mobileCurrentStep === 4) {
+                        wrapper34.classList.remove('hidden');
+                    } else {
+                        wrapper34.classList.add('hidden');
+                    }
+                }
+            }
+            
+            // Handle left column wrapper: on mobile, hide when showing Step 5 (which is outside left column)
+            const leftCol = document.getElementById('left-column-wrapper');
+            if (leftCol) {
+                if (!isMobile) {
+                    leftCol.classList.remove('hidden');
+                } else {
+                    if (mobileCurrentStep >= 1 && mobileCurrentStep <= 4) {
+                        leftCol.classList.remove('hidden');
+                    } else {
+                        leftCol.classList.add('hidden');
+                    }
+                }
+            }
+            
             updateMobileStepper(mobileCurrentStep);
             if (window.reportHeight) window.reportHeight();
             if (window.lucide) lucide.createIcons();
@@ -10455,7 +10487,14 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
 
         function goToMobileStep(step, options = {}) {
             const shouldScroll = options.scroll !== false;
-            mobileCurrentStep = Math.max(1, Math.min(5, step));
+            const targetStep = Math.max(1, Math.min(5, step));
+            
+            // Allow navigation to any unlocked step (backward or forward by 1)
+            if (targetStep > mobileMaxUnlockedStep + 1) {
+                return;
+            }
+
+            mobileCurrentStep = targetStep;
             if (mobileCurrentStep > mobileMaxUnlockedStep) {
                 mobileMaxUnlockedStep = mobileCurrentStep;
             }
@@ -10463,18 +10502,13 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
 
             if (shouldScroll && isMobileView()) {
                 setTimeout(() => {
-                    const targetEl = document.getElementById('step-section-' + mobileCurrentStep);
-                    if (targetEl) {
-                        const stepper = document.getElementById('mobile-stepper');
-                        const offset = stepper ? stepper.offsetHeight + 12 : 70;
-                        const rect = targetEl.getBoundingClientRect();
-                        const targetY = window.pageYOffset + rect.top - offset;
-                        window.scrollTo({
-                            top: Math.max(0, targetY),
-                            behavior: 'smooth'
-                        });
+                    // Scroll to top of the iframe in Tilda parent context
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({ type: 'grinstr_scroll_top' }, '*');
                     }
-                }, 60);
+                    // Also scroll within iframe to top of configurator
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 80);
             }
         }
 
