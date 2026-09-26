@@ -257,7 +257,7 @@
                             <span class="w-5 h-5 rounded bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs font-bold font-mono">02</span>
                             <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Задайте базовые технические требования</h2>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
                                 <div>
                                     <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Мощность двигателя</label>
@@ -269,15 +269,6 @@
                                     </div>
                                 </div>
                                 <div class="text-[10px] text-slate-500 mt-2">Ряд мощностей (кВт)</div>
-                            </div>
-                            <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
-                                <div>
-                                    <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Диаметр вала (мм)</label>
-                                    <div class="flex items-center gap-2 mb-2">
-                                        <input id="shaft-diam-input" type="number" min="0" placeholder="Например 70" oninput="handleParamChange()" class="bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white font-semibold w-full focus:outline-none focus:border-emerald-500">
-                                    </div>
-                                </div>
-                                <div class="text-[10px] text-slate-500 mt-1">0 или пусто — без учета вала</div>
                             </div>
                             <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
                                 <div>
@@ -322,12 +313,17 @@
                     <!-- Исполнение корпуса, двигателя и способ монтажа -->
                     <div class="bg-slate-950 p-4 rounded border border-slate-850 space-y-4 font-sans">
                         <h3 class="text-xs font-bold text-white border-b border-slate-900 pb-2 flex items-center gap-2 uppercase tracking-wider"><i data-lucide="settings-2" class="w-3.5 h-3.5 text-emerald-400"></i>Исполнение корпуса, двигателя и способ монтажа</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div>
                                 <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide flex items-center">Тип вала редуктора<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Определяет, как редуктор соединяется с механизмом: сплошной вал со шпонкой, полый вал (надевается на вал машины) или стяжная муфта (без шпонки).</span></span></label>
                                 <select id="shaft-type" onchange="handleParamChange()" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-xs text-white focus:outline-none focus:border-emerald-500 cursor-pointer">
                                     <option value="solid">Цилиндрический со шпонкой (цельный вал)</option><option value="hollow">Полый со шпоночным пазом</option><option value="hollow_t">Полый со шпоночным пазом + Моментный рычаг (T)</option><option value="hollow_disc">Полый со стяжной муфтой (Shrink Disc)</option><option value="hollow_disc_t">Полый со стяжной муфтой + Моментный рычаг (T)</option>
                                 </select>
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Диаметр вала (мм)<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Укажите требуемый диаметр выходного вала. Оставьте пустым, если подбираете по моменту или мощности.</span></span></label>
+                                <input id="shaft-diam-input" type="number" min="0" placeholder="Авто" oninput="handleParamChange()" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+                                <div class="text-[9px] text-slate-500 mt-1">0 или пусто — без учета вала</div>
                             </div>
                             <div>
                                 <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Способ крепления корпуса</label>
@@ -9823,12 +9819,11 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             let bestConfig = null;
             // ПОДБОР ПО КРУТЯЩЕМУ МОМЕНТУ
             if (state.desiredTorque > 0) {
-                // Фильтруем каталог по моменту >= требуемого
+                // Фильтруем каталог: момент >= требуемого пользователем
                 let torqueMatches = filteredRows.filter(row => row.torque >= state.desiredTorque);
                 if (torqueMatches.length === 0) {
-                    // Если нет точных совпадений — берём ближайший момент (наибольший из меньших)
+                    // Нет подходящих — берём с максимальным доступным моментом
                     torqueMatches = [...filteredRows].sort((a, b) => b.torque - a.torque);
-                    if (torqueMatches.length > 0) torqueMatches = [torqueMatches[0]];
                 }
                 let allConfigs = torqueMatches.map(row => formatMarkingAndParams(row)).filter(c => c !== null);
                 if (window.forceFrame) {
@@ -9836,11 +9831,9 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                     if (exactConfigs.length > 0) allConfigs = exactConfigs;
                     window.forceFrame = null;
                 }
-                // Сортировка: минимальный запас по моменту → ближайшая мощность → ближайшая скорость
+                // Сортировка: наименьший момент ≥ требуемого (самый подходящий без лишнего запаса) → ближайшая мощность → ближайшая скорость
                 allConfigs.sort((a, b) => {
-                    const torqueDiffA = Math.abs(a.torque - state.desiredTorque);
-                    const torqueDiffB = Math.abs(b.torque - state.desiredTorque);
-                    if (torqueDiffA !== torqueDiffB) return torqueDiffA - torqueDiffB;
+                    if (a.torque !== b.torque) return a.torque - b.torque;
                     const powerDiffA = Math.abs(a.power - state.power);
                     const powerDiffB = Math.abs(b.power - state.power);
                     if (powerDiffA !== powerDiffB) return powerDiffA - powerDiffB;
@@ -9848,7 +9841,8 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                 });
                 bestConfig = allConfigs[0];
                 if (bestConfig) {
-                    const largerTorque = allConfigs.filter(c => c.torque > bestConfig.torque);
+                    // Альтернативы: с бо́льшим запасом по моменту, быстрее, медленнее
+                    const largerTorque = allConfigs.filter(c => c.torque > bestConfig.torque && c.frame > bestConfig.frame);
                     const fasterSpeed = allConfigs.filter(c => c.speed > bestConfig.speed && c.marking !== bestConfig.marking);
                     const slowerSpeed = allConfigs.filter(c => c.speed < bestConfig.speed && c.marking !== bestConfig.marking);
                     state.options = [bestConfig, largerTorque[0] || null, fasterSpeed[0] || null, slowerSpeed[0] || null];
