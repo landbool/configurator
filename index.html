@@ -257,7 +257,7 @@
                             <span class="w-5 h-5 rounded bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs font-bold font-mono">02</span>
                             <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Задайте базовые технические требования</h2>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
                             <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
                                 <div>
                                     <label class="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wide">Мощность двигателя</label>
@@ -289,6 +289,16 @@
                                     <input id="speed-slider" type="range" min="1" max="1150" value="35" oninput="syncSliderToInput(this.value)" class="w-full accent-emerald-500 cursor-pointer">
                                     <div class="flex justify-between text-[9px] text-slate-600 mt-1 font-mono"><span>1</span><span>1150 об/мин</span></div>
                                 </div>
+                            </div>
+                            <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-400 block mb-1 uppercase tracking-wide flex items-center">Крутящий момент<span class="tooltip-container"><i data-lucide="help-circle" class="tooltip-icon"></i><span class="tooltip-text">Минимальный требуемый момент на выходном валу (Н·м). Оставьте пустым для автоподбора по мощности и оборотам.</span></span></label>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <input id="torque-input" type="number" min="1" step="1" placeholder="Например 200" oninput="handleParamChange()" class="bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white font-semibold w-full focus:outline-none focus:border-emerald-500">
+                                        <span class="text-[11px] text-slate-500 whitespace-nowrap">Н·м</span>
+                                    </div>
+                                </div>
+                                <div id="torque-hint" class="text-[9px] text-slate-500 mt-1">0 или пусто — подбор по мощности</div>
                             </div>
                             <div class="bg-slate-950 p-4 rounded border border-slate-850 flex flex-col justify-between font-sans">
                                 <div>
@@ -7244,7 +7254,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             if(el) el.value = val;
         }
 
-        const state = { gearType: 'GR', power: 1.5, speed: 10, minFs: 1.0, desiredShaft: 0, shaftType: 'solid', mountingPosition: 'M1', boxAngle: '270', baseType: 'foot', motorType: 'Y', cableOutlet: 'X', options: [] };
+        const state = { gearType: 'GR', power: 1.5, speed: 10, minFs: 1.0, desiredShaft: 0, desiredTorque: 0, shaftType: 'solid', mountingPosition: 'M1', boxAngle: '270', baseType: 'foot', motorType: 'Y', cableOutlet: 'X', options: [] };
         let catalogData = [];
         const demoCatalog = [
             { series: 'GK', power: 0.12, speed: 0.17, torque: 5987, ratio: 7583.0, radial: 27, fs: 0.8, model: 'GK109R79', poles: '4P' },
@@ -9548,7 +9558,28 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             syncAllSegmentedIndicators();
         }
 
-        function handleParamChange() { state.power = parseFloat(document.getElementById('power-input').value) || 0.12; state.speed = parseFloat(document.getElementById('speed-input').value) || 35; state.minFs = parseFloat(document.getElementById('fs-min-input').value) || 1.0; state.shaftType = document.getElementById('shaft-type').value; state.motorType = document.getElementById('motor-type').value; state.desiredShaft = parseFloat(document.getElementById('shaft-diam-input')?.value) || 0; syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations(); updateSchemeImages(); }
+        function updateTorqueHint() {
+            const hintEl = document.getElementById('torque-hint');
+            if (!hintEl) return;
+            const power = state.power || 0;
+            const speed = state.speed || 0;
+            if (state.desiredTorque > 0) {
+                hintEl.textContent = 'Подбор по моменту ≥ ' + state.desiredTorque + ' Н·м';
+                hintEl.classList.remove('text-slate-500');
+                hintEl.classList.add('text-emerald-400/70');
+            } else if (power > 0 && speed > 0) {
+                const calcTorque = Math.round(power * 9549.3 / speed);
+                hintEl.textContent = '~' + calcTorque + ' Н·м при ' + power + ' кВт и ' + speed + ' об/мин';
+                hintEl.classList.remove('text-emerald-400/70');
+                hintEl.classList.add('text-slate-500');
+            } else {
+                hintEl.textContent = '0 или пусто — подбор по мощности';
+                hintEl.classList.remove('text-emerald-400/70');
+                hintEl.classList.add('text-slate-500');
+            }
+        }
+
+        function handleParamChange() { state.power = parseFloat(document.getElementById('power-input').value) || 0.12; state.speed = parseFloat(document.getElementById('speed-input').value) || 35; state.minFs = parseFloat(document.getElementById('fs-min-input').value) || 1.0; state.shaftType = document.getElementById('shaft-type').value; state.motorType = document.getElementById('motor-type').value; state.desiredShaft = parseFloat(document.getElementById('shaft-diam-input')?.value) || 0; state.desiredTorque = parseFloat(document.getElementById('torque-input')?.value) || 0; updateTorqueHint(); syncUIConstraints(); syncAllSegmentedIndicators(); updateCalculations(); updateSchemeImages(); }
         function setBaseType(type) { 
             state.baseType = type; 
             syncUIConstraints(); 
@@ -9790,7 +9821,41 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             }
 
             let bestConfig = null;
-            if (state.desiredShaft > 0) {
+            // ПОДБОР ПО КРУТЯЩЕМУ МОМЕНТУ
+            if (state.desiredTorque > 0) {
+                // Фильтруем каталог по моменту >= требуемого
+                let torqueMatches = filteredRows.filter(row => row.torque >= state.desiredTorque);
+                if (torqueMatches.length === 0) {
+                    // Если нет точных совпадений — берём ближайший момент (наибольший из меньших)
+                    torqueMatches = [...filteredRows].sort((a, b) => b.torque - a.torque);
+                    if (torqueMatches.length > 0) torqueMatches = [torqueMatches[0]];
+                }
+                let allConfigs = torqueMatches.map(row => formatMarkingAndParams(row)).filter(c => c !== null);
+                if (window.forceFrame) {
+                    const exactConfigs = allConfigs.filter(c => c.frame === window.forceFrame);
+                    if (exactConfigs.length > 0) allConfigs = exactConfigs;
+                    window.forceFrame = null;
+                }
+                // Сортировка: минимальный запас по моменту → ближайшая мощность → ближайшая скорость
+                allConfigs.sort((a, b) => {
+                    const torqueDiffA = Math.abs(a.torque - state.desiredTorque);
+                    const torqueDiffB = Math.abs(b.torque - state.desiredTorque);
+                    if (torqueDiffA !== torqueDiffB) return torqueDiffA - torqueDiffB;
+                    const powerDiffA = Math.abs(a.power - state.power);
+                    const powerDiffB = Math.abs(b.power - state.power);
+                    if (powerDiffA !== powerDiffB) return powerDiffA - powerDiffB;
+                    return Math.abs(a.speed - state.speed) - Math.abs(b.speed - state.speed);
+                });
+                bestConfig = allConfigs[0];
+                if (bestConfig) {
+                    const largerTorque = allConfigs.filter(c => c.torque > bestConfig.torque);
+                    const fasterSpeed = allConfigs.filter(c => c.speed > bestConfig.speed && c.marking !== bestConfig.marking);
+                    const slowerSpeed = allConfigs.filter(c => c.speed < bestConfig.speed && c.marking !== bestConfig.marking);
+                    state.options = [bestConfig, largerTorque[0] || null, fasterSpeed[0] || null, slowerSpeed[0] || null];
+                }
+            }
+            
+            if (!bestConfig && state.desiredShaft > 0) {
                 let allConfigs = filteredRows.map(row => formatMarkingAndParams(row)).filter(c => c !== null);
                 if (window.forceFrame) {
                     const exactConfigs = allConfigs.filter(c => c.frame === window.forceFrame);
@@ -9800,7 +9865,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                 allConfigs.sort((a, b) => { const exactA = a.actualShaft === state.desiredShaft; const exactB = b.actualShaft === state.desiredShaft; if (exactA !== exactB) return exactA ? -1 : 1; const largerA = a.actualShaft >= state.desiredShaft; const largerB = b.actualShaft >= state.desiredShaft; if (largerA !== largerB) return largerA ? -1 : 1; const diffShaftA = Math.abs(a.actualShaft - state.desiredShaft); const diffShaftB = Math.abs(b.actualShaft - state.desiredShaft); if (diffShaftA !== diffShaftB) return diffShaftA - diffShaftB; const diffPowerA = Math.abs(a.power - state.power); const diffPowerB = Math.abs(b.power - state.power); if (diffPowerA !== diffPowerB) return diffPowerA - diffPowerB; return Math.abs(a.speed - state.speed) - Math.abs(b.speed - state.speed); });
                 bestConfig = allConfigs[0]; const largerFrameConfigs = allConfigs.filter(c => c.frame > bestConfig.frame); const smallerFrameConfigs = allConfigs.filter(c => c.frame < bestConfig.frame); const alternativeSpeedConfigs = allConfigs.filter(c => c.frame === bestConfig.frame && c.marking !== bestConfig.marking);
                 state.options = [bestConfig, largerFrameConfigs[0] || null, smallerFrameConfigs[0] || null, alternativeSpeedConfigs[0] || null];
-            } else {
+            } else if (!bestConfig) {
                 let allConfigs = powerRows.map(row => formatMarkingAndParams(row)).filter(c => c !== null);
                 if (window.forceFrame) {
                     const exactConfigs = allConfigs.filter(c => c.frame === window.forceFrame);
