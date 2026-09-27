@@ -77,6 +77,7 @@
         if (e.data.type === 'grinstr_request_modal_pos') {
             parentBackdrop.style.pointerEvents = 'auto';
             parentBackdrop.style.opacity = '1';
+            iframe.style.zIndex = '999995';
 
             const rect = iframe.getBoundingClientRect();
             const viewportH = window.innerHeight || document.documentElement.clientHeight;
@@ -110,5 +111,6 @@
             el.style.marginTop = '0px';
             el = el.parentElement;
         }
+        container.style.marginTop = '12px';
     }
 })();
