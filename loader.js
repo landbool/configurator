@@ -32,7 +32,7 @@
     iframe.style.overflow = 'hidden';
     iframe.style.display = 'block';
     iframe.style.position = 'relative';
-    iframe.style.zIndex = '999995';
+    iframe.style.zIndex = '1';
     iframe.setAttribute('allowtransparency', 'true');
 
     parentBackdrop.addEventListener('click', function() {
@@ -41,6 +41,7 @@
         }
         parentBackdrop.style.opacity = '0';
         parentBackdrop.style.pointerEvents = 'none';
+        iframe.style.zIndex = '1';
     });
 
     // Handle messages from iframe
@@ -62,12 +63,14 @@
         if (e.data.type === 'grinstr_show_backdrop') {
             parentBackdrop.style.pointerEvents = 'auto';
             parentBackdrop.style.opacity = '1';
+            iframe.style.zIndex = '999995';
         }
         
         // Hide whole-site backdrop
         if (e.data.type === 'grinstr_hide_backdrop') {
             parentBackdrop.style.opacity = '0';
             parentBackdrop.style.pointerEvents = 'none';
+            iframe.style.zIndex = '1';
         }
         
         // Exact user viewport center calculation & backdrop trigger
