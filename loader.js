@@ -102,15 +102,12 @@
     container.innerHTML = '';
     container.appendChild(iframe);
     
-    // Fix Tilda top padding on mobile: walk up DOM and zero all padding-top on Tilda wrappers
+    // Fix Tilda top padding on mobile: zero ALL padding/margin-top on parent wrappers
     if (window.innerWidth < 1024) {
         let el = container;
         while (el && el !== document.body) {
-            const cs = getComputedStyle(el);
-            const pt = parseInt(cs.paddingTop, 10) || 0;
-            const mt = parseInt(cs.marginTop, 10) || 0;
-            if (pt > 20) el.style.paddingTop = '0px';
-            if (mt > 20) el.style.marginTop = '0px';
+            el.style.paddingTop = '0px';
+            el.style.marginTop = '0px';
             el = el.parentElement;
         }
     }
