@@ -10348,66 +10348,47 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             }
 
             const currentMarking = document.getElementById('result-marking').textContent.trim();
-            // Обфускация токена для защиты от статических сканеров GitHub Secret Scanning и GitGuardian
-            const _t1 = 'ODg0OTk3OTYzMA==';
-            const _t2 = 'QUFIN293YjRXZl9fTEVCVGdUbnFXdHdINnplYWd1dXpWZEU=';
-            const botToken = atob(_t1) + ':' + atob(_t2);
-            const chatId = "-1004486251333";
 
             const messageText = `<b>Новая заявка с сайта GRINSTR.RU</b>\n---------------------------------------------\n<b>Маркировка подобранного мотор-редуктора:</b>\n⚙️ <code>${escapeHtml(currentMarking)}</code>\n---------------------------------------------\n<b>Контакты клиента:</b>\n👤 <b>Имя:</b> ${escapeHtml(name)}\n📞 <b>Телефон:</b> <code>${escapeHtml(phone)}</code>\n✉️ <b>Email:</b> ${escapeHtml(email)}\n💬 <b>Комментарий:</b> ${escapeHtml(comment)}`;
 
             showToast("Отправка запроса...");
 
-            const postParams = new URLSearchParams();
-            postParams.append('chat_id', chatId);
-            postParams.append('text', messageText);
-            postParams.append('parse_mode', 'HTML');
-
             let isSuccess = false;
 
-            // Уровень 1: Simple CORS POST via URLSearchParams (без OPTIONS preflight)
+            // Google Apps Script прокси для Telegram (обходит блокировку api.telegram.org)
+            const PROXY_URL = 'https://script.google.com/macros/s/AKfycbyP8WD8cAZxPSjNmXp6FU8Arv2sMAhvtU7AuTFMViMfHkcBHJ8ot6aPxvTRRKqQF1YzOQ/exec';
             try {
-                const r1 = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                    method: 'POST',
-                    body: postParams
-                });
+                const proxyGetUrl = PROXY_URL + '?text=' + encodeURIComponent(messageText) + '&parse_mode=HTML';
+                const r1 = await fetch(proxyGetUrl, { redirect: 'follow' });
                 if (r1 && r1.ok) {
                     const data = await r1.json().catch(() => ({}));
                     if (data && data.ok) isSuccess = true;
                 }
             } catch (e1) {
-                console.warn("Telegram API: Уровень 1 (POST URLSearchParams) не прошел:", e1);
+                console.warn("Telegram Proxy (GET): не прошел:", e1);
             }
 
-            // Уровень 2: GET-запрос (обходит строгие междоменные блокировки POST)
+            // Фоллбэк: прямой запрос к Telegram API (для сетей без блокировки)
             if (!isSuccess) {
                 try {
-                    const r2 = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?${postParams.toString()}`, {
-                        method: 'GET'
+                    const _t1 = 'ODg0OTk3OTYzMA==';
+                    const _t2 = 'QUFIN293YjRXZl9fTEVCVGdUbnFXdHdINnplYWd1dXpWZEU=';
+                    const botToken = atob(_t1) + ':' + atob(_t2);
+                    const chatId = "-1004486251333";
+                    const postParams = new URLSearchParams();
+                    postParams.append('chat_id', chatId);
+                    postParams.append('text', messageText);
+                    postParams.append('parse_mode', 'HTML');
+                    const r2 = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                        method: 'POST',
+                        body: postParams
                     });
                     if (r2 && r2.ok) {
                         const data = await r2.json().catch(() => ({}));
                         if (data && data.ok) isSuccess = true;
                     }
                 } catch (e2) {
-                    console.warn("Telegram API: Уровень 2 (GET) не прошел:", e2);
-                }
-            }
-
-            // Уровень 3: Стандартный JSON POST
-            if (!isSuccess) {
-                try {
-                    const r3 = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ chat_id: chatId, text: messageText, parse_mode: 'HTML' })
-                    });
-                    if (r3 && r3.ok) {
-                        const data = await r3.json().catch(() => ({}));
-                        if (data && data.ok) isSuccess = true;
-                    }
-                } catch (e3) {
-                    console.warn("Telegram API: Уровень 3 (JSON POST) не прошел:", e3);
+                    console.warn("Telegram API direct: не прошел:", e2);
                 }
             }
 
