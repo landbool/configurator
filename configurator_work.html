@@ -10355,7 +10355,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
 
             let isSuccess = false;
 
-            // Google Apps Script прокси для Telegram (обходит блокировку api.telegram.org)
+            // Google Apps Script прокси для Telegram (токен хранится только на стороне Apps Script)
             const PROXY_URL = 'https://script.google.com/macros/s/AKfycbyP8WD8cAZxPSjNmXp6FU8Arv2sMAhvtU7AuTFMViMfHkcBHJ8ot6aPxvTRRKqQF1YzOQ/exec';
             try {
                 const proxyGetUrl = PROXY_URL + '?text=' + encodeURIComponent(messageText) + '&parse_mode=HTML';
@@ -10366,30 +10366,6 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
                 }
             } catch (e1) {
                 console.warn("Telegram Proxy (GET): не прошел:", e1);
-            }
-
-            // Фоллбэк: прямой запрос к Telegram API (для сетей без блокировки)
-            if (!isSuccess) {
-                try {
-                    const _t1 = 'ODg0OTk3OTYzMA==';
-                    const _t2 = 'QUFIN293YjRXZl9fTEVCVGdUbnFXdHdINnplYWd1dXpWZEU=';
-                    const botToken = atob(_t1) + ':' + atob(_t2);
-                    const chatId = "-1004486251333";
-                    const postParams = new URLSearchParams();
-                    postParams.append('chat_id', chatId);
-                    postParams.append('text', messageText);
-                    postParams.append('parse_mode', 'HTML');
-                    const r2 = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                        method: 'POST',
-                        body: postParams
-                    });
-                    if (r2 && r2.ok) {
-                        const data = await r2.json().catch(() => ({}));
-                        if (data && data.ok) isSuccess = true;
-                    }
-                } catch (e2) {
-                    console.warn("Telegram API direct: не прошел:", e2);
-                }
             }
 
             if (isSuccess) {
