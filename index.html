@@ -10356,7 +10356,7 @@ const gfhz159SvgUrl = 'https://raw.githubusercontent.com/landbool/configurator/m
             let isSuccess = false;
 
             // Google Apps Script прокси для Telegram (токен хранится только на стороне Apps Script)
-            const PROXY_URL = 'https://script.google.com/macros/s/AKfycbyP8WD8cAZxPSjNmXp6FU8Arv2sMAhvtU7AuTFMViMfHkcBHJ8ot6aPxvTRRKqQF1YzOQ/exec';
+            const PROXY_URL = 'https://script.google.com/macros/s/AKfycbx0QBpMlzty_chtZey1_xOG6rAcjdIL0FwwrRKMdaKAzPAjVobpK3sY1Ys111PI3bu8JA/exec';
             try {
                 const proxyGetUrl = PROXY_URL + '?text=' + encodeURIComponent(messageText) + '&parse_mode=HTML';
                 const r1 = await fetch(proxyGetUrl, { redirect: 'follow' });
